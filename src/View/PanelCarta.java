@@ -75,6 +75,7 @@ public class PanelCarta extends JPanel {
 
         return paginaPlats;
 
+
     }
 
 
