@@ -15,7 +15,7 @@ public class PanelCarta extends JPanel {
     private JButton jbTornar;
     private JButton jbSeguent;
     private int quinaPagina;
-    private int numPagines = 0;
+    private int numPagines;
     private JLabel jlPagina;
     private ArrayList<PaginaPlats> paginaPlats;
 
