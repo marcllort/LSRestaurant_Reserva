@@ -17,6 +17,7 @@ public class Comanda {
      * Crea un llistat de plats buit.
      */
 
+
     //public String getNomPlat(){return plat.getNomPlat();}
     public boolean esServit(){return servit;}
     //public float getPreuPlat(){return plat.getPreu();}
