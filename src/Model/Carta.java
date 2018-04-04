@@ -15,4 +15,8 @@ public class Carta {
     }
 
     public int getNumPlats(){ return plats.size();}
+
+    public Plat getPlat(int i){
+        return plats.get(i);
+    }
 }

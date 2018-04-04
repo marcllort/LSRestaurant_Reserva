@@ -24,6 +24,13 @@ public class PanelSortida extends JPanel {
         for(Comanda c : comanda){
             preu += c.getPreuPlat();
         }
+        jlPreu = new JLabel("El preu a pagar és " + preu + "euros");
+        jbMartxar= new JButton("Pagar");
+        JPanel jpAux = new JPanel();
+        jpAux.setLayout(new BoxLayout(jpAux, BoxLayout.Y_AXIS));
+        jpAux.add(jlPreu);
+        jpAux.add(jbMartxar);
+        this.add(jpAux, BorderLayout.CENTER);
 
 
     }
