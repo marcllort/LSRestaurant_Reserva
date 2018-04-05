@@ -84,6 +84,7 @@ public class Vista extends JFrame {
         this.jp1 = new JPanel();
         jp1.setBackground(Color.LIGHT_GRAY);
 
+
         this.getContentPane().add("BUIT", jp1);
         this.getContentPane().add("CARTA", panelCarta);
         //FALTA PANEL EDITAR COMANDA
