@@ -12,14 +12,11 @@ public class Comanda {
     private boolean servit;
     private Date data;                  //  quan fem una comanda cal enviar a la hora que sha fet
 
-    /**
-     * Constructor sense parametres.
-     * Crea un llistat de plats buit.
-     */
 
-    //public String getNomPlat(){return plat.getNomPlat();}
+
     public boolean esServit(){return servit;}
-    //public float getPreuPlat(){return plat.getPreu();}
+
+    public ArrayList<Plat> getPlats(){return plats;}
 
     public void addPlat(Plat plat){
         plats.add(plat);
@@ -36,4 +33,6 @@ public class Comanda {
     public void setData(Date data) {
         this.data = data;
     }
+
+
 }

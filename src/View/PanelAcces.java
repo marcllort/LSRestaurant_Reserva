@@ -2,6 +2,7 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class PanelAcces extends JPanel {
 
@@ -17,7 +18,6 @@ public class PanelAcces extends JPanel {
      * Crea el panell per accedir a la reserva
      */
     public PanelAcces(){
-
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBorder(BorderFactory.createTitledBorder("LSRestaurant"));
         JPanel jpUsuari = new JPanel();
@@ -37,7 +37,21 @@ public class PanelAcces extends JPanel {
         this.add(jpContrasenya);
         this.add(jbEnvia);
 
+    }
 
+    public void  registerController(ActionListener controlador){
+        jbEnvia.addActionListener(controlador);
+        jbEnvia.setActionCommand("ENVIA CREDENCIALS");
+
+    }
+
+    public String getTypedUsuari(){return jtfUsuari.getText();}
+
+    public String getTypedContrasenya(){return jtfContrasenya.getText();}
+
+    public void cleanFields(){
+        jtfUsuari.setText("");
+        jtfContrasenya.setText("");
     }
 
 

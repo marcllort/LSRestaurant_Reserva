@@ -1,10 +1,18 @@
 package Model;
 
-import View.VistaPrincipal;
 
-public class Main {
+
+//El model Rep la comanda i la carta del network, i se la pasa a la vista
+
+import Controller.Controller;
+import View.Vista;
+
+public class Main{
     public static void main(String[] args){
-        VistaPrincipal vp = new VistaPrincipal();
-        vp.setVisible(true);
+
+        Vista view;
+
+        Controller controlador = new Controller(view);
+        view.registerController(controlador);
     }
 }

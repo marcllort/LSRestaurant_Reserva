@@ -1,17 +1,18 @@
 package Model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+
 
 public class Carta {
 
-    private LinkedList<Plat> plats;
+    private ArrayList<Plat> plats;
 
     /**
-     * Constructor que omple la carta
+     * Constructor que crea la carta
      */
 
-    public Carta(LinkedList<Plat> plats){
-        this.plats = plats;
+    public Carta(){
+        this.plats = new ArrayList<Plat>();
     }
 
     public int getNumPlats(){ return plats.size();}

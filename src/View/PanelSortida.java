@@ -1,10 +1,13 @@
 package View;
 
 import Model.Comanda;
+import Model.Plat;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.LinkedList;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 
 public class PanelSortida extends JPanel {
 
@@ -14,17 +17,19 @@ public class PanelSortida extends JPanel {
 
     /**
      * Constructor amb parametres per crear el panell de sortida
-     * @param comanda una llista de la comanda de la reserva per tal de calcular el preu final
+     * @param comanda una llista de la comanda de la reserva per tal de calcular el preu final, donada per la BBDD
      */
-    public PanelSortida(LinkedList<Comanda> comanda){
+    public PanelSortida(ArrayList<Comanda> comanda){
 
         this.setLayout(new BorderLayout());
         preu = 0;
 
-        for(Comanda c : comanda){
-            preu += c.getPreuPlat();
+        for(Comanda c: comanda){
+            for(Plat p: c.getPlats()){
+                preu += p.getPreu();
+            }
         }
-        jlPreu = new JLabel("El preu a pagar és " + preu + "euros");
+        jlPreu = new JLabel("El preu a pagar és " + preu + "€");
         jbMartxar= new JButton("Pagar");
         JPanel jpAux = new JPanel();
         jpAux.setLayout(new BoxLayout(jpAux, BoxLayout.Y_AXIS));
@@ -33,5 +38,11 @@ public class PanelSortida extends JPanel {
         this.add(jpAux, BorderLayout.CENTER);
 
 
+    }
+
+    public void registerController(ActionListener controlador){
+
+        jbMartxar.addActionListener(controlador);
+        jbMartxar.setActionCommand("SORTIR");
     }
 }
