@@ -37,8 +37,8 @@ public class Controller implements ActionListener {
 
     public void actionPerformed(ActionEvent event){
         if(event.getActionCommand().equals("ENVIA CREDENCIALS")){
-            autentificaReserva(view.getTypedUsuari(), view.getTypedContrasenya());//Enviamos al servidor
-            if(credencialsCorrectes()){
+           // autentificaReserva(view.getTypedUsuari(), view.getTypedContrasenya());//Enviamos al servidor
+           // if(credencialsCorrectes()){
                 JOptionPane.showMessageDialog(view, "Benvingut!");
                 handleAcces(view.getTypedUsuari());//crea la resta de panells
                 //Si es tracta d'una accio sobre el menu, haurem de cambiar el panell
@@ -48,7 +48,7 @@ public class Controller implements ActionListener {
                 // Si es tracta d'una opcio dels panells
                 if(event.getActionCommand().equals("PAGINA ANTERIOR")){
                     view.getPanelCarta().getQuinaPagina();
-                    view.
+                    //view.
                 }
 
 
@@ -58,11 +58,11 @@ public class Controller implements ActionListener {
                 view.cleanFields();
             }
         }
-    }
+
 
     private void handleAcces(String reserva){
         // Busquem la comanda d'aquesta reserva i l'omplim
-        comanda = ompleComanda(reserva);
+        //comanda = ompleComanda(reserva);
         // Creem els altres panells i els inserim a la Vista
         view.activaPanells(comanda, carta, this);
     }

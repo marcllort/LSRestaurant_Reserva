@@ -12,7 +12,7 @@ public class Main{
 
         Vista view;
 
-        Controller controlador = new Controller(view);
-        view.registerController(controlador);
+       // Controller controlador = new Controller(view);
+       // view.registerController(controlador);
     }
 }
