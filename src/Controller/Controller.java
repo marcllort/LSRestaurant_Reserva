@@ -51,6 +51,7 @@ public class Controller implements ActionListener {
 
 
             }else{
+
                 JOptionPane.showMessageDialog(view, "Credencials incorrectes!");
                 view.cleanFields();
             }
