@@ -88,7 +88,6 @@ public class Vista extends JFrame {
 
         this.getContentPane().add("BUIT", jp1);
         this.getContentPane().add("CARTA", panelCarta);
-        //FALTA PANEL EDITAR COMANDA
         this.getContentPane().add("ESTAT COMANDA", panelEstatComanda);
         this.getContentPane().add("SORTIR", panelSortida);
         changePanel("BUIT");
@@ -114,4 +113,7 @@ public class Vista extends JFrame {
     public void changePanel(String quin){ layout.show(this.getContentPane(), quin);}
 
     public PanelCarta getPanelCarta(){return panelCarta;}
+
+    public PanelSortida getPanelSortida(){´return panelSortida;}
 }
+

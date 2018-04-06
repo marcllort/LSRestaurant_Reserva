@@ -1,5 +1,6 @@
 package View;
 
+import Controller.Controller;
 import Model.Comanda;
 import Model.Plat;
 
@@ -37,6 +38,11 @@ public class PanelSortida extends JPanel {
         jpAux.add(jbMartxar);
         this.add(jpAux, BorderLayout.CENTER);
 
+    }
+
+    public void mostraDialog(Controller c){
+        JDialog jdMissatge = new JDialog();
+        jdMissatge.setLayout(new BorderLayout());
 
     }
 

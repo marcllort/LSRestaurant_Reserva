@@ -35,30 +35,42 @@ public class Controller implements ActionListener {
      * @event Font de l'esdeveniment
      */
 
-    public void actionPerformed(ActionEvent event){
-        if(event.getActionCommand().equals("ENVIA CREDENCIALS")){
-           // autentificaReserva(view.getTypedUsuari(), view.getTypedContrasenya());//Enviamos al servidor
-           // if(credencialsCorrectes()){
+    public void actionPerformed(ActionEvent event) {
+        if (event.getActionCommand().equals("ENVIA CREDENCIALS")) {
+            autentificaReserva(view.getTypedUsuari(), view.getTypedContrasenya());//Enviamos al servidor
+            if (credencialsCorrectes()) {
                 JOptionPane.showMessageDialog(view, "Benvingut!");
                 handleAcces(view.getTypedUsuari());//crea la resta de panells
                 //Si es tracta d'una accio sobre el menu, haurem de cambiar el panell
-                if(event.getSource() instanceof JMenuItem){
+                if (event.getSource() instanceof JMenuItem) {
                     view.changePanel(event.getActionCommand());
                 }
                 // Si es tracta d'una opcio dels panells
-                if(event.getActionCommand().equals("PAGINA ANTERIOR")){
-                    view.getPanelCarta().getQuinaPagina();
-                    //view.
+                if (event.getActionCommand().equals("PAGINA ANTERIOR")) {
+                    view.getPanelCarta().setQuinaPagina(view.getPanelCarta().getQuinaPagina() - 1);
+                }else if(event.getActionCommand().equals("PAGINA SEGUENT")){
+                    view.getPanelCarta().setQuinaPagina(view.getPanelCarta().getQuinaPagina() + 1);
+                }else if(event.getActionCommand().equals("ACCES EDITOR COMANDA")){
+                    //OBRIM LA VENTANA COMANDA
+                }else if(event.getActionCommand().equals("SORTIR")){
+                    //Mirem si encara queda alguna comanda per servir
+                    for(Comanda c: comanda){
+                        if(!c.esServit()){
+
+                            break;
+                        }
+                    }
+
                 }
 
 
-            }else{
+            } else {
 
                 JOptionPane.showMessageDialog(view, "Credencials incorrectes!");
                 view.cleanFields();
             }
         }
-
+    }
 
     private void handleAcces(String reserva){
         // Busquem la comanda d'aquesta reserva i l'omplim

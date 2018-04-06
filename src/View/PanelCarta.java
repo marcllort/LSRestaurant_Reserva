@@ -107,4 +107,6 @@ public class PanelCarta extends JPanel {
     }
 
 
+
+
 }
