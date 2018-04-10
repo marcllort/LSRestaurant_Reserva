@@ -43,6 +43,22 @@ public class PanelSortida extends JPanel {
     public void mostraDialog(Controller c){
         JDialog jdMissatge = new JDialog();
         jdMissatge.setLayout(new BorderLayout());
+        JLabel jl = new JLabel();
+        jl.setText("Encara no s'han servit tots els plats. \n Segur que vols martxar?");
+        JButton jb1 = new JButton("Si");
+        JButton jb2 = new JButton("No");
+        JPanel jpAux = new JPanel(new FlowLayout());
+        jpAux.add(jb1);
+        jpAux.add(jb2);
+        jdMissatge.add(jpAux, BorderLayout.PAGE_END);
+        jdMissatge.add(jl, BorderLayout.CENTER);
+
+        //controlador
+
+        jb1.addActionListener(c);
+        jb1.setActionCommand("SI");
+        jb2.addActionListener(c);
+        jb2.setActionCommand("NO");
 
     }
 

@@ -7,14 +7,14 @@ import java.util.LinkedList;
 public class Comanda {
 
     private String usuari;              //cal enviar el usuari que ha fet la comanda
-    //private Plat plat;
+
     private ArrayList<Plat> plats;      //cal que sigui el array dels plats que ha demanat la taula
-    private boolean servit;
+  //  private boolean servit;
     private Date data;                  //  quan fem una comanda cal enviar a la hora que sha fet
 
 
 
-    public boolean esServit(){return servit;}
+    //public boolean esServit(){return servit;}
 
     public ArrayList<Plat> getPlats(){return plats;}
 

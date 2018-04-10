@@ -4,6 +4,7 @@ package Controller;
 
 import Model.Carta;
 import Model.Comanda;
+import Model.Plat;
 import View.Vista;
 
 import javax.swing.*;
@@ -55,11 +56,20 @@ public class Controller implements ActionListener {
                 }else if(event.getActionCommand().equals("SORTIR")){
                     //Mirem si encara queda alguna comanda per servir
                     for(Comanda c: comanda){
-                        if(!c.esServit()){
-
-                            break;
-                        }
+                       for(Plat p: c.getPlats()){
+                           if(!p.isServit()){
+                               view.getPanelSortida().mostraDialog(this);
+                               break;
+                           }
+                       }
                     }
+
+                }else if(event.getActionCommand().equals("SI")){
+                    JOptionPane.showMessageDialog(view, "Fins aviat!");
+                    view.cleanFields();//Por si acaso
+                    view.changePanel("ACCES");//Tornem pagina principal
+
+                }else if(event.getActionCommand().equals("NO")){
 
                 }
 
