@@ -20,4 +20,6 @@ public class Carta {
     public Plat getPlat(int i){
         return plats.get(i);
     }
+
+    public void afageixPlat(Plat plat){plats.add(plat);}
 }

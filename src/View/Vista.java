@@ -39,6 +39,7 @@ public class Vista extends JFrame {
         this.getContentPane().setLayout(layout);
         this.getContentPane().add("ACCES", panelAcces);
 
+
         this.setSize(400, 400);
         this.setResizable(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -78,14 +79,12 @@ public class Vista extends JFrame {
 
 
     public void activaPanells(ArrayList<Comanda> comanda, Carta carta, Controller c){
+
         this.panelCarta = new PanelCarta(carta);
         this.panelEstatComanda = new PanelEstatComanda(comanda);
         this.panelSortida = new PanelSortida(comanda);
         this.jp1 = new JPanel();
         jp1.setBackground(Color.LIGHT_GRAY);
-
-
-
 
         this.getContentPane().add("BUIT", jp1);
         this.getContentPane().add("CARTA", panelCarta);
@@ -94,7 +93,7 @@ public class Vista extends JFrame {
         changePanel("BUIT");
 
         panelCarta.registerController(c);
-        //Falta panell editarcomanda
+        vistaComanda.
         panelSortida.registerController(c);
 
         creaMenu();

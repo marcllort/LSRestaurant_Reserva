@@ -6,6 +6,7 @@ import Model.Carta;
 import Model.Comanda;
 import Model.Plat;
 import View.Vista;
+import View.VistaComanda;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,16 +21,21 @@ public class Controller implements ActionListener {
     private Carta carta;
     private ArrayList<Comanda> comanda;
 
+
+
     /**
      * Constructor amb parametres
      * @param view relacio vista amb controlador
      */
+
+
     public Controller(Vista view){
         this.view = view;
         //podem omplir la carta
         this.carta = new Carta();
         this.comanda = new ArrayList<Comanda>();
     }
+
 
     /**
      * Gestiona els esdeveniments
@@ -49,28 +55,20 @@ public class Controller implements ActionListener {
                 // Si es tracta d'una opcio dels panells
                 if (event.getActionCommand().equals("PAGINA ANTERIOR")) {
                     view.getPanelCarta().setQuinaPagina(view.getPanelCarta().getQuinaPagina() - 1);
-                }else if(event.getActionCommand().equals("PAGINA SEGUENT")){
+                } else if (event.getActionCommand().equals("PAGINA SEGUENT")) {
                     view.getPanelCarta().setQuinaPagina(view.getPanelCarta().getQuinaPagina() + 1);
-                }else if(event.getActionCommand().equals("ACCES EDITOR COMANDA")){
-                    //OBRIM LA VENTANA COMANDA
-                }else if(event.getActionCommand().equals("SORTIR")){
+                } else if (event.getActionCommand().equals("ACCES EDITOR COMANDA")) {
+                    //VistaComanda vc = new VistaComanda(comandaActual);
+                } else if (event.getActionCommand().equals("SORTIR")) {
                     //Mirem si encara queda alguna comanda per servir
-                    for(Comanda c: comanda){
-                       for(Plat p: c.getPlats()){
-                           if(!p.isServit()){
-                               view.getPanelSortida().mostraDialog(this);
-                               break;
-                           }
-                       }
+                    for (Comanda c : comanda) {
+                        for (Plat p : c.getPlats()) {
+                            if (!p.isServit()) {
+
+                                break;
+                            }
+                        }
                     }
-
-                }else if(event.getActionCommand().equals("SI")){
-                    JOptionPane.showMessageDialog(view, "Fins aviat!");
-                    view.cleanFields();//Por si acaso
-                    view.changePanel("ACCES");//Tornem pagina principal
-
-                }else if(event.getActionCommand().equals("NO")){
-
                 }
 
 
