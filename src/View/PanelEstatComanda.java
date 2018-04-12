@@ -14,6 +14,7 @@ public class PanelEstatComanda extends JPanel {
     //Ens la dona la BBDD
     private ArrayList<Comanda> comanda;
     private JScrollPane jspComanda;
+    private JPanel jpComanda;
 
 
     /**
@@ -26,12 +27,12 @@ public class PanelEstatComanda extends JPanel {
         this.comanda = comanda;
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createTitledBorder("Estat de la teva comanda"));
-        jspComanda = new JScrollPane();
+        jpComanda = new JPanel();
         int aux = 0;
         for (Comanda c : comanda) {
             aux += c.getPlats().size();
         }
-        jspComanda.setLayout(new GridLayout(aux, 1));
+        jpComanda.setLayout(new GridLayout(aux, 1));
         JTextArea jtaAux;
         JTextArea jtaAux2;
         JPanel auxPanel;
@@ -53,9 +54,14 @@ public class PanelEstatComanda extends JPanel {
                 jtaAux.setText(p.getNomPlat() + " \n" + p.getPreu() + "€");
                 auxPanel.add(jtaAux);
                 auxPanel.add(jtaAux2);
-                jspComanda.add(auxPanel);
+                jpComanda.add(auxPanel);
             }
         }
+        jspComanda = new JScrollPane(jpComanda);
+        this.add(jspComanda, BorderLayout.CENTER);
     }
+
+
+
 
 }

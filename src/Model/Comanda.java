@@ -10,9 +10,13 @@ public class Comanda {
 
     private ArrayList<Plat> plats;      //cal que sigui el array dels plats que ha demanat la taula
   //  private boolean servit;
-    private Date data;                  //  quan fem una comanda cal enviar a la hora que sha fet
+   // private Date data;                  //  quan fem una comanda cal enviar a la hora que sha fet
 
 
+    public Comanda(String usuari){
+        this.usuari = usuari;
+        this.plats = new ArrayList<Plat>();
+    }
 
     //public boolean esServit(){return servit;}
 
@@ -26,13 +30,13 @@ public class Comanda {
         return plats.get(i);
     }
 
-    public Date getData() {
-        return data;
-    }
+  /**  public Date getData() { return data; }
 
     public void setData(Date data) {
         this.data = data;
     }
 
+    public void setUsuari(String usuari){this.usuari = usuari;}
+*/
 
 }

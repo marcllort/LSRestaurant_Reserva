@@ -29,6 +29,7 @@ public class PanelPlats extends JPanel {
 
     private void afageixPlats(){
         int i = 0;
+
         jrbPlat1 = new JRadioButton(plats.get(i).getNomPlat() + "\n" + plats.get(i).getPreu());
         this.add(jrbPlat1);
         i++;
@@ -92,8 +93,6 @@ public class PanelPlats extends JPanel {
     }
 
     public int getNunPagina(){ return numPagina;}
-
-
 
 
 }

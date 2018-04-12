@@ -22,4 +22,5 @@ public class Carta {
     }
 
     public void afageixPlat(Plat plat){plats.add(plat);}
+
 }

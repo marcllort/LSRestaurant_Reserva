@@ -15,7 +15,8 @@ public class PanelSortida extends JPanel {
     private JLabel jlPreu;
     private JButton jbMartxar;
     private float preu;
-
+    private ArrayList<Comanda> comanda;
+    private DialogSortida dialogSortida;
     /**
      * Constructor amb parametres per crear el panell de sortida
      * @param comanda una llista de la comanda de la reserva per tal de calcular el preu final, donada per la BBDD
@@ -24,6 +25,7 @@ public class PanelSortida extends JPanel {
 
         this.setLayout(new BorderLayout());
         preu = 0;
+        this.comanda = comanda;
 
         for(Comanda c: comanda){
             for(Plat p: c.getPlats()){
@@ -37,7 +39,6 @@ public class PanelSortida extends JPanel {
         jpAux.add(jlPreu);
         jpAux.add(jbMartxar);
         this.add(jpAux, BorderLayout.CENTER);
-
     }
 
 
@@ -47,4 +48,15 @@ public class PanelSortida extends JPanel {
         jbMartxar.setActionCommand("SORTIR");
     }
 
+    public float getPreuAPagar(){return preu;}
+
+    public void dialogSortida(ActionListener controlador){
+        dialogSortida = new DialogSortida(comanda);
+        dialogSortida.registerController(controlador);
+        dialogSortida.setVisible(true);
+    }
+
+    public void desactivaDialogSortida(){
+        dialogSortida.setVisible(false);
+    }
 }

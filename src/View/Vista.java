@@ -33,7 +33,7 @@ public class Vista extends JFrame {
      * Constructor sense parametres.
      * Crea la finestra que permetra visualitzar els diferents panells
      */
-    public Vista(Carta carta, Comanda comanda){
+    public Vista(){
         layout = new CardLayout();
         this.panelAcces = new PanelAcces();
         this.getContentPane().setLayout(layout);
@@ -47,16 +47,6 @@ public class Vista extends JFrame {
 
     }
 
-    private void creaMenu(){
-        jmbMenu = new JMenuBar();
-        jmiCarta = new JMenuItem("Carta");
-        jmiComanda = new JMenuItem("Editar \n Comanda");
-        jmiEstatComanda = new JMenuItem("Estat \n Comanda");
-        jmiPagar = new JMenuItem("Pagar i \n Sortir");
-        jmbMenu.setBackground(Color.LIGHT_GRAY);
-        jmbMenu.setBorderPainted(true);
-
-    }
 
     /**
      * Registra el controlador al menu i a la resta de panells
@@ -65,15 +55,7 @@ public class Vista extends JFrame {
     public void registerController(Controller c){
         //Pasem el controlado a la resta de panells
         panelAcces.registerController(c);
-        // Registrem controlador a les diferents opcions del menu
-        jmiCarta.addActionListener(c);
-        jmiCarta.setActionCommand("ACCES CARTA");
-        jmiEstatComanda.addActionListener(c);
-        jmiEstatComanda.setActionCommand("ACCES ESTAT COMANDA");
-        jmiComanda.addActionListener(c);
-        jmiComanda.setActionCommand("ACCES EDITOR COMANDA");
-        jmiPagar.addActionListener(c);
-        jmiPagar.setActionCommand("ACCES SORTIDA");
+
 
     }
 
@@ -90,18 +72,45 @@ public class Vista extends JFrame {
         this.getContentPane().add("CARTA", panelCarta);
         this.getContentPane().add("ESTAT COMANDA", panelEstatComanda);
         this.getContentPane().add("SORTIR", panelSortida);
-        changePanel("BUIT");
-
-        panelCarta.registerController(c);
-        vistaComanda.
-        panelSortida.registerController(c);
 
         creaMenu();
-        this.setJMenuBar(jmbMenu);
 
+
+        creaMenu();
+
+        // Registrem controlador a les diferents opcions del menu
+        jmiCarta.addActionListener(c);
+        jmiCarta.setActionCommand("ACCES CARTA");
+        jmiEstatComanda.addActionListener(c);
+        jmiEstatComanda.setActionCommand("ACCES ESTAT COMANDA");
+        jmiComanda.addActionListener(c);
+        jmiComanda.setActionCommand("ACCES EDITOR COMANDA");
+        jmiPagar.addActionListener(c);
+        jmiPagar.setActionCommand("ACCES SORTIDA");
+
+        //Registrem el controlador als diferents panells
+        panelCarta.registerController(c);
+        panelSortida.registerController(c);
 
 
     }
+
+    private void creaMenu(){
+        jmbMenu = new JMenuBar();
+        jmiCarta = new JMenuItem("Carta");
+        jmiComanda = new JMenuItem("Editar Comanda");
+        jmiEstatComanda = new JMenuItem("Estat  Comanda");
+        jmiPagar = new JMenuItem("Pagar i  Sortir");
+        jmbMenu.setBackground(Color.LIGHT_GRAY);
+        jmbMenu.setBorderPainted(true);
+        jmbMenu.add(jmiCarta);
+        jmbMenu.add(jmiComanda);
+        jmbMenu.add(jmiEstatComanda);
+        jmbMenu.add(jmiPagar);
+        this.setJMenuBar(jmbMenu);
+
+    }
+
 
 
     public String getTypedUsuari(){return panelAcces.getTypedUsuari();}
@@ -116,6 +125,8 @@ public class Vista extends JFrame {
 
     public PanelSortida getPanelSortida(){return panelSortida;}
 
-
+    public void modificaPanelEstatComanda(ArrayList<Comanda> comanda){
+        this.panelEstatComanda = new PanelEstatComanda(comanda);
+    }
 }
 

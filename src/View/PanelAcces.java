@@ -18,24 +18,31 @@ public class PanelAcces extends JPanel {
      * Crea el panell per accedir a la reserva
      */
     public PanelAcces(){
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createTitledBorder("LSRestaurant"));
         JPanel jpUsuari = new JPanel();
         JPanel jpContrasenya = new JPanel();
         ((FlowLayout)jpUsuari.getLayout()).setAlignment(FlowLayout.LEFT);
-        jlUsuari = new JLabel("Nom d'usuari");
+        jlUsuari = new JLabel("Usuari");
         jtfUsuari = new JTextField();
         jtfUsuari.setPreferredSize(new Dimension(280, 25));
         jpUsuari.add(jlUsuari);
+        jtfUsuari.setVisible(true);
         jpUsuari.add(jtfUsuari);
         ((FlowLayout)jpContrasenya.getLayout()).setAlignment(FlowLayout.LEFT);
         jlContrasenya = new JLabel("Contrasenya");
         jtfContrasenya = new JTextField();
         jtfContrasenya.setPreferredSize( new Dimension(300, 25));
+        jpContrasenya.add(jlContrasenya);
+        jpContrasenya.add(jtfUsuari);
         jbEnvia = new JButton("Envia");
-        this.add(jpUsuari);
-        this.add(jpContrasenya);
-        this.add(jbEnvia);
+        jbEnvia.setPreferredSize(new Dimension(60, 40));
+        JPanel jpAux = new JPanel();
+        ((FlowLayout)jpAux.getLayout()).setAlignment(FlowLayout.LEFT);
+        jpAux.add(jpUsuari);
+        jpAux.add(jpContrasenya);
+        this.add(jpAux, BorderLayout.CENTER);
+        this.add(jbEnvia, BorderLayout.PAGE_END);
 
     }
 

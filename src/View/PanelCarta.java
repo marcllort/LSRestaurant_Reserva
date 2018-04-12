@@ -84,10 +84,21 @@ public class PanelCarta extends JPanel {
 
     public int getQuinaPagina(){return quinaPagina;}
 
-    public void setQuinaPagina(int quinaPagina){
-        this.quinaPagina = quinaPagina;
-        this.add(paginaPlats.get(quinaPagina - 1), BorderLayout.CENTER);
-        jlPagina.setText("PÁGINA " + quinaPagina);
+    public void setQuinaPagina(int quinaPagina, String on){
+        if (on.equals("anterior")){
+            if(getQuinaPagina() != 1){
+                this.quinaPagina = quinaPagina;
+                this.add(paginaPlats.get(quinaPagina), BorderLayout.CENTER);
+            }
+        }else{
+            if(getQuinaPagina() != numPagines ){
+                this.quinaPagina = quinaPagina;
+                this.add(paginaPlats.get(quinaPagina), BorderLayout.CENTER);
+            }
+        }
+
+        jlPagina.setText("PÁGINA " + this.quinaPagina);
+        activaDesactiva();
 
     }
 
@@ -105,6 +116,8 @@ public class PanelCarta extends JPanel {
         }
 
     }
+
+
 
 
 
