@@ -1,42 +1,54 @@
 package Model;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
-public class Comanda {
+public class Comanda implements Serializable {
 
     private String usuari;              //cal enviar el usuari que ha fet la comanda
-
     private ArrayList<Plat> plats;      //cal que sigui el array dels plats que ha demanat la taula
-  //  private boolean servit;
-   // private Date data;                  //  quan fem una comanda cal enviar a la hora que sha fet
+    private Date data;                  //  quan fem una comanda cal enviar a la hora que sha fet
+    private Time hora;
 
-
-    public Comanda(String usuari){
-        this.usuari = usuari;
-        this.plats = new ArrayList<Plat>();
+    public Time getHora() {
+        return hora;
     }
 
-    //public boolean esServit(){return servit;}
+    /**
+     * Constructor sense parametres.
+     * Crea un llistat de plats buit.
+     */
+    public Comanda(ArrayList<Plat> plats, Date data, Time hora, String usuari) {
+        this.plats = plats;
+        this.data = data;
+        this.hora = hora;
+        this.usuari = usuari;
+    }
 
-    public ArrayList<Plat> getPlats(){return plats;}
+    public ArrayList<Plat> getPlats() {
+        return plats;
+    }
 
-    public void addPlat(Plat plat){
+    public String getUsuari() {
+        return usuari;
+    }
+
+    public void addPlat(Plat plat) {
         plats.add(plat);
     }
 
-    public Plat getPlat(int i){
+    public Plat getPlat(int i) {
         return plats.get(i);
     }
 
-  /**  public Date getData() { return data; }
+    public Date getData() {
+        return data;
+    }
 
     public void setData(Date data) {
         this.data = data;
     }
-
-    public void setUsuari(String usuari){this.usuari = usuari;}
-*/
 
 }

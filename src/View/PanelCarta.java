@@ -36,11 +36,14 @@ public class PanelCarta extends JPanel {
         //CAMBIAR A FLECHA
         jbTornar = new JButton("Tornar");
         jbSeguent = new JButton("Seguent");
-        activaDesactiva();
         this.add(paginaPlats.get(0), BorderLayout.CENTER); //Per defecte mostrem primer la primera pagina
         this.quinaPagina = 1;
         jlPagina = new JLabel("PÁGINA " + quinaPagina);
         jpAux.add(jbTornar);
+        jpAux.add(jlPagina);
+        jpAux.add(jbSeguent);
+        activaDesactiva();
+        this.add(jpAux, BorderLayout.PAGE_END);
     }
 
     private ArrayList<PanelPlats> creaPaginaPlats(Carta carta){
@@ -111,11 +114,13 @@ public class PanelCarta extends JPanel {
         }else{
             jbTornar.setEnabled(true);
         }
-        if(numPagines - quinaPagina == 0){
+        if(numPagines - (quinaPagina) == 0){
             jbSeguent.setEnabled(false);
         }
 
     }
+
+    public PanelPlats getPaginaPlats(int i){return paginaPlats.get(i);}
 
 
 

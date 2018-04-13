@@ -27,14 +27,13 @@ public class PanelAcces extends JPanel {
         jtfUsuari = new JTextField();
         jtfUsuari.setPreferredSize(new Dimension(280, 25));
         jpUsuari.add(jlUsuari);
-        jtfUsuari.setVisible(true);
         jpUsuari.add(jtfUsuari);
         ((FlowLayout)jpContrasenya.getLayout()).setAlignment(FlowLayout.LEFT);
         jlContrasenya = new JLabel("Contrasenya");
         jtfContrasenya = new JTextField();
-        jtfContrasenya.setPreferredSize( new Dimension(300, 25));
+        jtfContrasenya.setPreferredSize( new Dimension(280, 25));
         jpContrasenya.add(jlContrasenya);
-        jpContrasenya.add(jtfUsuari);
+        jpContrasenya.add(jtfContrasenya);
         jbEnvia = new JButton("Envia");
         jbEnvia.setPreferredSize(new Dimension(60, 40));
         JPanel jpAux = new JPanel();

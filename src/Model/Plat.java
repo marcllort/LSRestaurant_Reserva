@@ -14,6 +14,13 @@ public class Plat implements Serializable {
     public Plat(String nom, float preu) {                          //Creo la classe de preu amb el elemet de nomPlat i preu
         this.nomPlat = nom;
         this.preu = preu;
+        servit = false;
+    }
+
+    public Plat(String nom, float preu, boolean servit) {                          //Creo la classe de preu amb el elemet de nomPlat i preu
+        this.nomPlat = nom;
+        this.preu = preu;
+        this.servit = servit;
     }
 
     public String getNomPlat() {
@@ -32,9 +39,10 @@ public class Plat implements Serializable {
         this.servit = servit;
     }
 
+
     @Override
     public String toString() {
         return nomPlat + " - " + preu;                                //Un override del tosting perque hem dongui la preu composada com la vui
     }
-}
 
+}

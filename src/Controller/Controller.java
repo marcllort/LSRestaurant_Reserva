@@ -5,11 +5,14 @@ package Controller;
 import Model.Carta;
 import Model.Comanda;
 import Model.Plat;
+import Model.Usuari;
+import NetworkManager.ServerConnect;
 import View.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Time;
 import java.util.ArrayList;
 
 public class Controller implements ActionListener {
@@ -17,7 +20,7 @@ public class Controller implements ActionListener {
     private Vista view;
     private VistaEditorComanda viewComanda;
     //MODEL
-    private Carta carta;
+    private Carta carta; //Declarar cono arraylist
     private ArrayList<Comanda> comanda;
     private Comanda comandaActual;
 
@@ -78,6 +81,7 @@ public class Controller implements ActionListener {
                 view.getPanelCarta().setQuinaPagina(view.getPanelCarta().getQuinaPagina() + 1, "seguent");
             }else if(event.getSource() instanceof PanelPlats){
                 if(event.getActionCommand().equals("PLAT1-" + view.getPanelCarta().getQuinaPagina())){
+                    handleAfageixPlat(0, view.getPanelCarta().getQuinaPagina() - 1);
                     //afegim el plat a la comanda + mostrar Jdialog
                 }else if(event.getActionCommand().equals("PLAT2-" + view.getPanelCarta().getQuinaPagina())){
                     //afegim el plat a la comanda + mostrar Jdialog
@@ -128,11 +132,37 @@ public class Controller implements ActionListener {
         String usuari = view.getTypedUsuari();
         String contrasenya = view.getTypedContrasenya();
         //Comprovem dades
-        boolean error = false;
+
         //error = comprovaCredencials(usuari, contrasenya);
-        if(!error){
+        ServerConnect serverConnect = new ServerConnect();
+        serverConnect.enviaUser(new Usuari(usuari, contrasenya));
+        String userConfirmation = serverConnect.repUserConfirmation();
+        if (userConfirmation.equals("true")){
+
+            ArrayList<Plat> carta = serverConnect.repCarta();
+            //esperem a que introdueixi comanda
+            ArrayList<Plat> f= new ArrayList<>();
+            f.add(new Plat("gam",1));
+//f.add(carta.get(0));
+            Comanda comanda = new Comanda(f,data , new Time(12, 2,2), "Alexa");
+            serverConnect.enviaComanda(comanda);
+
+            String comandaConfirmation = serverConnect.repComandaConfirmation();
+
+            if (comandaConfirmation.equals("true")){
+                System.out.println("Comanda realitzada amb exit");
+            }else{
+                System.out.println("Error:"+ comandaConfirmation);
+            }
+
+
+        }else{
+            System.out.println("Error: " + userConfirmation);
+            //serverConnect.serverDisconnect();
+        }
+        /**if(!error){
             JOptionPane.showMessageDialog(view, "Benvingut!");
-            //comanda = ompleComanda(usuari);
+            //comanda = ompleComanda();
             //carta = ompleCarta();
             view.activaPanells(comanda, carta, this);
 
@@ -140,7 +170,7 @@ public class Controller implements ActionListener {
         }else{
             JOptionPane.showMessageDialog(view, "Credencials incorrectes!");
             view.cleanFields();
-        }
+        }*/
     }
 
     private void handleSortida() {
@@ -175,6 +205,12 @@ public class Controller implements ActionListener {
                 break;
             }
         }
+    }
+
+    private void handleAfageixPlat(int numPlat, int numPagina){
+        Plat p = view.getPanelCarta().getPaginaPlats(numPagina).getPlat(numPlat);
+        //demanem plats disponibles al controlador d'aquest plat
+
     }
 
 }

@@ -6,6 +6,7 @@ package Model;
 
 //import Controller.Controller;
 import Controller.Controller;
+import NetworkManager.ServerConnect;
 import View.Vista;
 
 public class Main{
@@ -15,7 +16,7 @@ public class Main{
         view = new Vista();
         Controller controller = new Controller(view);
         view.registerController(controller);
-
+        ServerConnect serverConnect = new ServerConnect();
 
         view.setVisible(true);
 

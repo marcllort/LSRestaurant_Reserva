@@ -94,5 +94,5 @@ public class PanelPlats extends JPanel {
 
     public int getNunPagina(){ return numPagina;}
 
-
+    public Plat getPlat(int i){return plats.get(i);}
 }
