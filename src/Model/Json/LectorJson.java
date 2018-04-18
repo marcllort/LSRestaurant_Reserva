@@ -11,7 +11,7 @@ public class LectorJson {
     private static final String FILE_NAME = System.getProperty("user.dir") + "/data/config.json"; //Nom de l'arxiu a obrir
 
 
-    public static ConfiguracioClient llegeixConfiguracioClient() {             //Els args son useless
+    public ConfiguracioClient llegeixConfiguracioClient() {             //Els args son useless
         ConfiguracioClient data ;          // Dades a carregar
         Gson        gson = new Gson();                   // Entitat Gson
         JsonReader  reader;                              // Reader de JSON
