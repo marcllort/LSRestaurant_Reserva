@@ -1,6 +1,8 @@
 package NetworkManager;
 
 import Model.Comanda;
+import Model.Json.ConfiguracioClient;
+import Model.Json.LectorJson;
 import Model.Plat;
 import Model.Usuari;
 
@@ -21,15 +23,16 @@ public class ServerConnect {
     private ObjectInputStream ois;
     private DataInputStream dis;
     private String resposta;
-    //private LectorJSON lectorJSON;
+    private LectorJson lectorJSON;
 
 
     public ServerConnect() {
 
         try {
-            /*lectorJSON = new LectorJSON();
-            portReserva = lectorJSON.lectorPortReserva();
-            ipReserva = lectorJSON.lectorIpReserva();*/
+             lectorJSON = new LectorJson();
+             ConfiguracioClient conf = lectorJSON.llegeixConfiguracioClient();
+            portReserva = Integer.parseInt(conf.lectorPortServer());
+            ipReserva = conf.lectorIpServer();
 
             socket = new Socket(ipReserva, portReserva);
             oos = new ObjectOutputStream(socket.getOutputStream());
