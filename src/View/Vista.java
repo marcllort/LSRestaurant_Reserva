@@ -2,11 +2,9 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+
 
 import Controller.Controller;
-import Model.Plat;
 import Model.Carta;
 import Model.Comanda;
 
@@ -28,39 +26,34 @@ public class Vista extends JFrame {
     private JMenuItem jmiPagar;
 
 
-
     /**
      * Constructor sense parametres.
      * Crea la finestra que permetra visualitzar els diferents panells
      */
-    public Vista(){
+
+    public Vista() {
+
         layout = new CardLayout();
         this.panelAcces = new PanelAcces();
         this.getContentPane().setLayout(layout);
         this.getContentPane().add("ACCES", panelAcces);
 
-
         this.setSize(400, 400);
         this.setResizable(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-
     }
-
 
     /**
      * Registra el controlador al menu i a la resta de panells
      */
 
-    public void registerController(Controller c){
+    public void registerController(Controller c) {
         //Pasem el controlado a la resta de panells
         panelAcces.registerController(c);
-
-
     }
 
-
-    public void activaPanellsCarta(Carta carta, Controller c){
+    public void activaPanellsCarta(Carta carta, Controller c) {
 
         this.panelCarta = new PanelCarta(carta);
 
@@ -70,10 +63,7 @@ public class Vista extends JFrame {
         this.getContentPane().add("BUIT", jp1);
         this.getContentPane().add("CARTA", panelCarta);
 
-
         creaMenu();
-
-
 
         // Registrem controlador a les diferents opcions del menu
         jmiCarta.addActionListener(c);
@@ -87,11 +77,9 @@ public class Vista extends JFrame {
         //Registrem el controlador als diferents panells
         panelCarta.registerController(c);
 
-
-
     }
 
-    public void activaPanellsComanda(Comanda comanda, Controller controller){
+    public void activaPanellsComanda(Comanda comanda, Controller controller) {
 
         this.panelEstatComanda = new PanelEstatComanda(comanda);
         this.panelSortida = new PanelSortida(comanda);
@@ -101,44 +89,54 @@ public class Vista extends JFrame {
 
         panelSortida.registerController(controller);
 
-
-
     }
 
-    private void creaMenu(){
-        jmbMenu = new JMenuBar();
+    private void creaMenu() {
+
         jmiCarta = new JMenuItem("Carta");
         jmiComanda = new JMenuItem("Editar Comanda");
         jmiEstatComanda = new JMenuItem("Estat  Comanda");
         jmiPagar = new JMenuItem("Pagar i  Sortir");
+
+        jmbMenu = new JMenuBar();
         jmbMenu.setBackground(Color.LIGHT_GRAY);
         jmbMenu.setBorderPainted(true);
         jmbMenu.add(jmiCarta);
         jmbMenu.add(jmiComanda);
         jmbMenu.add(jmiEstatComanda);
         jmbMenu.add(jmiPagar);
+
         this.setJMenuBar(jmbMenu);
 
-
-
     }
 
+    public String getTypedUsuari() {
+        return panelAcces.getTypedUsuari();
+    }
 
+    public String getTypedContrasenya() {
+        return panelAcces.getTypedContrasenya();
+    }
 
-    public String getTypedUsuari(){return panelAcces.getTypedUsuari();}
+    public void cleanFields() {
+        panelAcces.cleanFields();
+    }
 
-    public String getTypedContrasenya(){return panelAcces.getTypedContrasenya();}
+    public void changePanel(String quin) {
+        layout.show(this.getContentPane(), quin);
+    }
 
-    public void cleanFields(){panelAcces.cleanFields();}
+    public PanelCarta getPanelCarta() {
+        return panelCarta;
+    }
 
-    public void changePanel(String quin){ layout.show(this.getContentPane(), quin);}
+    public PanelSortida getPanelSortida() {
+        return panelSortida;
+    }
 
-    public PanelCarta getPanelCarta(){return panelCarta;}
-
-    public PanelSortida getPanelSortida(){return panelSortida;}
-
-    public void modificaPanelEstatComanda(Comanda comanda){
+    public void modificaPanelEstatComanda(Comanda comanda) {
         this.panelEstatComanda = new PanelEstatComanda(comanda);
     }
+
 }
 

@@ -23,22 +23,30 @@ public class PanelCarta extends JPanel {
 
     /**
      * Constructor que crea el panell de la carta
+     *
      * @param carta conjunt de plats a mostrar
      */
-    public PanelCarta(Carta carta){
+
+    public PanelCarta(Carta carta) {
         this.carta = carta;
+
         paginaPlats = new ArrayList<PanelPlats>();
         paginaPlats = creaPaginaPlats(carta);
+
         this.setLayout(new BorderLayout());
 
         JPanel jpAux = new JPanel();
         jpAux.setLayout(new BoxLayout(jpAux, BoxLayout.X_AXIS));
+
         //CAMBIAR A FLECHA
         jbTornar = new JButton("Tornar");
         jbSeguent = new JButton("Seguent");
+
         this.add(paginaPlats.get(0), BorderLayout.CENTER); //Per defecte mostrem primer la primera pagina
         this.quinaPagina = 1;
+
         jlPagina = new JLabel("PÁGINA " + quinaPagina);
+
         jpAux.add(jbTornar);
         jpAux.add(jlPagina);
         jpAux.add(jbSeguent);
@@ -46,16 +54,18 @@ public class PanelCarta extends JPanel {
         this.add(jpAux, BorderLayout.PAGE_END);
     }
 
-    private ArrayList<PanelPlats> creaPaginaPlats(Carta carta){
+    private ArrayList<PanelPlats> creaPaginaPlats(Carta carta) {
+
         paginaPlats = new ArrayList<PanelPlats>();
         numPagines = 1;
         PanelPlats pp;
         ArrayList<Plat> quinsPlats = new ArrayList<Plat>();
         Plat p;
+
         int j = 0; //ens guardem el numero de pagina
-        for(int i = 0; i < carta.getNumPlats(); i++){
+        for (int i = 0; i < carta.getNumPlats(); i++) {
             p = carta.getPlat(i);
-            if(quinsPlats.size() == 6 && i != (carta.getNumPlats()- 1)){
+            if (quinsPlats.size() == 6 && i != (carta.getNumPlats() - 1)) {
                 j++;
                 pp = new PanelPlats(quinsPlats, j);
                 paginaPlats.add(pp);
@@ -63,7 +73,7 @@ public class PanelCarta extends JPanel {
                 numPagines++;
             }
             quinsPlats.add(p);
-            if(i == (carta.getNumPlats()- 1)){
+            if (i == (carta.getNumPlats() - 1)) {
                 j++;
                 pp = new PanelPlats(quinsPlats, j);
                 paginaPlats.add(pp);
@@ -73,58 +83,58 @@ public class PanelCarta extends JPanel {
         return paginaPlats;
     }
 
-    public void registerController(ActionListener controlador){
+    public void registerController(ActionListener controlador) {
+
         jbTornar.addActionListener(controlador);
         jbSeguent.addActionListener(controlador);
         jbTornar.setActionCommand("PAGINA ANTERIOR");
         jbSeguent.setActionCommand("PAGINA SEGUENT");
-        for(PanelPlats p: paginaPlats){
+
+        for (PanelPlats p : paginaPlats) {
             p.registerController(controlador);
         }
     }
 
-    public int getNumPagines(){return numPagines;}
+    public int getNumPagines() {
+        return numPagines;
+    }
 
-    public int getQuinaPagina(){return quinaPagina;}
+    public int getQuinaPagina() {
+        return quinaPagina;
+    }
 
-    public void setQuinaPagina(int quinaPagina, String on){
-        if (on.equals("anterior")){
-            if(getQuinaPagina() != 1){
+    public void setQuinaPagina(int quinaPagina, String on) {
+        if (on.equals("anterior")) {
+            if (getQuinaPagina() != 1) {
                 this.quinaPagina = quinaPagina;
                 this.add(paginaPlats.get(quinaPagina), BorderLayout.CENTER);
             }
-        }else{
-            if(getQuinaPagina() != numPagines ){
+        } else {
+            if (getQuinaPagina() != numPagines) {
                 this.quinaPagina = quinaPagina;
                 this.add(paginaPlats.get(quinaPagina), BorderLayout.CENTER);
             }
         }
-
         jlPagina.setText("PÁGINA " + this.quinaPagina);
         activaDesactiva();
-
     }
 
-    public void activaDesactiva(){
-        if(numPagines > 1 && (numPagines - quinaPagina) > 0){
+    public void activaDesactiva() {
+        if (numPagines > 1 && (numPagines - quinaPagina) > 0) {
             jbSeguent.setEnabled(true);
         }
-        if(quinaPagina == 1){
+        if (quinaPagina == 1) {
             jbTornar.setEnabled(false);
-        }else{
+        } else {
             jbTornar.setEnabled(true);
         }
-        if(numPagines - (quinaPagina) == 0){
+        if (numPagines - (quinaPagina) == 0) {
             jbSeguent.setEnabled(false);
         }
-
     }
 
-    public PanelPlats getPaginaPlats(int i){return paginaPlats.get(i);}
-
-
-
-
-
+    public PanelPlats getPaginaPlats(int i) {
+        return paginaPlats.get(i);
+    }
 
 }

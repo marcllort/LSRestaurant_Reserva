@@ -11,9 +11,7 @@ import View.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Time;
-import java.time.LocalDate;
-import java.util.ArrayList;
+
 
 public class Controller implements ActionListener {
     //VISTA
@@ -23,7 +21,6 @@ public class Controller implements ActionListener {
     private Carta carta;
     private Comanda comanda;
     private Comanda comandaActual;
-
     private ServerConnect serverConnect;
 
     /**
@@ -37,7 +34,6 @@ public class Controller implements ActionListener {
         this.view = view;
         this.serverConnect = serverConnect;
         carta = new Carta();
-
     }
 
 
@@ -120,8 +116,7 @@ public class Controller implements ActionListener {
             //comandaActual= new Comanda();
         }
 
-
-    }
+    }               //Separar en funciones
 
     private void handleAcces() {
 
@@ -170,7 +165,6 @@ public class Controller implements ActionListener {
     }
 
     private void handleVistaComanda() {
-
         viewComanda = new VistaEditorComanda(comandaActual);
         viewComanda.setLocationRelativeTo(view);
         viewComanda.setVisible(true);
@@ -199,7 +193,6 @@ public class Controller implements ActionListener {
     private void handleAfageixPlat(int numPlat, int numPagina) {
         Plat p = view.getPanelCarta().getPaginaPlats(numPagina).getPlat(numPlat);
         //demanem plats disponibles al controlador d'aquest plat
-
     }
 
     public Carta getCarta() {

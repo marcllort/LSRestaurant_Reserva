@@ -12,18 +12,21 @@ public class Carta implements Serializable {
      * Constructor que crea la carta
      */
 
-    public Carta(){
+    public Carta() {
         this.plats = new ArrayList<Plat>();
     }
 
-    public Carta(ArrayList<Plat> plats){
+    public Carta(ArrayList<Plat> plats) {
         this.plats = new ArrayList<Plat>();
         this.plats = plats;
     }
 
-    public int getNumPlats(){ return plats.size();}
 
-    public Plat getPlat(int i){
+    public int getNumPlats() {
+        return plats.size();
+    }
+
+    public Plat getPlat(int i) {
         return plats.get(i);
     }
 
@@ -31,9 +34,12 @@ public class Carta implements Serializable {
         return plats;
     }
 
-    public void afageixPlat(Plat plat){plats.add(plat);}
+    public void afageixPlat(Plat plat) {
+        plats.add(plat);
+    }
 
-    public void setCarta(Carta carta){this.plats = carta.getPlats();}
-
+    public void setCarta(Carta carta) {
+        this.plats = carta.getPlats();
+    }
 
 }

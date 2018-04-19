@@ -46,6 +46,7 @@ public class ServerConnect extends Thread {
         }
     }
 
+
     public void startServerConnection(Controller controller) {
         this.controller = controller;
         start();                                        //Connectem al servidor
@@ -125,4 +126,5 @@ public class ServerConnect extends Thread {
             //controlador.updateVista(messages);          //Quan llegim el que ens envia el server, acutlaitzem a la vista
         }
     }
+
 }

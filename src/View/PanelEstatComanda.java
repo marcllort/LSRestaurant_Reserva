@@ -10,15 +10,14 @@ import java.util.LinkedList;
 
 public class PanelEstatComanda extends JPanel {
 
-
     //Ens la dona la BBDD
     private Comanda comanda;
     private JScrollPane jspComanda;
     private JPanel jpComanda;
 
-
     /**
      * Constructor amb parametres. crea el panell que mostra l'estat de la comanda
+     *
      * @param comanda la comanda de la reserva
      */
 
@@ -27,6 +26,7 @@ public class PanelEstatComanda extends JPanel {
         this.comanda = comanda;
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createTitledBorder("Estat de la teva comanda"));
+
         jpComanda = new JPanel();
         jpComanda.setLayout(new GridLayout(comanda.getPlats().size(), 1));
         JTextArea jtaAux;
@@ -42,6 +42,7 @@ public class PanelEstatComanda extends JPanel {
             } else {
                 jtaAux2.setText("Pendent...");
             }
+
             auxPanel = new JPanel();
             auxPanel.setLayout(new GridLayout(1, 2));
             jtaAux = new JTextArea();
@@ -51,12 +52,9 @@ public class PanelEstatComanda extends JPanel {
             auxPanel.add(jtaAux2);
             jpComanda.add(auxPanel);
         }
-
         jspComanda = new JScrollPane(jpComanda);
         this.add(jspComanda, BorderLayout.CENTER);
     }
-
-
 
 
 }

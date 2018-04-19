@@ -2,6 +2,7 @@ package Model.Json;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
@@ -12,9 +13,9 @@ public class LectorJson {
 
 
     public ConfiguracioClient llegeixConfiguracioClient() {             //Els args son useless
-        ConfiguracioClient data ;          // Dades a carregar
-        Gson        gson = new Gson();                   // Entitat Gson
-        JsonReader  reader;                              // Reader de JSON
+        ConfiguracioClient data;          // Dades a carregar
+        Gson gson = new Gson();                   // Entitat Gson
+        JsonReader reader;                              // Reader de JSON
 
         try {               //Intentem carregar el fitxer json
 

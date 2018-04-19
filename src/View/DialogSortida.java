@@ -1,39 +1,39 @@
 package View;
 
-import Controller.Controller;
 import Model.Comanda;
 import Model.Plat;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class DialogSortida extends JDialog {
 
-
     private JButton jbSi;
-    private  JButton jbNo;
+    private JButton jbNo;
     private JLabel jlMissatge;
 
-    public DialogSortida(Comanda comanda){
+
+    public DialogSortida(Comanda comanda) {
         this.setLayout(new BorderLayout());
         //Per saber si encara queden plats per pagar
         boolean faltan = false;
-        for(Plat p : comanda.getPlats()){
-            if(!p.isServit()){
+
+        for (Plat p : comanda.getPlats()) {
+            if (!p.isServit()) {
                 faltan = true;
                 break;
             }
         }
 
-        if(faltan){
+        if (faltan) {
             jlMissatge = new JLabel("Encara queden plats per servir. \n Segur que vol martxar?");
-        }else{
+        } else {
             jlMissatge = new JLabel("Segur que vol martxar?");
         }
+
         JPanel jp1 = new JPanel();
-        jp1.setLayout(new GridLayout(3,1));
+        jp1.setLayout(new GridLayout(3, 1));
         JPanel jpAux = new JPanel();
         jbNo = new JButton("No, encara no");
         jbSi = new JButton("Si, estic segur");
@@ -48,7 +48,7 @@ public class DialogSortida extends JDialog {
 
     }
 
-    public void registerController(ActionListener c){
+    public void registerController(ActionListener c) {
         jbSi.addActionListener(c);
         jbSi.setActionCommand("SORTIR PROGRAMA");
         jbNo.addActionListener(c);
