@@ -1,5 +1,5 @@
 {
-  "portserver": "3306",
+  "portserver": "5555",
   "ipserver": "127.0.0.1"
 
 }

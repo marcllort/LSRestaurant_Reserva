@@ -21,9 +21,13 @@ public class Carta {
         return plats.get(i);
     }
 
+    public ArrayList<Plat> getPlats() {
+        return plats;
+    }
+
     public void afageixPlat(Plat plat){plats.add(plat);}
 
-    public void setPlats(ArrayList<Plat> plats){this.plats = plats;}
+    public void setCarta(Carta carta){this.plats = carta.getPlats();}
 
 
 }

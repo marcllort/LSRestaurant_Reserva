@@ -32,7 +32,7 @@ public class ServerConnect {
         try {
              lectorJSON = new LectorJson();
              ConfiguracioClient conf = lectorJSON.llegeixConfiguracioClient();
-            portReserva = Integer.parseInt(conf.lectorPortServer());
+            portReserva = 5555;
             ipReserva = conf.lectorIpServer();
 
             socket = new Socket(ipReserva, portReserva);
@@ -64,10 +64,10 @@ public class ServerConnect {
         }
     }
 
-    public ArrayList<Plat> repCarta() {                             //Si user correcte envia la carta despres de enviar el true
+    public Object repCartaComanda() {                             //Si user correcte envia la carta despres de enviar el true
 
         try {
-            return (ArrayList<Plat>) ois.readObject();
+            return  ois.readObject();
         } catch (IOException e) {
             e.printStackTrace();
             return null;                                            //retona null en cas d'execepcio
@@ -108,12 +108,5 @@ public class ServerConnect {
         }
     }
 
-    public Comanda repComanda(){
-        try {
-            return (Comanda)ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+
 }

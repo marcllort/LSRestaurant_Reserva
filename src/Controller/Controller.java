@@ -25,6 +25,7 @@ public class Controller implements ActionListener {
     private Comanda comanda;
     private Comanda comandaActual;
 
+    private ServerConnect serverConnect;
 
     /**
      * Constructor amb parametres
@@ -34,6 +35,7 @@ public class Controller implements ActionListener {
 
     public Controller(Vista view){
         this.view = view;
+        this.serverConnect = new ServerConnect();
 
     }
 
@@ -107,9 +109,10 @@ public class Controller implements ActionListener {
 
         }else if(event.getActionCommand().equals("ENVIA")){
             //Enviem comanda actual al servidor
-            for(Plat p: comandaActual.getPlats()){
+          /**  for(Plat p: comandaActual.getPlats()){
                 comanda.addPlat(p);
-            }
+            }*/
+            serverConnect.enviaComanda(comandaActual);
             //modifiquem comanda al panell
             view.modificaPanelEstatComanda(comanda);
             //comandaActual= new Comanda();
@@ -126,19 +129,27 @@ public class Controller implements ActionListener {
         //Comprovem dades
 
         //error = comprovaCredencials(usuari, contrasenya);
-        ServerConnect serverConnect = new ServerConnect();
+
         serverConnect.enviaUser(new Usuari(usuari, contrasenya));
         String userConfirmation = serverConnect.repUserConfirmation();
         if (userConfirmation.equals("true")){
 
             //1.mostrem dialog de benvingut
             JOptionPane.showMessageDialog(view, "Benvingut!");
-            //2.omplim dades
-            carta.setPlats(serverConnect.repCarta());
-            comanda = serverConnect.repComanda();
-            //3.preparem els panells
-            view.activaPanells(comanda, carta, this);
             view.changePanel("BUIT");
+            while(true){
+                Object objeto = serverConnect.repCartaComanda();
+                if( objeto instanceof Comanda ){
+                    comanda = (Comanda)serverConnect.repCartaComanda();
+                    view.activaPanellsComanda(comanda, this);
+
+                }else if(objeto instanceof Carta ){
+                    carta.setCarta((Carta)objeto);
+                    view.activaPanellsCarta(carta, this);
+                }
+
+            }
+
         }else{
             JOptionPane.showMessageDialog(view, "Credencials incorrectes!");
             view.cleanFields();

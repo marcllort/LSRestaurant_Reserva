@@ -60,37 +60,47 @@ public class Vista extends JFrame {
     }
 
 
-    public void activaPanells(Comanda comanda, Carta carta, Controller c){
+    public void activaPanellsCarta(Carta carta, Controller c){
 
         this.panelCarta = new PanelCarta(carta);
-        this.panelEstatComanda = new PanelEstatComanda(comanda);
-        this.panelSortida = new PanelSortida(comanda);
+
         this.jp1 = new JPanel();
         jp1.setBackground(Color.LIGHT_GRAY);
 
         this.getContentPane().add("BUIT", jp1);
         this.getContentPane().add("CARTA", panelCarta);
-        this.getContentPane().add("ESTAT COMANDA", panelEstatComanda);
-        this.getContentPane().add("SORTIR", panelSortida);
-
-        creaMenu();
 
 
         creaMenu();
+
+
 
         // Registrem controlador a les diferents opcions del menu
         jmiCarta.addActionListener(c);
         jmiCarta.setActionCommand("ACCES CARTA");
         jmiEstatComanda.addActionListener(c);
-        jmiEstatComanda.setActionCommand("ACCES ESTAT COMANDA");
-        jmiComanda.addActionListener(c);
+
         jmiComanda.setActionCommand("ACCES EDITOR COMANDA");
         jmiPagar.addActionListener(c);
         jmiPagar.setActionCommand("ACCES SORTIDA");
 
         //Registrem el controlador als diferents panells
         panelCarta.registerController(c);
-        panelSortida.registerController(c);
+
+
+
+    }
+
+    public void activaPanellsComanda(Comanda comanda, Controller controller){
+
+        this.panelEstatComanda = new PanelEstatComanda(comanda);
+        this.panelSortida = new PanelSortida(comanda);
+
+        this.getContentPane().add("ESTAT COMANDA", panelEstatComanda);
+        this.getContentPane().add("SORTIR", panelSortida);
+
+        panelSortida.registerController(controller);
+
 
 
     }
@@ -108,6 +118,8 @@ public class Vista extends JFrame {
         jmbMenu.add(jmiEstatComanda);
         jmbMenu.add(jmiPagar);
         this.setJMenuBar(jmbMenu);
+
+
 
     }
 
