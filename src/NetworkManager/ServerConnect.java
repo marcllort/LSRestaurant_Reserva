@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.sql.Time;
 import java.util.ArrayList;
 
 public class ServerConnect {
@@ -77,6 +78,8 @@ public class ServerConnect {
 
     public void enviaComanda(Comanda comanda) {
         try {
+            Time hora = new Time(System.currentTimeMillis());
+            comanda.setHora(hora);
             oos.writeObject(comanda);
         } catch (IOException e) {
             e.printStackTrace();
@@ -99,6 +102,15 @@ public class ServerConnect {
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public Comanda repComanda(){
+        try {
+            return (Comanda)ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

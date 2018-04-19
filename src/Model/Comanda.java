@@ -51,4 +51,8 @@ public class Comanda implements Serializable {
         this.data = data;
     }
 
+
+    public void setHora(Time hora) {
+        this.hora = hora;
+    }
 }

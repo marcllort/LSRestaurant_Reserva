@@ -19,18 +19,15 @@ public class DialogPlat extends JDialog {
         jpAux.setBorder(BorderFactory.createTitledBorder("Afageix el numero de plats"));
         jlInfoPlat = new JLabel(plat.getNomPlat() + "\n" + plat.getPreu() +"€");
         jcbUnitatsDisponibles = new JComboBox<>();
-        ArrayList<int> s= new ArrayList<int>();
-        for(int i = 0; i < unitatsDisponibles; i++){
-            s.add(i);
+        ArrayList<String> s= new ArrayList<String>();
+        for(int i = 1; i <= unitatsDisponibles; i++){
+            s.add(String.valueOf(i));
+            jcbUnitatsDisponibles.addItem(s.get(i));
         }
-        for (int i = 0; i < unitatsDisponibles; i++){
-            jcbUnitatsDisponibles.add(s.get(i).toString);
-        }
-
 
 
         jpAux.add(jlInfoPlat);
-
+        jpAux.add(jcbUnitatsDisponibles);
         jbAfageix = new JButton("Afageix");
         this.add(jpAux, BorderLayout.CENTER);
         this.add(jbAfageix, BorderLayout.PAGE_END);

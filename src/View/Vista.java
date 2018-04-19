@@ -60,7 +60,7 @@ public class Vista extends JFrame {
     }
 
 
-    public void activaPanells(ArrayList<Comanda> comanda, Carta carta, Controller c){
+    public void activaPanells(Comanda comanda, Carta carta, Controller c){
 
         this.panelCarta = new PanelCarta(carta);
         this.panelEstatComanda = new PanelEstatComanda(comanda);
@@ -125,7 +125,7 @@ public class Vista extends JFrame {
 
     public PanelSortida getPanelSortida(){return panelSortida;}
 
-    public void modificaPanelEstatComanda(ArrayList<Comanda> comanda){
+    public void modificaPanelEstatComanda(Comanda comanda){
         this.panelEstatComanda = new PanelEstatComanda(comanda);
     }
 }

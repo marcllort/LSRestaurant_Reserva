@@ -16,18 +16,17 @@ public class DialogSortida extends JDialog {
     private  JButton jbNo;
     private JLabel jlMissatge;
 
-    public DialogSortida(ArrayList<Comanda> comanda){
+    public DialogSortida(Comanda comanda){
         this.setLayout(new BorderLayout());
         //Per saber si encara queden plats per pagar
         boolean faltan = false;
-        for(Comanda c : comanda){
-            for(Plat p : c.getPlats()){
-                if(!p.isServit()){
-                    faltan = true;
-                    break;
-                }
+        for(Plat p : comanda.getPlats()){
+            if(!p.isServit()){
+                faltan = true;
+                break;
             }
         }
+
         if(faltan){
             jlMissatge = new JLabel("Encara queden plats per servir. \n Segur que vol martxar?");
         }else{

@@ -23,4 +23,7 @@ public class Carta {
 
     public void afageixPlat(Plat plat){plats.add(plat);}
 
+    public void setPlats(ArrayList<Plat> plats){this.plats = plats;}
+
+
 }

@@ -13,6 +13,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Controller implements ActionListener {
@@ -20,8 +21,8 @@ public class Controller implements ActionListener {
     private Vista view;
     private VistaEditorComanda viewComanda;
     //MODEL
-    private Carta carta; //Declarar cono arraylist
-    private ArrayList<Comanda> comanda;
+    private Carta carta;
+    private Comanda comanda;
     private Comanda comandaActual;
 
 
@@ -33,17 +34,6 @@ public class Controller implements ActionListener {
 
     public Controller(Vista view){
         this.view = view;
-        //podem omplir la carta
-        this.carta = new Carta();
-        this.comanda = new ArrayList<Comanda>();
-        Plat p = new Plat("Pasta", 8);
-        Plat plat = new Plat("pasta", 10);
-        carta.afageixPlat(p);
-        carta.afageixPlat(plat);
-        comandaActual = new Comanda("Carlos");
-        comandaActual.addPlat(p);
-        comandaActual.addPlat(plat);
-        comanda.add(comandaActual);
 
     }
 
@@ -117,7 +107,9 @@ public class Controller implements ActionListener {
 
         }else if(event.getActionCommand().equals("ENVIA")){
             //Enviem comanda actual al servidor
-            comanda.add(comandaActual);
+            for(Plat p: comandaActual.getPlats()){
+                comanda.addPlat(p);
+            }
             //modifiquem comanda al panell
             view.modificaPanelEstatComanda(comanda);
             //comandaActual= new Comanda();
@@ -139,38 +131,18 @@ public class Controller implements ActionListener {
         String userConfirmation = serverConnect.repUserConfirmation();
         if (userConfirmation.equals("true")){
 
-            ArrayList<Plat> carta = serverConnect.repCarta();
-            //esperem a que introdueixi comanda
-            ArrayList<Plat> f= new ArrayList<>();
-            f.add(new Plat("gam",1));
-//f.add(carta.get(0));
-            Comanda comanda = new Comanda(f,data , new Time(12, 2,2), "Alexa");
-            serverConnect.enviaComanda(comanda);
-
-            String comandaConfirmation = serverConnect.repComandaConfirmation();
-
-            if (comandaConfirmation.equals("true")){
-                System.out.println("Comanda realitzada amb exit");
-            }else{
-                System.out.println("Error:"+ comandaConfirmation);
-            }
-
-
-        }else{
-            System.out.println("Error: " + userConfirmation);
-            //serverConnect.serverDisconnect();
-        }
-        /**if(!error){
+            //1.mostrem dialog de benvingut
             JOptionPane.showMessageDialog(view, "Benvingut!");
-            //comanda = ompleComanda();
-            //carta = ompleCarta();
+            //2.omplim dades
+            carta.setPlats(serverConnect.repCarta());
+            comanda = serverConnect.repComanda();
+            //3.preparem els panells
             view.activaPanells(comanda, carta, this);
-
             view.changePanel("BUIT");
         }else{
             JOptionPane.showMessageDialog(view, "Credencials incorrectes!");
             view.cleanFields();
-        }*/
+        }
     }
 
     private void handleSortida() {
@@ -213,4 +185,10 @@ public class Controller implements ActionListener {
 
     }
 
+
+
+    //1.cuando se envie comanda actualizar hora
+    //2.Dejarlo todo como una sola comanda
+    //3.cuando envio comanda borrar comanda actual
+    //4.mirar platos que fallan
 }
