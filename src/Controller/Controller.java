@@ -40,7 +40,7 @@ public class Controller implements ActionListener {
         Plat plat = new Plat("pasta", 10);
         carta.afageixPlat(p);
         carta.afageixPlat(plat);
-        comandaActual = new Comanda("Carlos");
+        comandaActual = new Comanda("Carl");
         comandaActual.addPlat(p);
         comandaActual.addPlat(plat);
         comanda.add(comandaActual);
