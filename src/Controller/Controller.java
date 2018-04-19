@@ -1,7 +1,6 @@
 package Controller;
 
 
-
 import Model.Carta;
 import Model.Comanda;
 import Model.Plat;
@@ -29,89 +28,92 @@ public class Controller implements ActionListener {
 
     /**
      * Constructor amb parametres
+     *
      * @param view relacio vista amb controlador
      */
 
 
-    public Controller(Vista view){
+    public Controller(Vista view, ServerConnect serverConnect) {
         this.view = view;
-        this.serverConnect = new ServerConnect();
+        this.serverConnect = serverConnect;
+        carta = new Carta();
 
     }
 
 
     /**
      * Gestiona els esdeveniments
+     *
      * @event Font de l'esdeveniment
      */
 
-    public void actionPerformed(ActionEvent event){
+    public void actionPerformed(ActionEvent event) {
         //Si es tracta d'una accio sobre el menu
-        if(event.getSource() instanceof JMenuItem){
-            if(event.getActionCommand().equals("ACCES CARTA")){
+        if (event.getSource() instanceof JMenuItem) {
+            if (event.getActionCommand().equals("ACCES CARTA")) {
                 view.changePanel("CARTA");
                 //comandaActual = new ArrayList<Plat>();
-            }else if(event.getActionCommand().equals("ACCES ESTAT COMANDA")){
+            } else if (event.getActionCommand().equals("ACCES ESTAT COMANDA")) {
                 view.changePanel("ESTAT COMANDA");
-            }else if(event.getActionCommand().equals("ACCES SORTIDA")){
+            } else if (event.getActionCommand().equals("ACCES SORTIDA")) {
                 view.changePanel("SORTIR");
-            }else if(event.getActionCommand().equals("ACCES EDITOR COMANDA")){
+            } else if (event.getActionCommand().equals("ACCES EDITOR COMANDA")) {
                 handleVistaComanda();
             }
-        }else{
+        } else {
             //Si es tracta d'alguna opció sobre els panells
             //Si es tracta del panell d'acces
-            if(event.getActionCommand().equals("ENVIA CREDENCIALS")){
+            if (event.getActionCommand().equals("ENVIA CREDENCIALS")) {
                 handleAcces();
-            //Si es tracta d'una accio del panell sortida
-            }else if(event.getActionCommand().equals("SORTIR")){
+                //Si es tracta d'una accio del panell sortida
+            } else if (event.getActionCommand().equals("SORTIR")) {
                 view.getPanelSortida().dialogSortida(this);
 
-            }else if(event.getActionCommand().equals("PAGINA ANTERIOR")){
+            } else if (event.getActionCommand().equals("PAGINA ANTERIOR")) {
                 view.getPanelCarta().setQuinaPagina(view.getPanelCarta().getQuinaPagina() - 1, "anterior");
-            }else if(event.getActionCommand().equals("PAGINA SEGUENT")){
+            } else if (event.getActionCommand().equals("PAGINA SEGUENT")) {
                 view.getPanelCarta().setQuinaPagina(view.getPanelCarta().getQuinaPagina() + 1, "seguent");
-            }else if(event.getSource() instanceof PanelPlats){
-                if(event.getActionCommand().equals("PLAT1-" + view.getPanelCarta().getQuinaPagina())){
+            } else if (event.getSource() instanceof PanelPlats) {
+                if (event.getActionCommand().equals("PLAT1-" + view.getPanelCarta().getQuinaPagina())) {
                     handleAfageixPlat(0, view.getPanelCarta().getQuinaPagina() - 1);
                     //afegim el plat a la comanda + mostrar Jdialog
-                }else if(event.getActionCommand().equals("PLAT2-" + view.getPanelCarta().getQuinaPagina())){
+                } else if (event.getActionCommand().equals("PLAT2-" + view.getPanelCarta().getQuinaPagina())) {
                     //afegim el plat a la comanda + mostrar Jdialog
-                }else if(event.getActionCommand().equals("PLAT3-" + view.getPanelCarta().getQuinaPagina())){
+                } else if (event.getActionCommand().equals("PLAT3-" + view.getPanelCarta().getQuinaPagina())) {
                     //afegim el plat a la comanda + mostrar Jdialog
-                }else if(event.getActionCommand().equals("PLAT4-" + view.getPanelCarta().getQuinaPagina())){
+                } else if (event.getActionCommand().equals("PLAT4-" + view.getPanelCarta().getQuinaPagina())) {
                     //afegim el plat a la comanda + mostrar Jdialog
-                }else if(event.getActionCommand().equals("PLAT5-" + view.getPanelCarta().getQuinaPagina())){
+                } else if (event.getActionCommand().equals("PLAT5-" + view.getPanelCarta().getQuinaPagina())) {
                     //afegim el plat a la comanda + mostrar Jdialog
-                }else if(event.getActionCommand().equals("PLAT6-" + view.getPanelCarta().getQuinaPagina())){
+                } else if (event.getActionCommand().equals("PLAT6-" + view.getPanelCarta().getQuinaPagina())) {
                     //afegim el plat a la comanda + mostrar Jdialog
                 }
             }
         }
         //Si es tracta d'una accio sobre el JDialog de sortida
-        if(event.getActionCommand().equals("SORTIR PROGRAMA")){
+        if (event.getActionCommand().equals("SORTIR PROGRAMA")) {
             //Vista torna a ser la del principi
             view.getPanelSortida().desactivaDialogSortida();
             handleSortida();
 
-        }else if(event.getActionCommand().equals("QUEDAR-SE")){
+        } else if (event.getActionCommand().equals("QUEDAR-SE")) {
             view.changePanel("BUIT");
             view.getPanelSortida().desactivaDialogSortida();
         }
         //Si es tracta d'una opcio sobre la vista d'editar comanda
-        if(event.getSource() instanceof PanelEditorComanda){
-            for(int i = 0; i < viewComanda.getPanels().size(); i++){
-                if(event.getActionCommand().equals("ELIMINA-" + viewComanda.getPanels().get(i).getNumPlat())){
+        if (event.getSource() instanceof PanelEditorComanda) {
+            for (int i = 0; i < viewComanda.getPanels().size(); i++) {
+                if (event.getActionCommand().equals("ELIMINA-" + viewComanda.getPanels().get(i).getNumPlat())) {
                     handleEliminaPlatComandaActual(viewComanda.getPanels().get(i).getPlat());
                     break;
                 }
             }
 
-        }else if(event.getActionCommand().equals("ENVIA")){
+        } else if (event.getActionCommand().equals("ENVIA")) {
             //Enviem comanda actual al servidor
-          /**  for(Plat p: comandaActual.getPlats()){
-                comanda.addPlat(p);
-            }*/
+            /**  for(Plat p: comandaActual.getPlats()){
+             comanda.addPlat(p);
+             }*/
             serverConnect.enviaComanda(comandaActual);
             //modifiquem comanda al panell
             view.modificaPanelEstatComanda(comanda);
@@ -119,10 +121,9 @@ public class Controller implements ActionListener {
         }
 
 
-
     }
 
-    private void handleAcces(){
+    private void handleAcces() {
 
         String usuari = view.getTypedUsuari();
         String contrasenya = view.getTypedContrasenya();
@@ -132,26 +133,30 @@ public class Controller implements ActionListener {
 
         serverConnect.enviaUser(new Usuari(usuari, contrasenya));
         String userConfirmation = serverConnect.repUserConfirmation();
-        if (userConfirmation.equals("true")){
+        if (userConfirmation.equals("true")) {
 
             //1.mostrem dialog de benvingut
             JOptionPane.showMessageDialog(view, "Benvingut!");
             view.changePanel("BUIT");
-            while(true){
+
+            serverConnect.startServerConnection(this);
+            System.out.println("perfesto");
+            /*while (true) {
                 System.out.println("recibe objeto");
                 Object objeto = serverConnect.repCartaComanda();
-                if( objeto instanceof Comanda ){
-                    comanda = (Comanda)serverConnect.repCartaComanda();
+
+                if (objeto instanceof Comanda) {
+                    comanda = (Comanda) serverConnect.repCartaComanda();
                     view.activaPanellsComanda(comanda, this);
 
-                }else if(objeto instanceof Carta ){
-                    carta.setCarta((Carta)objeto);
+                } else if (objeto instanceof Carta) {
+                    System.out.println("recibido carta" + ((Carta) objeto).getPlat(1));
+                    carta.setCarta((Carta) objeto);
                     view.activaPanellsCarta(carta, this);
                 }
+            }*/
 
-            }
-
-        }else{
+        } else {
             JOptionPane.showMessageDialog(view, "Credencials incorrectes!");
             view.cleanFields();
         }
@@ -164,7 +169,7 @@ public class Controller implements ActionListener {
         view.registerController(this);
     }
 
-    private void handleVistaComanda(){
+    private void handleVistaComanda() {
 
         viewComanda = new VistaEditorComanda(comandaActual);
         viewComanda.setLocationRelativeTo(view);
@@ -172,13 +177,13 @@ public class Controller implements ActionListener {
         viewComanda.registerController(this);
     }
 
-    private void handleEliminaPlatComandaActual(Plat platEsborrar){
-        for(int i = 0; i < viewComanda.getPanels().size(); i++){
-            if(platEsborrar.getNomPlat().equals(viewComanda.getPanels().get(i).getPlat().getNomPlat())){
+    private void handleEliminaPlatComandaActual(Plat platEsborrar) {
+        for (int i = 0; i < viewComanda.getPanels().size(); i++) {
+            if (platEsborrar.getNomPlat().equals(viewComanda.getPanels().get(i).getPlat().getNomPlat())) {
                 Plat p;
-                for(int j = 0; j < comandaActual.getPlats().size(); j++){
+                for (int j = 0; j < comandaActual.getPlats().size(); j++) {
                     p = comandaActual.getPlat(j);
-                    if(p.getNomPlat().equals(platEsborrar.getNomPlat())){
+                    if (p.getNomPlat().equals(platEsborrar.getNomPlat())) {
                         comandaActual.getPlats().remove(j);
                         this.viewComanda = new VistaEditorComanda(comandaActual);
                         viewComanda.setVisible(true);
@@ -191,13 +196,35 @@ public class Controller implements ActionListener {
         }
     }
 
-    private void handleAfageixPlat(int numPlat, int numPagina){
+    private void handleAfageixPlat(int numPlat, int numPagina) {
         Plat p = view.getPanelCarta().getPaginaPlats(numPagina).getPlat(numPlat);
         //demanem plats disponibles al controlador d'aquest plat
 
     }
 
+    public Carta getCarta() {
+        return carta;
+    }
 
+    public void setCarta(Carta carta) {
+        this.carta.setCarta(carta);
+    }
+
+    public Comanda getComanda() {
+        return comanda;
+    }
+
+    public void setComanda(Comanda comanda) {
+        this.comanda = comanda;
+    }
+
+    public void setPanellsComanda(Comanda comanda, Controller controller) {
+        view.activaPanellsComanda(comanda, controller);
+    }
+
+    public void setPanellsCarta(Carta carta, Controller controller) {
+        view.activaPanellsCarta(carta, controller);
+    }
 
     //1.cuando se envie comanda actualizar hora
     //2.Dejarlo todo como una sola comanda

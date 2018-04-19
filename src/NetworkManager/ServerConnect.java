@@ -1,5 +1,7 @@
 package NetworkManager;
 
+import Controller.Controller;
+import Model.Carta;
 import Model.Comanda;
 import Model.Json.ConfiguracioClient;
 import Model.Json.LectorJson;
@@ -15,7 +17,7 @@ import java.net.Socket;
 import java.sql.Time;
 import java.util.ArrayList;
 
-public class ServerConnect {
+public class ServerConnect extends Thread {
 
     public static int portReserva;
     private static String ipReserva = "localhost";
@@ -25,6 +27,7 @@ public class ServerConnect {
     private DataInputStream dis;
     private String resposta;
     private LectorJson lectorJSON;
+    private Controller controller;
 
 
     public ServerConnect() {
@@ -38,12 +41,14 @@ public class ServerConnect {
             oos = new ObjectOutputStream(socket.getOutputStream());
             ois = new ObjectInputStream(socket.getInputStream());
             dis = new DataInputStream(socket.getInputStream());
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public void startServerConnection(Controller controller) {
+        this.controller = controller;
+        start();                                        //Connectem al servidor
     }
 
     public void enviaUser(Usuari user) {
@@ -67,16 +72,12 @@ public class ServerConnect {
 
         try {
             return ois.readObject();
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             return null;                                            //retona null en cas d'execepcio
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            return null;
         }
 
     }
-
 
     public void enviaComanda(Comanda comanda) {
         try {
@@ -88,7 +89,6 @@ public class ServerConnect {
         }
     }
 
-
     public String repComandaConfirmation() {             //tornen true si ha anat i sino string amb  plats que falten
         try {
             return dis.readUTF();
@@ -97,7 +97,6 @@ public class ServerConnect {
             return "IOException";
         }
     }
-
 
     public void serverDisconnect() {
         try {
@@ -108,4 +107,22 @@ public class ServerConnect {
     }
 
 
+    @Override
+    public void run() {
+        while (true) {
+            Object objeto = repCartaComanda();
+            if (objeto instanceof Comanda) {
+                Comanda comanda = (Comanda) repCartaComanda();
+                controller.setComanda(comanda);
+                controller.setPanellsComanda(comanda, controller);
+
+            } else if (objeto instanceof Carta) {
+                System.out.println("recibido carta" + ((Carta) objeto).getPlat(1));
+                Carta carta = (Carta) objeto;
+                controller.setCarta(carta);
+                controller.setPanellsCarta(carta, controller);
+            }
+            //controlador.updateVista(messages);          //Quan llegim el que ens envia el server, acutlaitzem a la vista
+        }
+    }
 }
