@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class ServerConnect {
 
-    public static int portReserva = 4444;
+    public static int portReserva;
     private static String ipReserva = "localhost";
     private Socket socket;
     private ObjectOutputStream oos;
@@ -30,11 +30,10 @@ public class ServerConnect {
     public ServerConnect() {
 
         try {
-             lectorJSON = new LectorJson();
-             ConfiguracioClient conf = lectorJSON.llegeixConfiguracioClient();
-            portReserva = 5555;
+            lectorJSON = new LectorJson();
+            ConfiguracioClient conf = lectorJSON.llegeixConfiguracioClient();
+            portReserva = conf.lectorPortServer();
             ipReserva = conf.lectorIpServer();
-
             socket = new Socket(ipReserva, portReserva);
             oos = new ObjectOutputStream(socket.getOutputStream());
             ois = new ObjectInputStream(socket.getInputStream());
@@ -67,7 +66,7 @@ public class ServerConnect {
     public Object repCartaComanda() {                             //Si user correcte envia la carta despres de enviar el true
 
         try {
-            return  ois.readObject();
+            return ois.readObject();
         } catch (IOException e) {
             e.printStackTrace();
             return null;                                            //retona null en cas d'execepcio

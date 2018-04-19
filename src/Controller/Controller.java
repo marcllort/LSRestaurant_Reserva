@@ -138,6 +138,7 @@ public class Controller implements ActionListener {
             JOptionPane.showMessageDialog(view, "Benvingut!");
             view.changePanel("BUIT");
             while(true){
+                System.out.println("recibe objeto");
                 Object objeto = serverConnect.repCartaComanda();
                 if( objeto instanceof Comanda ){
                     comanda = (Comanda)serverConnect.repCartaComanda();
