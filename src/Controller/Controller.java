@@ -34,6 +34,7 @@ public class Controller implements ActionListener {
         this.view = view;
         this.serverConnect = serverConnect;
         carta = new Carta();
+        comandaActual = new Comanda();
     }
 
 
@@ -45,6 +46,7 @@ public class Controller implements ActionListener {
 
     public void actionPerformed(ActionEvent event) {
         //Si es tracta d'una accio sobre el menu
+        view.creaMenu(this);
         if (event.getSource() instanceof JMenuItem) {
             if (event.getActionCommand().equals("ACCES CARTA")) {
                 view.changePanel("CARTA");
@@ -97,15 +99,24 @@ public class Controller implements ActionListener {
             view.getPanelSortida().desactivaDialogSortida();
         }
         //Si es tracta d'una opcio sobre la vista d'editar comanda
-        if (event.getSource() instanceof PanelEditorComanda) {
+        //if (event.getSource() instanceof VistaEditorComanda) {
+           // System.out.println("plats");
             for (int i = 0; i < viewComanda.getPanels().size(); i++) {
+                System.out.println(viewComanda.getPanels().get(i).getNumPlat() + "2");
                 if (event.getActionCommand().equals("ELIMINA-" + viewComanda.getPanels().get(i).getNumPlat())) {
-                    handleEliminaPlatComandaActual(viewComanda.getPanels().get(i).getPlat());
+                    //handleEliminaPlatComandaActual(viewComanda.getPanels().get(i).getPlat());
+                    System.out.println(viewComanda.getPanels().get(i).getPlat().getNomPlat());
+                    comandaActual.getPlats().remove(viewComanda.getPanels().get(i).getPlat());
+
+                    this.viewComanda = new VistaEditorComanda(comandaActual);
+                    viewComanda.setVisible(true);
+                    viewComanda.registerController(this);
+                    handleVistaComanda();
                     break;
                 }
             }
 
-        } else if (event.getActionCommand().equals("ENVIA")) {
+          if (event.getActionCommand().equals("ENVIA")) {
             //Enviem comanda actual al servidor
             /**  for(Plat p: comandaActual.getPlats()){
              comanda.addPlat(p);
@@ -133,6 +144,7 @@ public class Controller implements ActionListener {
 
             //1.mostrem dialog de benvingut
             JOptionPane.showMessageDialog(view, "Benvingut!");
+
             view.changePanel("BUIT");
 
             serverConnect.startServerConnection(this);
@@ -166,10 +178,14 @@ public class Controller implements ActionListener {
     }
 
     private void handleVistaComanda() {
+        System.out.println("dentro1");
+        Plat p = new Plat("Pasta", 1);
+        comandaActual.addPlat(p);
         viewComanda = new VistaEditorComanda(comandaActual);
         viewComanda.setLocationRelativeTo(view);
         viewComanda.setVisible(true);
         viewComanda.registerController(this);
+        System.out.println("dentro2");
     }
 
     private void handleEliminaPlatComandaActual(Plat platEsborrar) {
@@ -189,6 +205,16 @@ public class Controller implements ActionListener {
                 break;
             }
         }
+
+        comandaActual.getPlats().remove(platEsborrar);
+
+        for (Plat p: comandaActual.getPlats()){
+            if(p.getNomPlat().equals(platEsborrar.getNomPlat())){
+                comandaActual.getPlats().remove(p);
+            }
+
+        }
+
     }
 
     private void handleAfageixPlat(int numPlat, int numPagina) {

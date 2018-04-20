@@ -63,16 +63,7 @@ public class Vista extends JFrame {
         this.getContentPane().add("BUIT", jp1);
         this.getContentPane().add("CARTA", panelCarta);
 
-        creaMenu();
 
-        // Registrem controlador a les diferents opcions del menu
-        jmiCarta.addActionListener(c);
-        jmiCarta.setActionCommand("ACCES CARTA");
-        jmiEstatComanda.addActionListener(c);
-
-        jmiComanda.setActionCommand("ACCES EDITOR COMANDA");
-        jmiPagar.addActionListener(c);
-        jmiPagar.setActionCommand("ACCES SORTIDA");
 
         //Registrem el controlador als diferents panells
         panelCarta.registerController(c);
@@ -91,14 +82,7 @@ public class Vista extends JFrame {
 
 
         this.panelCarta = new PanelCarta(carta);
-        creaMenu();
-        jmiCarta.addActionListener(controller);
-        jmiCarta.setActionCommand("ACCES CARTA");
-        jmiEstatComanda.addActionListener(controller);
 
-        jmiComanda.setActionCommand("ACCES EDITOR COMANDA");
-        jmiPagar.addActionListener(controller);
-        jmiPagar.setActionCommand("ACCES SORTIDA");
 
         //Registrem el controlador als diferents panells
         panelCarta.registerController(controller);
@@ -107,7 +91,7 @@ public class Vista extends JFrame {
 
     }
 
-    private void creaMenu() {
+    public void creaMenu(Controller c) {
 
         jmiCarta = new JMenuItem("Carta");
         jmiComanda = new JMenuItem("Editar Comanda");
@@ -123,6 +107,18 @@ public class Vista extends JFrame {
         jmbMenu.add(jmiPagar);
 
         this.setJMenuBar(jmbMenu);
+
+        // Registrem controlador a les diferents opcions del menu
+        jmiCarta.addActionListener(c);
+
+        jmiCarta.setActionCommand("ACCES CARTA");
+        jmiEstatComanda.addActionListener(c);
+        jmiEstatComanda.setActionCommand("ACCES ESTAT COMANDA");
+
+        jmiComanda.setActionCommand("ACCES EDITOR COMANDA");
+        jmiComanda.addActionListener(c);
+        jmiPagar.addActionListener(c);
+        jmiPagar.setActionCommand("ACCES SORTIDA");
 
     }
 

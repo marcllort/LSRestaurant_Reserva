@@ -24,6 +24,11 @@ public class Comanda implements Serializable {
         this.usuari = usuari;
     }
 
+    public  Comanda(){
+        this.plats = new ArrayList<Plat>();
+
+    }
+
     public ArrayList<Plat> getPlats() {
         return plats;
     }

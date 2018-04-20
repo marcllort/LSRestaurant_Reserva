@@ -32,7 +32,8 @@ public class PanelEditorComanda extends JPanel {
 
     public void registerController(ActionListener c) {
         jbElimina.addActionListener(c);
-        jbElimina.setActionCommand("Elimina-" + numPlat);
+        jbElimina.setActionCommand("ELIMINA-" + numPlat);
+        System.out.println(numPlat);
     }
 
     public int getNumPlat() {

@@ -119,6 +119,8 @@ public class ServerConnect extends Thread {
             if (objeto instanceof Comanda) {
                 Comanda comanda = (Comanda) objeto;
                 System.out.println("data: "+comanda.getData());
+                Plat p = new Plat("Pasta", 1);
+                comanda.addPlat(p);
                 controller.setComanda(comanda);
                 controller.setPanellsComanda(comanda, controller, carta);
 
