@@ -79,7 +79,7 @@ public class Vista extends JFrame {
 
     }
 
-    public void activaPanellsComanda(Comanda comanda, Controller controller) {
+    public void activaPanellsComanda(Comanda comanda, Controller controller, Carta carta) {
 
         this.panelEstatComanda = new PanelEstatComanda(comanda);
         this.panelSortida = new PanelSortida(comanda);
@@ -88,6 +88,22 @@ public class Vista extends JFrame {
         this.getContentPane().add("SORTIR", panelSortida);
 
         panelSortida.registerController(controller);
+
+
+        this.panelCarta = new PanelCarta(carta);
+        creaMenu();
+        jmiCarta.addActionListener(controller);
+        jmiCarta.setActionCommand("ACCES CARTA");
+        jmiEstatComanda.addActionListener(controller);
+
+        jmiComanda.setActionCommand("ACCES EDITOR COMANDA");
+        jmiPagar.addActionListener(controller);
+        jmiPagar.setActionCommand("ACCES SORTIDA");
+
+        //Registrem el controlador als diferents panells
+        panelCarta.registerController(controller);
+
+
 
     }
 

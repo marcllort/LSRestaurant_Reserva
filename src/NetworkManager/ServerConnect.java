@@ -14,6 +14,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 
@@ -111,17 +112,29 @@ public class ServerConnect extends Thread {
     @Override
     public void run() {
         while (true) {
+            Carta carta = new Carta();
             Object objeto = repCartaComanda();
+
             if (objeto instanceof Comanda) {
                 Comanda comanda = (Comanda) repCartaComanda();
+                System.out.println(comanda.getData());
                 controller.setComanda(comanda);
-                controller.setPanellsComanda(comanda, controller);
+                controller.setPanellsComanda(comanda, controller, carta);
+
 
             } else if (objeto instanceof Carta) {
                 System.out.println("recibido carta" + ((Carta) objeto).getPlat(1));
-                Carta carta = (Carta) objeto;
+                carta = (Carta) objeto;
+               /* ArrayList<Plat> plats = new ArrayList<Plat>();
+                Plat p = new Plat("Pasta", 10);
+                plats.add(p);
+                Date d = new Date(12, 12, 12);
+                Time t =  new Time(12, 12, 12);
+                Comanda comanda = new Comanda(plats, d, t, "Paula");
+                */
                 controller.setCarta(carta);
                 controller.setPanellsCarta(carta, controller);
+
             }
             //controlador.updateVista(messages);          //Quan llegim el que ens envia el server, acutlaitzem a la vista
         }

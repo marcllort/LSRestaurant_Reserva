@@ -124,7 +124,8 @@ public class Controller implements ActionListener {
         String contrasenya = view.getTypedContrasenya();
         //Comprovem dades
 
-        //error = comprovaCredencials(usuari, contrasenya);
+
+
 
         serverConnect.enviaUser(new Usuari(usuari, contrasenya));
         String userConfirmation = serverConnect.repUserConfirmation();
@@ -192,7 +193,7 @@ public class Controller implements ActionListener {
 
     private void handleAfageixPlat(int numPlat, int numPagina) {
         Plat p = view.getPanelCarta().getPaginaPlats(numPagina).getPlat(numPlat);
-        //demanem plats disponibles al controlador d'aquest plat
+
     }
 
     public Carta getCarta() {
@@ -211,13 +212,17 @@ public class Controller implements ActionListener {
         this.comanda = comanda;
     }
 
-    public void setPanellsComanda(Comanda comanda, Controller controller) {
-        view.activaPanellsComanda(comanda, controller);
+    public void setPanellsComanda(Comanda comanda, Controller controller, Carta carta) {
+        view.activaPanellsComanda(comanda, controller, carta);
+        view.changePanel("BUIT");
     }
 
     public void setPanellsCarta(Carta carta, Controller controller) {
         view.activaPanellsCarta(carta, controller);
+
     }
+
+
 
     //1.cuando se envie comanda actualizar hora
     //2.Dejarlo todo como una sola comanda
