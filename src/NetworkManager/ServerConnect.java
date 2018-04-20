@@ -111,13 +111,14 @@ public class ServerConnect extends Thread {
 
     @Override
     public void run() {
+        Carta carta = new Carta();
+
         while (true) {
-            Carta carta = new Carta();
             Object objeto = repCartaComanda();
 
             if (objeto instanceof Comanda) {
-                Comanda comanda = (Comanda) repCartaComanda();
-                System.out.println(comanda.getData());
+                Comanda comanda = (Comanda) objeto;
+                System.out.println("data: "+comanda.getData());
                 controller.setComanda(comanda);
                 controller.setPanellsComanda(comanda, controller, carta);
 
