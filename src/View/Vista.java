@@ -41,7 +41,7 @@ public class Vista extends JFrame {
 
         this.setSize(400, 400);
         this.setResizable(true);
-        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
     }
 
