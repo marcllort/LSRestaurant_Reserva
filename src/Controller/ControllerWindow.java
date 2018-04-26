@@ -27,7 +27,7 @@ public class ControllerWindow implements WindowListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-
+        System.out.println("tancant");
         String ObjButtons[] = {"Si","No"};
         int PromptResult = JOptionPane.showOptionDialog(null,
                 "Al tancar pagaràs automàticament totes les comandes.\nEstas segur que vols sortir? ", "Sortir",
