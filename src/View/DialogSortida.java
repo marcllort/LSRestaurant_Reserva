@@ -7,7 +7,57 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class DialogSortida extends JDialog {
+public class DialogSortida {
+
+
+
+
+    public DialogSortida(Comanda comanda) {
+        //Per saber si encara queden plats per pagar
+        boolean faltan = false;
+
+        for (Plat p : comanda.getPlats()) {
+            if (!p.isServit()) {
+                faltan = true;
+                break;
+            }
+        }
+
+        if (faltan) {
+
+            dialogSortir("Al tancar pagaràs automàticament totes les comandes, incloses les que encara no s'han servit.\nEstas segur que vols sortir? ");
+
+        } else {
+            dialogSortir("Al tancar pagaràs automàticament totes les comandes.\nEstas segur que vols sortir? ");        }
+
+
+    }
+
+
+    public void dialogSortir(String missatge){
+        String ObjButtons[] = {"Si","No"};
+        int PromptResult = JOptionPane.showOptionDialog(null,
+                missatge, "Sortir",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
+                ObjButtons,ObjButtons[1]);
+        if(PromptResult==0)
+        {
+            System.exit(0);
+        }
+    }
+
+
+
+
+}
+
+/*public void registerController(ActionListener c) {
+        jbSi.addActionListener(c);
+        jbSi.setActionCommand("SORTIR PROGRAMA");
+        jbNo.addActionListener(c);
+        jbNo.setActionCommand("QUEDAR-SE");
+    }
+*public class DialogSortida extends JDialog {
 
     private JButton jbSi;
     private JButton jbNo;
@@ -27,9 +77,9 @@ public class DialogSortida extends JDialog {
         }
 
         if (faltan) {
-            jlMissatge = new JLabel("Encara queden plats per servir. \n Segur que vol martxar?");
+            jlMissatge = new JLabel("Encara queden plats per servir.\nSegur que vol marxar?");
         } else {
-            jlMissatge = new JLabel("Segur que vol martxar?");
+            jlMissatge = new JLabel("Segur que vol marxar?");
         }
 
         JPanel jp1 = new JPanel();
@@ -56,3 +106,4 @@ public class DialogSortida extends JDialog {
     }
 
 }
+* */

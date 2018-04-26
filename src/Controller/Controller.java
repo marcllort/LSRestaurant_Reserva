@@ -91,12 +91,12 @@ public class Controller implements ActionListener {
         //Si es tracta d'una accio sobre el JDialog de sortida
         if (event.getActionCommand().equals("SORTIR PROGRAMA")) {
             //Vista torna a ser la del principi
-            view.getPanelSortida().desactivaDialogSortida();
+            //view.getPanelSortida().desactivaDialogSortida();
             handleSortida();
 
         } else if (event.getActionCommand().equals("QUEDAR-SE")) {
             view.changePanel("BUIT");
-            view.getPanelSortida().desactivaDialogSortida();
+            //view.getPanelSortida().desactivaDialogSortida();
         }
         //Si es tracta d'una opcio sobre la vista d'editar comanda
         //if (event.getSource() instanceof VistaEditorComanda) {

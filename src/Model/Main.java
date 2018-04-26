@@ -18,7 +18,6 @@ public class Main {
         Controller controller = new Controller(view, serverConnect);
         ControllerWindow  controllerWindow = new ControllerWindow(serverConnect, controller, view);
         view.registerController(controller);
-        view.registraControladors(controllerWindow);
         //serverConnect.startServerConnection(controller);
 
     }

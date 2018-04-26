@@ -55,12 +55,12 @@ public class PanelSortida extends JPanel {
 
     public void dialogSortida(ActionListener controlador) {
         dialogSortida = new DialogSortida(comanda);
-        dialogSortida.registerController(controlador);
-        dialogSortida.setVisible(true);
+        //dialogSortida.registerController(controlador);
+        //dialogSortida.setVisible(true);
     }
 
-    public void desactivaDialogSortida() {
+    /*public void desactivaDialogSortida() {
         dialogSortida.setVisible(false);
-    }
+    }*/
 
 }
