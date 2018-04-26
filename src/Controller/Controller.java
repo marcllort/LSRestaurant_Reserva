@@ -170,7 +170,7 @@ public class Controller implements ActionListener {
         }
     }
 
-    private void handleSortida() {
+    public void handleSortida() {
         view.cleanFields();
         this.view = new Vista();
         view.setVisible(true);

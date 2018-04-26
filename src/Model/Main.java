@@ -4,7 +4,7 @@ package Model;
 
 //import Controller.Controller;
 
-import Controller.Controller;
+import Controller.*;
 import NetworkManager.ServerConnect;
 import View.Vista;
 
@@ -16,7 +16,9 @@ public class Main {
         view.setVisible(true);
         ServerConnect serverConnect = new ServerConnect();
         Controller controller = new Controller(view, serverConnect);
+        ControllerWindow  controllerWindow = new ControllerWindow(serverConnect, controller, view);
         view.registerController(controller);
+        view.registraControladors(controllerWindow);
         //serverConnect.startServerConnection(controller);
 
     }

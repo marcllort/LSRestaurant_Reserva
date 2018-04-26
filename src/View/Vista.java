@@ -2,6 +2,7 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowListener;
 
 
 import Controller.Controller;
@@ -148,6 +149,10 @@ public class Vista extends JFrame {
 
     public void modificaPanelEstatComanda(Comanda comanda) {
         this.panelEstatComanda = new PanelEstatComanda(comanda);
+    }
+
+    public void registraControladors (WindowListener windowListener){
+        addWindowListener(windowListener);
     }
 
 }
