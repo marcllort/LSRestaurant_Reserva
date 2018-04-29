@@ -109,7 +109,6 @@ public class ServerConnect extends Thread {
     @Override
     public void run() {
         Carta carta = new Carta();
-
         while (true) {
             Object objeto = repCartaComanda();
 
@@ -132,7 +131,7 @@ public class ServerConnect extends Thread {
                 Time t =  new Time(12, 12, 12);
                 Comanda comanda = new Comanda(plats, d, t, "Paula");
                 */
-                controller.setCarta(carta);
+               controller.setCarta(carta);
                 controller.setPanellsCarta(carta, controller);
 
             }
