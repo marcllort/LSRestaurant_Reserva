@@ -1,6 +1,6 @@
 package NetworkManager;
 
-import Controller.Controller;
+import Controller.ControllerMainWindow;
 import Model.Carta;
 import Model.Comanda;
 import Model.Json.ConfiguracioClient;
@@ -12,11 +12,8 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.InetAddress;
 import java.net.Socket;
-import java.sql.Date;
 import java.sql.Time;
-import java.util.ArrayList;
 
 public class ServerConnect extends Thread {
 
@@ -28,7 +25,7 @@ public class ServerConnect extends Thread {
     private DataInputStream dis;
     private String resposta;
     private LectorJson lectorJSON;
-    private Controller controller;
+    private ControllerMainWindow controller;
 
 
     public ServerConnect() {
@@ -48,7 +45,7 @@ public class ServerConnect extends Thread {
     }
 
 
-    public void startServerConnection(Controller controller) {
+    public void startServerConnection(ControllerMainWindow controller) {
         this.controller = controller;
         start();                                        //Connectem al servidor
     }

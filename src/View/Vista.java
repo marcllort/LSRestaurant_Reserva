@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.WindowListener;
 
 
-import Controller.Controller;
+import Controller.ControllerMainWindow;
 import Model.Carta;
 import Model.Comanda;
 
@@ -49,12 +49,12 @@ public class Vista extends JFrame {
      * Registra el controlador al menu i a la resta de panells
      */
 
-    public void registerController(Controller c) {
+    public void registerController(ControllerMainWindow c) {
         //Pasem el controlado a la resta de panells
         panelAcces.registerController(c);
     }
 
-    public void activaPanellsCarta(Carta carta, Controller c) {
+    public void activaPanellsCarta(Carta carta, ControllerMainWindow c) {
 
         this.panelCarta = new PanelCarta(carta);
 
@@ -71,7 +71,7 @@ public class Vista extends JFrame {
 
     }
 
-    public void activaPanellsComanda(Comanda comanda, Controller controller, Carta carta) {
+    public void activaPanellsComanda(Comanda comanda, ControllerMainWindow controller, Carta carta) {
 
         this.panelEstatComanda = new PanelEstatComanda(comanda);
         this.panelSortida = new PanelSortida(comanda);
@@ -92,7 +92,7 @@ public class Vista extends JFrame {
 
     }
 
-    public void creaMenu(Controller c) {
+    public void creaMenu(ControllerMainWindow c) {
 
         jmiCarta = new JMenuItem("Carta");
         jmiComanda = new JMenuItem("Editar Comanda");
@@ -158,6 +158,8 @@ public class Vista extends JFrame {
     public void registraControladors (WindowListener windowListener){
         addWindowListener(windowListener);
     }
+    
+    public void actualitzaPanelEstatComanda(Comanda comanda){panelEstatComanda.actualitzaComanda(comanda);}
 
 }
 

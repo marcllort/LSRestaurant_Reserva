@@ -10,11 +10,11 @@ import java.awt.event.WindowListener;
 
 public class ControllerWindow implements WindowListener {
     private ServerConnect networkconnect;
-    private Controller controller;
+    private ControllerMainWindow controller;
     private Vista view;
 
 
-    public ControllerWindow(ServerConnect networkconnect, Controller controller, Vista view) {
+    public ControllerWindow(ServerConnect networkconnect, ControllerMainWindow controller, Vista view) {
         this.networkconnect = networkconnect;
         this.controller = controller;
         this.view = view;

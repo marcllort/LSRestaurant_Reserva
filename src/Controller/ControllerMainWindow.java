@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class Controller implements ActionListener {
+public class ControllerMainWindow implements ActionListener {
     //VISTA
     private Vista view;
     private VistaEditorComanda viewComanda;
@@ -22,6 +22,8 @@ public class Controller implements ActionListener {
     private Comanda comanda;
     private Comanda comandaActual;
     private ServerConnect serverConnect;
+    //CONTROLADOR EDITOR COMANDA
+    private ControllerViewComanda controllerViewComanda;
 
     /**
      * Constructor amb parametres
@@ -30,7 +32,7 @@ public class Controller implements ActionListener {
      */
 
 
-    public Controller(Vista view, ServerConnect serverConnect) {
+    public ControllerMainWindow(Vista view, ServerConnect serverConnect) {
         this.view = view;
         this.serverConnect = serverConnect;
         carta = new Carta();
@@ -48,16 +50,7 @@ public class Controller implements ActionListener {
         //Si es tracta d'una accio sobre el menu
         view.creaMenu(this);
         if (event.getSource() instanceof JMenuItem) {
-            if (event.getActionCommand().equals("ACCES CARTA")) {
-                view.changePanel("CARTA");
-                //comandaActual = new ArrayList<Plat>();
-            } else if (event.getActionCommand().equals("ACCES ESTAT COMANDA")) {
-                view.changePanel("ESTAT COMANDA");
-            } else if (event.getActionCommand().equals("ACCES SORTIDA")) {
-                view.changePanel("SORTIR");
-            } else if (event.getActionCommand().equals("ACCES EDITOR COMANDA")) {
-                handleVistaComanda();
-            }
+            handleMenu(event);
         } else {
             //Si es tracta d'alguna opció sobre els panells
             //Si es tracta del panell d'acces
@@ -98,36 +91,7 @@ public class Controller implements ActionListener {
             view.changePanel("BUIT");
             //view.getPanelSortida().desactivaDialogSortida();
         }
-        //Si es tracta d'una opcio sobre la vista d'editar comanda
-        //if (event.getSource() instanceof VistaEditorComanda) {
-           // System.out.println("plats");
-            for (int i = 0; i < viewComanda.getPanels().size(); i++) {
-                System.out.println(viewComanda.getPanels().get(i).getNumPlat() + "2");
-                if (event.getActionCommand().equals("ELIMINA-" + viewComanda.getPanels().get(i).getNumPlat())) {
-                    //handleEliminaPlatComandaActual(viewComanda.getPanels().get(i).getPlat());
-                    System.out.println(viewComanda.getPanels().get(i).getPlat().getNomPlat());
-                    comandaActual.getPlats().remove(viewComanda.getPanels().get(i).getPlat());
-
-                    this.viewComanda = new VistaEditorComanda(comandaActual);
-                    viewComanda.setVisible(true);
-                    viewComanda.registerController(this);
-                    handleVistaComanda();
-                    break;
-                }
-            }
-
-          if (event.getActionCommand().equals("ENVIA")) {
-            //Enviem comanda actual al servidor
-            /**  for(Plat p: comandaActual.getPlats()){
-             comanda.addPlat(p);
-             }*/
-            serverConnect.enviaComanda(comandaActual);
-            //modifiquem comanda al panell
-            view.modificaPanelEstatComanda(comanda);
-            //comandaActual= new Comanda();
-        }
-
-    }               //Separar en funciones
+    }               
 
     private void handleAcces() {
 
@@ -178,41 +142,18 @@ public class Controller implements ActionListener {
     }
 
     private void handleVistaComanda() {
-        System.out.println("dentro1");
-        Plat p = new Plat("Pasta", 1);
-        comandaActual.addPlat(p);
+        
         viewComanda = new VistaEditorComanda(comandaActual);
-        viewComanda.setLocationRelativeTo(view);
         viewComanda.setVisible(true);
-        viewComanda.registerController(this);
-        System.out.println("dentro2");
-    }
-
-    private void handleEliminaPlatComandaActual(Plat platEsborrar) {
-        for (int i = 0; i < viewComanda.getPanels().size(); i++) {
-            if (platEsborrar.getNomPlat().equals(viewComanda.getPanels().get(i).getPlat().getNomPlat())) {
-                Plat p;
-                for (int j = 0; j < comandaActual.getPlats().size(); j++) {
-                    p = comandaActual.getPlat(j);
-                    if (p.getNomPlat().equals(platEsborrar.getNomPlat())) {
-                        comandaActual.getPlats().remove(j);
-                        this.viewComanda = new VistaEditorComanda(comandaActual);
-                        viewComanda.setVisible(true);
-                        viewComanda.registerController(this);
-                        break;
-                    }
-                }
-                break;
+        controllerViewComanda = new ControllerViewComanda(serverConnect, viewComanda, comandaActual);
+        viewComanda.registerController(controllerViewComanda);
+        
+        while(controllerViewComanda.getIfFinestraActiva()){
+            if( controllerViewComanda.getIfComandaEnviada()){
+                comandaActual = new Comanda();
+                view.actualitzaPanelEstatComanda(comanda);
+                
             }
-        }
-
-        comandaActual.getPlats().remove(platEsborrar);
-
-        for (Plat p: comandaActual.getPlats()){
-            if(p.getNomPlat().equals(platEsborrar.getNomPlat())){
-                comandaActual.getPlats().remove(p);
-            }
-
         }
 
     }
@@ -238,14 +179,29 @@ public class Controller implements ActionListener {
         this.comanda = comanda;
     }
 
-    public void setPanellsComanda(Comanda comanda, Controller controller, Carta carta) {
+    public void setPanellsComanda(Comanda comanda, ControllerMainWindow controller, Carta carta) {
         view.activaPanellsComanda(comanda, controller, carta);
         view.changePanel("BUIT");
     }
 
-    public void setPanellsCarta(Carta carta, Controller controller) {
+    public void setPanellsCarta(Carta carta, ControllerMainWindow controller) {
         view.activaPanellsCarta(carta, controller);
 
+    }
+    
+    private void handleMenu(ActionEvent event){
+
+        if (event.getActionCommand().equals("ACCES CARTA")) {
+            view.changePanel("CARTA");
+            //comandaActual = new ArrayList<Plat>();
+        } else if (event.getActionCommand().equals("ACCES ESTAT COMANDA")) {
+            view.changePanel("ESTAT COMANDA");
+        } else if (event.getActionCommand().equals("ACCES SORTIDA")) {
+            view.changePanel("SORTIR");
+        } else if (event.getActionCommand().equals("ACCES EDITOR COMANDA")) {
+            handleVistaComanda();
+        }
+        
     }
 
 
