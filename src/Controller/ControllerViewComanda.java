@@ -11,18 +11,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ControllerViewComanda implements ActionListener {
-    
+
     private VistaEditorComanda viewComanda;
     private ServerConnect serverConnect;
     private Comanda comandaActual;
     private boolean comandaEnviada = false;
     private boolean finestraActiva;
-    
-    public ControllerViewComanda(ServerConnect serverConnect, VistaEditorComanda viewComanda, Comanda comandaActual){
-        
+
+    public ControllerViewComanda(ServerConnect serverConnect, Comanda comandaActual){
+
         this.serverConnect = serverConnect;
-        this.viewComanda = viewComanda;
         this.comandaActual = comandaActual;
+        this.viewComanda = new VistaEditorComanda(comandaActual);
+        viewComanda.registerController(this);
+        viewComanda.setVisible(true);
         finestraActiva = true;
     }
 
@@ -34,29 +36,30 @@ public class ControllerViewComanda implements ActionListener {
                     viewComanda.setVisible(false);
                     eliminaPlatComanda(viewComanda.getPanels().get(i).getPlat());
                     viewComanda.setVisible(true);
-                    break;   
+                    break;
                 }
             }
         }else if (event.getActionCommand().equals("ENVIA")){
-            serverConnect.enviaComanda(comandaActual);
+           // serverConnect.enviaComanda(comandaActual);
             JOptionPane.showMessageDialog(viewComanda, "Comanda enviada!");
             comandaEnviada = true;
             finestraActiva = false;
-            
+            viewComanda.setVisible(false);
+
         }
     }
-    
+
     private void eliminaPlatComanda(Plat plat){
-        
+
         comandaActual.getPlats().remove(plat);
         JOptionPane.showMessageDialog(viewComanda, "Plat esborrat");
         viewComanda.actualitzaVista(comandaActual);
         viewComanda.registerController(this);
     }
-    
+
     public boolean getIfComandaEnviada(){return comandaEnviada;}
-    
+
     public boolean getIfFinestraActiva(){return finestraActiva;}
-    
-    
+
+
 }

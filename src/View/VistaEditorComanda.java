@@ -43,7 +43,8 @@ public class VistaEditorComanda extends JFrame {
 
         this.setSize(400, 400);
         this.setTitle("Editor Comanda");
-        
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
 
     }
 
@@ -61,7 +62,7 @@ public class VistaEditorComanda extends JFrame {
     public ArrayList<PanelEditorComanda> getPanels() {
         return panels;
     }
-    
+
     public void actualitzaVista(Comanda comandaActual){
 
         this.comandaActual = comandaActual;
@@ -77,7 +78,7 @@ public class VistaEditorComanda extends JFrame {
 
         jspComanda = new JScrollPane(jpComanda);
         this.add(jspComanda, BorderLayout.CENTER);
-        
+
     }
 
 }

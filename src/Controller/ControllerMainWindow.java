@@ -91,7 +91,7 @@ public class ControllerMainWindow implements ActionListener {
             view.changePanel("BUIT");
             //view.getPanelSortida().desactivaDialogSortida();
         }
-    }               
+    }
 
     private void handleAcces() {
 
@@ -142,17 +142,31 @@ public class ControllerMainWindow implements ActionListener {
     }
 
     private void handleVistaComanda() {
-        
-        viewComanda = new VistaEditorComanda(comandaActual);
-        viewComanda.setVisible(true);
-        controllerViewComanda = new ControllerViewComanda(serverConnect, viewComanda, comandaActual);
-        viewComanda.registerController(controllerViewComanda);
-        
-        while(controllerViewComanda.getIfFinestraActiva()){
-            if( controllerViewComanda.getIfComandaEnviada()){
-                comandaActual = new Comanda();
-                view.actualitzaPanelEstatComanda(comanda);
-                
+        Plat p = new Plat("macarrones", 60);
+        comandaActual.addPlat(p);
+
+
+        if(comandaActual.getPlats().size() == 0){
+            JOptionPane.showMessageDialog(view, "Afageix plats per tal d'editar la teva comanda");
+            view.creaMenu(this);
+            view.activaPanellsCarta(carta, this);
+            view.activaPanellsComanda(comanda, this, carta);
+        }else{
+            //viewComanda = new VistaEditorComanda(comandaActual);
+
+            controllerViewComanda = new ControllerViewComanda(serverConnect, comandaActual);
+            //viewComanda.registerController(controllerViewComanda);
+            //viewComanda.setVisible(true);
+            //viewComanda.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+            while(controllerViewComanda.getIfFinestraActiva()){
+                if( controllerViewComanda.getIfComandaEnviada()){
+                    comandaActual = new Comanda();
+                    view.creaMenu(this);
+                    view.activaPanellsCarta(carta, this);
+                    view.activaPanellsComanda(comanda, this, carta);
+                    view.actualitzaPanelEstatComanda(comanda);
+                }
             }
         }
 
@@ -188,7 +202,7 @@ public class ControllerMainWindow implements ActionListener {
         view.activaPanellsCarta(carta, controller);
 
     }
-    
+
     private void handleMenu(ActionEvent event){
 
         if (event.getActionCommand().equals("ACCES CARTA")) {
@@ -201,7 +215,7 @@ public class ControllerMainWindow implements ActionListener {
         } else if (event.getActionCommand().equals("ACCES EDITOR COMANDA")) {
             handleVistaComanda();
         }
-        
+
     }
 
 
