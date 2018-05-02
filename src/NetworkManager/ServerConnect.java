@@ -132,7 +132,7 @@ public class ServerConnect extends Thread {
                 Comanda comanda = new Comanda(plats, d, t, "Paula");
                 */
                controller.setCarta(carta);
-                controller.setPanellsCarta(carta, controller);
+               controller.setPanellsCarta(carta, controller);
 
             }
             //controlador.updateVista(messages);          //Quan llegim el que ens envia el server, acutlaitzem a la vista

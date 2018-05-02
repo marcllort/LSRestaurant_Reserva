@@ -7,6 +7,7 @@ package Model;
 import Controller.*;
 import NetworkManager.ServerConnect;
 import View.Vista;
+import View.VistaEditorComanda;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,6 +20,16 @@ public class Main {
         ControllerWindow  controllerWindow = new ControllerWindow(serverConnect, controller, view);
         view.registerController(controller);
         //serverConnect.startServerConnection(controller);
+
+        if(controller.getIfObrirFinestra()){
+            System.out.println("obri");
+            Comanda comandaActual = controller.getComandaActual();
+
+            VistaEditorComanda viewEditorComanda = new VistaEditorComanda(comandaActual);
+            viewEditorComanda.setVisible(true);
+            ControllerViewComanda controllerComanda = new ControllerViewComanda(serverConnect, comandaActual, viewEditorComanda);
+            viewEditorComanda.registerController(controllerComanda);
+        }
 
     }
 

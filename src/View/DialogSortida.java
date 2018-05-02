@@ -40,6 +40,7 @@ public class DialogSortida {
                 missatge, "Sortir",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
                 ObjButtons,ObjButtons[1]);
+
         if(PromptResult==0)
         {
             System.exit(0);

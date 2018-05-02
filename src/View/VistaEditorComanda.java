@@ -20,6 +20,7 @@ public class VistaEditorComanda extends JFrame {
     public VistaEditorComanda(Comanda comandaActual) {
 
         this.comandaActual = comandaActual;
+
         panels = new ArrayList<PanelEditorComanda>();
 
         this.setLayout(new BorderLayout());
@@ -28,6 +29,8 @@ public class VistaEditorComanda extends JFrame {
         jpComanda.setLayout(new GridLayout(comandaActual.getPlats().size(), 1));
 
         PanelEditorComanda panelEditorComanda;
+
+
 
         for (int i = 0; i < comandaActual.getPlats().size(); i++) {
             panelEditorComanda = new PanelEditorComanda(comandaActual.getPlat(i), i);
@@ -43,6 +46,7 @@ public class VistaEditorComanda extends JFrame {
 
         this.setSize(400, 400);
         this.setTitle("Editor Comanda");
+
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
 

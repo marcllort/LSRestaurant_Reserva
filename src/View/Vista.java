@@ -13,7 +13,7 @@ public class Vista extends JFrame {
 
     //els diferents panells
     private PanelAcces panelAcces;
-    private PanelCarta panelCarta;
+    private CartaPanel cartaPanel;
     private PanelEstatComanda panelEstatComanda;
     private PanelSortida panelSortida;
     private JPanel jp1;
@@ -46,7 +46,8 @@ public class Vista extends JFrame {
     }
 
     /**
-     * Registra el controlador al menu i a la resta de panells
+     * Registra el controlador al panell d'acces
+     * @param c controller
      */
 
     public void registerController(ControllerMainWindow c) {
@@ -56,18 +57,16 @@ public class Vista extends JFrame {
 
     public void activaPanellsCarta(Carta carta, ControllerMainWindow c) {
 
-        this.panelCarta = new PanelCarta(carta);
-
+        
+        cartaPanel = new CartaPanel(carta);
+        cartaPanel.registerController(c);
         this.jp1 = new JPanel();
         jp1.setBackground(Color.LIGHT_GRAY);
-
         this.getContentPane().add("BUIT", jp1);
-        this.getContentPane().add("CARTA", panelCarta);
+        this.getContentPane().add("CARTA", cartaPanel);
 
 
 
-        //Registrem el controlador als diferents panells
-        panelCarta.registerController(c);
 
     }
 
@@ -80,16 +79,9 @@ public class Vista extends JFrame {
         this.getContentPane().add("SORTIR", panelSortida);
 
         panelSortida.registerController(controller);
-
-
-        this.panelCarta = new PanelCarta(carta);
-
-
-        //Registrem el controlador als diferents panells
-        panelCarta.registerController(controller);
-
-
-
+        cartaPanel = new CartaPanel(carta);
+        cartaPanel.registerController(controller);
+        
     }
 
     public void creaMenu(ControllerMainWindow c) {
@@ -111,11 +103,9 @@ public class Vista extends JFrame {
 
         // Registrem controlador a les diferents opcions del menu
         jmiCarta.addActionListener(c);
-
         jmiCarta.setActionCommand("ACCES CARTA");
         jmiEstatComanda.addActionListener(c);
         jmiEstatComanda.setActionCommand("ACCES ESTAT COMANDA");
-
         jmiComanda.setActionCommand("ACCES EDITOR COMANDA");
         jmiComanda.addActionListener(c);
         jmiPagar.addActionListener(c);
@@ -138,10 +128,7 @@ public class Vista extends JFrame {
     public void changePanel(String quin) {
         layout.show(this.getContentPane(), quin);
     }
-
-    public PanelCarta getPanelCarta() {
-        return panelCarta;
-    }
+    
 
     public PanelSortida getPanelSortida() {
         return panelSortida;
@@ -161,5 +148,6 @@ public class Vista extends JFrame {
     
     public void actualitzaPanelEstatComanda(Comanda comanda){panelEstatComanda.actualitzaComanda(comanda);}
 
+    public CartaPanel getCartaPanel() { return cartaPanel; }
 }
 

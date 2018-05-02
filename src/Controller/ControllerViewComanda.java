@@ -11,21 +11,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ControllerViewComanda implements ActionListener {
-
+    //vista
     private VistaEditorComanda viewComanda;
+    //model
     private ServerConnect serverConnect;
     private Comanda comandaActual;
+    //variables aux
     private boolean comandaEnviada = false;
     private boolean finestraActiva;
 
-    public ControllerViewComanda(ServerConnect serverConnect, Comanda comandaActual){
+    public ControllerViewComanda(ServerConnect serverConnect, Comanda comandaActual, VistaEditorComanda viewComanda){
 
         this.serverConnect = serverConnect;
         this.comandaActual = comandaActual;
-        this.viewComanda = new VistaEditorComanda(comandaActual);
-        viewComanda.registerController(this);
-        viewComanda.setVisible(true);
+        this.viewComanda = viewComanda;
         finestraActiva = true;
+
     }
 
     public void actionPerformed(ActionEvent event){
@@ -60,6 +61,8 @@ public class ControllerViewComanda implements ActionListener {
     public boolean getIfComandaEnviada(){return comandaEnviada;}
 
     public boolean getIfFinestraActiva(){return finestraActiva;}
+
+
 
 
 }
