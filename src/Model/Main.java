@@ -18,7 +18,7 @@ public class Main {
         ServerConnect serverConnect = new ServerConnect();
         ControllerMainWindow controller = new ControllerMainWindow(view, serverConnect);
         ControllerWindow  controllerWindow = new ControllerWindow(serverConnect, controller, view);
-        view.registerController(controller);
+        view.registerController(controller, controllerWindow);
         //serverConnect.startServerConnection(controller);
 
         if(controller.getIfObrirFinestra()){

@@ -2,10 +2,13 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 
 import Controller.ControllerMainWindow;
+import Controller.ControllerWindow;
 import Model.Carta;
 import Model.Comanda;
 
@@ -42,6 +45,18 @@ public class Vista extends JFrame {
         this.setSize(400, 400);
         this.setResizable(true);
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        /*addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we)
+            {
+                String ObjButtons[] = {"Yes","No"};
+                int PromptResult = JOptionPane.showOptionDialog(null,"Are you sure you want to exit?","Online Examination System",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
+                if(PromptResult==JOptionPane.YES_OPTION)
+                {
+                    System.exit(0);
+                }
+            }
+        });*/
         this.setLocationRelativeTo(null);
     }
 
@@ -50,9 +65,10 @@ public class Vista extends JFrame {
      * @param c controller
      */
 
-    public void registerController(ControllerMainWindow c) {
+    public void registerController(ControllerMainWindow c, ControllerWindow window) {
         //Pasem el controlado a la resta de panells
         panelAcces.registerController(c);
+        this.registraControladors(window);
     }
 
     public void activaPanellsCarta(Carta carta, ControllerMainWindow c) {
