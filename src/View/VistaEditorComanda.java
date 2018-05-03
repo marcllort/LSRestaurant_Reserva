@@ -3,6 +3,7 @@ package View;
 import Controller.ControllerMainWindow;
 import Controller.ControllerViewComanda;
 import Model.Comanda;
+import Model.Plat;
 
 import javax.swing.*;
 import java.awt.*;
@@ -67,22 +68,39 @@ public class VistaEditorComanda extends JFrame {
         return panels;
     }
 
-    public void actualitzaVista(Comanda comandaActual){
+    public void actualitzaVista(Plat platEsborrar){
 
-        this.comandaActual = comandaActual;
-        panels = new ArrayList<PanelEditorComanda>();
+        for (PanelEditorComanda panel: panels){
+            if(panel.getPlat().equals(platEsborrar)){
+                panels.remove(panel);
+                break;
+            }
+        }
+       /* int i = 0;
+        for(PanelEditorComanda panel : panels){
+            panels.
+
+        }
+*/
         jpComanda = new JPanel();
         jpComanda.setLayout(new GridLayout(comandaActual.getPlats().size(), 1));
         PanelEditorComanda panelEditorComanda;
+
+
+
         for (int i = 0; i < comandaActual.getPlats().size(); i++) {
             panelEditorComanda = new PanelEditorComanda(comandaActual.getPlat(i), i);
             panels.add(panelEditorComanda);
             jpComanda.add(panelEditorComanda);
         }
 
+
         jspComanda = new JScrollPane(jpComanda);
         this.add(jspComanda, BorderLayout.CENTER);
 
+    }
+    public void actualitzaComanda(Comanda comandaActual){
+        this.comandaActual = comandaActual;
     }
 
 }

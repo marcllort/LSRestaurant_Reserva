@@ -21,7 +21,7 @@ public class Main {
         view.registerController(controller);
         //serverConnect.startServerConnection(controller);
 
-        if(controller.getIfObrirFinestra()){
+       /* if(controller.getIfObrirFinestra()){
             System.out.println("obri");
             Comanda comandaActual = controller.getComandaActual();
 
@@ -30,7 +30,7 @@ public class Main {
             ControllerViewComanda controllerComanda = new ControllerViewComanda(serverConnect, comandaActual, viewEditorComanda);
             viewEditorComanda.registerController(controllerComanda);
         }
-
+*/
     }
 
 }

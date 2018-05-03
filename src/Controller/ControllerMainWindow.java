@@ -117,7 +117,7 @@ public class ControllerMainWindow implements ActionListener {
      * @param viewComanda la vista de la comanda
      */
     private void handleVistaComanda( VistaEditorComanda viewComanda) {
-        Plat p = new Plat("caca", 100);
+        Plat p = new Plat("plato", 100);
         comandaActual.addPlat(p);
         if(comandaActual.getPlats().size() == 0){
             viewComanda.setVisible(false);
@@ -126,21 +126,24 @@ public class ControllerMainWindow implements ActionListener {
             view.activaPanellsCarta(carta, this);
             view.activaPanellsComanda(comanda, this, carta);
         }else{
-            obrirEditorComanda = true;
-          /*  controllerViewComanda = new ControllerViewComanda(serverConnect, comandaActual, viewComanda);
-            viewComanda.registerController(controllerViewComanda);
+            System.out.println("printem comanda actual");
+            for (int i= 0;i< comandaActual.getPlats().size(); i++){
+                System.out.println(comandaActual.getPlat(i).getNomPlat());
+            }
+          viewComanda = new VistaEditorComanda(comandaActual);
             viewComanda.setVisible(true);
+            controllerViewComanda = new ControllerViewComanda(serverConnect, comandaActual, viewComanda);
+            viewComanda.registerController(controllerViewComanda);
 
-
-            while(controllerViewComanda.getIfFinestraActiva()){
                 if( controllerViewComanda.getIfComandaEnviada()){
+                    viewComanda.setVisible(false);
                     comandaActual = new Comanda();
                     view.creaMenu(this);
                     view.activaPanellsCarta(carta, this);
                     view.activaPanellsComanda(comanda, this, carta);
                     view.actualitzaPanelEstatComanda(comanda);
+
                 }
-            }*/
         }
 
     }
@@ -160,7 +163,7 @@ public class ControllerMainWindow implements ActionListener {
             }
         }
 
-        for (int x = 0; i< comandaActual.getPlats().size(); x++){
+        for (int x = 0; x < comandaActual.getPlats().size(); x++){
             System.out.println(comandaActual.getPlat(x).getNomPlat());
         }
 
@@ -285,30 +288,5 @@ public class ControllerMainWindow implements ActionListener {
         view.activaPanellsCarta(carta, this);
         view.activaPanellsComanda(comanda, this, carta);
 
-
-      /*  dp = new DialogPlat(plat);
-        dp.setVisible(true);
-        dp.registerController(this);
-        if(event.getSource() instanceof DialogPlat){
-            System.out.println("dfghj");
-            String s = dp.getFieldText();
-            System.out.println(plat.getNomPlat());
-            if (dp.isNum(s)){
-                int unitats = dp.getTypedUnitats();
-                if (unitats > 0){
-                    for(int i = 0; i < unitats; i++){
-                        comandaActual.addPlat(plat);
-                    }
-                    JOptionPane.showMessageDialog(view, "Plat afegit!");
-                    dp.setVisible(false);
-                }else{
-                    JOptionPane.showMessageDialog(view, "Has de posar un numero mes gran que 0");
-                    dp.cleanFields();
-                }
-            }else{
-                JOptionPane.showMessageDialog(view, "Has de posar un numero");
-                dp.cleanFields();
-            }
-        }*/
     }
 }

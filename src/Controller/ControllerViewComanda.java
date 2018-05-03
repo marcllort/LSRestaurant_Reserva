@@ -31,31 +31,39 @@ public class ControllerViewComanda implements ActionListener {
 
     public void actionPerformed(ActionEvent event){
 
-        if (event.getSource() instanceof PanelEditorComanda){
+
+        if (event.getActionCommand().equals("ENVIA")){
+            //serverConnect.enviaComanda(comandaActual);
+            System.out.println("estas");
+            JOptionPane.showMessageDialog(viewComanda, "Comanda enviada!");
+            comandaEnviada = true;
+
+        }else {
             for (int i = 0; i < viewComanda.getPanels().size(); i++){
                 if (event.getActionCommand().equals("ELIMINA-" + viewComanda.getPanels().get(i).getNumPlat())){
-                    viewComanda.setVisible(false);
+                    //.getPlats().remove(i);
+                    //viewComanda.setVisible(false);
                     eliminaPlatComanda(viewComanda.getPanels().get(i).getPlat());
-                    viewComanda.setVisible(true);
+                   // viewComanda.registerController(this);
+                    //viewComanda.setVisible(true);
                     break;
                 }
             }
-        }else if (event.getActionCommand().equals("ENVIA")){
-           // serverConnect.enviaComanda(comandaActual);
-            JOptionPane.showMessageDialog(viewComanda, "Comanda enviada!");
-            comandaEnviada = true;
-            finestraActiva = false;
-            viewComanda.setVisible(false);
-
         }
     }
 
     private void eliminaPlatComanda(Plat plat){
 
-        comandaActual.getPlats().remove(plat);
+        this.comandaActual.getPlats().remove(plat);
+        //viewComanda.setVisible(false);
         JOptionPane.showMessageDialog(viewComanda, "Plat esborrat");
-        viewComanda.actualitzaVista(comandaActual);
+        viewComanda.actualitzaComanda(comandaActual);
+        viewComanda.actualitzaVista(plat);
         viewComanda.registerController(this);
+        viewComanda.setVisible(true);
+
+        //viewComanda.actualitzaVista(comandaActual);
+
     }
 
     public boolean getIfComandaEnviada(){return comandaEnviada;}

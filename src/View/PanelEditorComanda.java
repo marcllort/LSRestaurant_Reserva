@@ -44,4 +44,9 @@ public class PanelEditorComanda extends JPanel {
         return plat;
     }
 
+    public void setNumPlat(int numPlat){
+        this.numPlat = numPlat;
+    }
+
+
 }
