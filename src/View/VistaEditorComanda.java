@@ -69,34 +69,16 @@ public class VistaEditorComanda extends JFrame {
     }
 
     public void actualitzaVista(Plat platEsborrar){
-
-        for (PanelEditorComanda panel: panels){
-            if(panel.getPlat().equals(platEsborrar)){
-                panels.remove(panel);
+        for(PanelEditorComanda p : panels){
+            if(p.getPlat().getNomPlat().equals(platEsborrar.getNomPlat())){
+                panels.remove(p);
+                jpComanda.remove(p);
                 break;
             }
         }
-       /* int i = 0;
-        for(PanelEditorComanda panel : panels){
-            panels.
-
-        }
-*/
-        jpComanda = new JPanel();
-        jpComanda.setLayout(new GridLayout(comandaActual.getPlats().size(), 1));
-        PanelEditorComanda panelEditorComanda;
-
-
-
-        for (int i = 0; i < comandaActual.getPlats().size(); i++) {
-            panelEditorComanda = new PanelEditorComanda(comandaActual.getPlat(i), i);
-            panels.add(panelEditorComanda);
-            jpComanda.add(panelEditorComanda);
-        }
-
-
         jspComanda = new JScrollPane(jpComanda);
         this.add(jspComanda, BorderLayout.CENTER);
+
 
     }
     public void actualitzaComanda(Comanda comandaActual){

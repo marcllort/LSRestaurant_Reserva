@@ -34,9 +34,11 @@ public class ControllerViewComanda implements ActionListener {
 
         if (event.getActionCommand().equals("ENVIA")){
             //serverConnect.enviaComanda(comandaActual);
-            System.out.println("estas");
             JOptionPane.showMessageDialog(viewComanda, "Comanda enviada!");
+            serverConnect.enviaComanda(comandaActual);
+
             comandaEnviada = true;
+
 
         }else {
             for (int i = 0; i < viewComanda.getPanels().size(); i++){
@@ -44,7 +46,7 @@ public class ControllerViewComanda implements ActionListener {
                     //.getPlats().remove(i);
                     //viewComanda.setVisible(false);
                     eliminaPlatComanda(viewComanda.getPanels().get(i).getPlat());
-                   // viewComanda.registerController(this);
+                    viewComanda.registerController(this);
                     //viewComanda.setVisible(true);
                     break;
                 }
@@ -54,13 +56,18 @@ public class ControllerViewComanda implements ActionListener {
 
     private void eliminaPlatComanda(Plat plat){
 
-        this.comandaActual.getPlats().remove(plat);
+        System.out.println(comandaActual.getPlats().size() + "mida comanda");
+        comandaActual.getPlats().remove(plat);
+        System.out.println(comandaActual.getPlats().size() + "mida comanda nueva");
+        viewComanda.actualitzaComanda(comandaActual);
+
         //viewComanda.setVisible(false);
         JOptionPane.showMessageDialog(viewComanda, "Plat esborrat");
         viewComanda.actualitzaComanda(comandaActual);
         viewComanda.actualitzaVista(plat);
         viewComanda.registerController(this);
         viewComanda.setVisible(true);
+
 
         //viewComanda.actualitzaVista(comandaActual);
 
@@ -69,6 +76,8 @@ public class ControllerViewComanda implements ActionListener {
     public boolean getIfComandaEnviada(){return comandaEnviada;}
 
     public boolean getIfFinestraActiva(){return finestraActiva;}
+
+
 
 
 

@@ -42,6 +42,7 @@ public class ControllerMainWindow implements ActionListener {
         this.view = view;
         this.serverConnect = serverConnect;
         carta = new Carta();
+
         comandaActual = new Comanda();
         obrirEditorComanda = false;
     }
@@ -92,7 +93,7 @@ public class ControllerMainWindow implements ActionListener {
                 JOptionPane.showMessageDialog(view, "Benvingut!");
                 view.changePanel("BUIT");
                 serverConnect.startServerConnection(this);
-                System.out.println("perfesto");
+
 
             } else {
                 JOptionPane.showMessageDialog(view, "Credencials incorrectes!");
@@ -117,8 +118,7 @@ public class ControllerMainWindow implements ActionListener {
      * @param viewComanda la vista de la comanda
      */
     private void handleVistaComanda( VistaEditorComanda viewComanda) {
-        Plat p = new Plat("plato", 100);
-        comandaActual.addPlat(p);
+
         if(comandaActual.getPlats().size() == 0){
             viewComanda.setVisible(false);
             JOptionPane.showMessageDialog(view, "Afageix plats per tal d'editar la teva comanda");
@@ -126,11 +126,8 @@ public class ControllerMainWindow implements ActionListener {
             view.activaPanellsCarta(carta, this);
             view.activaPanellsComanda(comanda, this, carta);
         }else{
-            System.out.println("printem comanda actual");
-            for (int i= 0;i< comandaActual.getPlats().size(); i++){
-                System.out.println(comandaActual.getPlat(i).getNomPlat());
-            }
-          viewComanda = new VistaEditorComanda(comandaActual);
+
+            viewComanda = new VistaEditorComanda(comandaActual);
             viewComanda.setVisible(true);
             controllerViewComanda = new ControllerViewComanda(serverConnect, comandaActual, viewComanda);
             viewComanda.registerController(controllerViewComanda);
@@ -139,9 +136,10 @@ public class ControllerMainWindow implements ActionListener {
                     viewComanda.setVisible(false);
                     comandaActual = new Comanda();
                     view.creaMenu(this);
+                    view.actualitzaPanelEstatComanda(comanda);
                     view.activaPanellsCarta(carta, this);
                     view.activaPanellsComanda(comanda, this, carta);
-                    view.actualitzaPanelEstatComanda(comanda);
+
 
                 }
         }
@@ -240,7 +238,7 @@ public class ControllerMainWindow implements ActionListener {
 
             //accio sobre el panell carta
         } else  {
-            System.out.println("1si");
+
             //pagina anterior
             if (event.getActionCommand().equals("ANTERIOR")) {
                 view.getCartaPanel().cambiaPagina("anterior");

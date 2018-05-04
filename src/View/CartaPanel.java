@@ -25,6 +25,9 @@ public class CartaPanel extends JPanel {
      * @param carta carta del restaurant
      */
     public CartaPanel(Carta carta){
+        Plat p = new Plat ("gg", 11);
+        carta.getPlats().add(p);
+
 
         this.carta = carta;
         arrayPanels = new ArrayList<PlatsPanel>();
