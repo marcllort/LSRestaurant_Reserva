@@ -15,7 +15,7 @@ public class Main {
         Vista view;
         view = new Vista();
         view.setVisible(true);
-        ServerConnect serverConnect = new ServerConnect();
+        ServerConnect serverConnect = new ServerConnect(view);
         ControllerMainWindow controller = new ControllerMainWindow(view, serverConnect);
         ControllerWindow  controllerWindow = new ControllerWindow(serverConnect, controller, view);
         view.registerController(controller, controllerWindow);

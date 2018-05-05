@@ -7,6 +7,7 @@ import Model.Json.ConfiguracioClient;
 import Model.Json.LectorJson;
 import Model.Plat;
 import Model.Usuari;
+import View.Vista;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -26,9 +27,10 @@ public class ServerConnect extends Thread {
     private String resposta;
     private LectorJson lectorJSON;
     private ControllerMainWindow controller;
+    private Vista vista;
 
 
-    public ServerConnect() {
+    public ServerConnect(Vista vista) {
 
         try {
             lectorJSON = new LectorJson();
@@ -39,6 +41,7 @@ public class ServerConnect extends Thread {
             oos = new ObjectOutputStream(socket.getOutputStream());
             ois = new ObjectInputStream(socket.getInputStream());
             dis = new DataInputStream(socket.getInputStream());
+            this.vista = vista;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -112,16 +115,25 @@ public class ServerConnect extends Thread {
         while (true) {
             Object objeto = repCartaComanda();
 
+
+
+            if (objeto instanceof String){
+                resposta = (String) objeto;
+                if (resposta.equals("true")){
+                    controller.missatgeExitComanda();
+                }else {
+                    controller.missatgeErrorComanda(resposta);
+                }
+            }
             if (objeto instanceof Comanda) {
                 Comanda comanda = (Comanda) objeto;
                 System.out.println("data: "+comanda.getData());
-                Plat p = new Plat("Pasta", 1);
-                comanda.addPlat(p);
                 controller.setComanda(comanda);
                 controller.setPanellsComanda(comanda, controller, carta);
+                vista.actualitzaPanelEstatComanda(comanda);
+            }
 
-
-            } else if (objeto instanceof Carta) {
+            if (objeto instanceof Carta) {
                 System.out.println("recibido carta" + ((Carta) objeto).getPlat(1));
                 carta = (Carta) objeto;
                /* ArrayList<Plat> plats = new ArrayList<Plat>();
@@ -135,6 +147,8 @@ public class ServerConnect extends Thread {
                controller.setPanellsCarta(carta, controller);
 
             }
+
+
             //controlador.updateVista(messages);          //Quan llegim el que ens envia el server, acutlaitzem a la vista
         }
     }

@@ -44,6 +44,7 @@ public class ControllerMainWindow implements ActionListener {
         carta = new Carta();
 
         comandaActual = new Comanda();
+
         obrirEditorComanda = false;
     }
 
@@ -129,12 +130,14 @@ public class ControllerMainWindow implements ActionListener {
 
             viewComanda = new VistaEditorComanda(comandaActual);
             viewComanda.setVisible(true);
+            preparaComanda();
             controllerViewComanda = new ControllerViewComanda(serverConnect, comandaActual, viewComanda);
             viewComanda.registerController(controllerViewComanda);
 
                 if( controllerViewComanda.getIfComandaEnviada()){
                     viewComanda.setVisible(false);
                     comandaActual = new Comanda();
+                    preparaComanda();
                     view.creaMenu(this);
                     view.actualitzaPanelEstatComanda(comanda);
                     view.activaPanellsCarta(carta, this);
@@ -287,4 +290,20 @@ public class ControllerMainWindow implements ActionListener {
         view.activaPanellsComanda(comanda, this, carta);
 
     }
+
+
+    private void preparaComanda(){
+        comandaActual.setUsuari(comanda.getUsuari());
+        comandaActual.setHora(comanda.getHora());
+        comandaActual.setData(comanda.getData());
+    }
+
+    public void missatgeExitComanda(){
+        JOptionPane.showMessageDialog(viewComanda, "Comanda realitzada amb exit!");
+    }
+
+    public void missatgeErrorComanda(String error){
+        JOptionPane.showMessageDialog(viewComanda, "Error a la comanda! " + error);
+    }
+
 }

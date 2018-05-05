@@ -112,4 +112,11 @@ public class Comanda implements Serializable {
         this.hora = hora;
     }
 
+    /**
+     * Setter de usuari
+     * @param usuari
+     */
+    public void setUsuari(String usuari) {
+        this.usuari = usuari;
+    }
 }

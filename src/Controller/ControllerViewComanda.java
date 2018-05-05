@@ -32,9 +32,9 @@ public class ControllerViewComanda implements ActionListener {
     public void actionPerformed(ActionEvent event){
 
 
-        if (event.getActionCommand().equals("ENVIA")){
+        if (event.getActionCommand().equals("ENVIA COMANDA")){
             //serverConnect.enviaComanda(comandaActual);
-            JOptionPane.showMessageDialog(viewComanda, "Comanda enviada!");
+            //comandaActual.setUsuari("Alex");
             serverConnect.enviaComanda(comandaActual);
 
             comandaEnviada = true;
@@ -76,6 +76,7 @@ public class ControllerViewComanda implements ActionListener {
     public boolean getIfComandaEnviada(){return comandaEnviada;}
 
     public boolean getIfFinestraActiva(){return finestraActiva;}
+
 
 
 
