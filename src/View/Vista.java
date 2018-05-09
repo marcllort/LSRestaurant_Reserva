@@ -42,8 +42,8 @@ public class Vista extends JFrame {
         this.getContentPane().setLayout(layout);
         this.getContentPane().add("ACCES", panelAcces);
 
-        this.setSize(400, 400);
-        this.setResizable(true);
+        this.setSize(600, 330);
+        this.setResizable(false);
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         this.setLocationRelativeTo(null);

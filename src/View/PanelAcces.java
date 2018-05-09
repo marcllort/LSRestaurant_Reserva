@@ -18,40 +18,44 @@ public class PanelAcces extends JPanel {
      */
     public PanelAcces() {
 
-        this.setLayout(new BorderLayout());
-        this.setBorder(BorderFactory.createTitledBorder("LSRestaurant"));
+        this.setLayout(null);
 
-        JPanel jpUsuari = new JPanel();
-        JPanel jpContrasenya = new JPanel();
+        JLabel lblLsrestaurant = new JLabel("LS_RESTAURANT");
+        lblLsrestaurant.setFont(new Font("Tahoma", Font.BOLD, 28));
+        lblLsrestaurant.setBounds(162, 33, 242, 41);
+        this.add(lblLsrestaurant);
 
-        ((FlowLayout) jpUsuari.getLayout()).setAlignment(FlowLayout.LEFT);
+        JPanel panel = new JPanel();
+        panel.setBounds(75, 85, 426, 164);
+        this.add(panel);
+        panel.setLayout(null);
 
-        jlUsuari = new JLabel("Usuari");
+        jlUsuari = new JLabel("Usuari:");
+        jlUsuari.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        jlUsuari.setBounds(10, 14, 75, 20);
+        panel.add(jlUsuari);
+
         jtfUsuari = new JTextField();
-        jtfUsuari.setPreferredSize(new Dimension(280, 25));
-        jpUsuari.add(jlUsuari);
-        jpUsuari.add(jtfUsuari);
+        jtfUsuari.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        jtfUsuari.setBounds(134, 14, 270, 28);
+        panel.add(jtfUsuari);
+        jtfUsuari.setColumns(25);
 
-        ((FlowLayout) jpContrasenya.getLayout()).setAlignment(FlowLayout.LEFT);
+        jlContrasenya = new JLabel("Contrasenya:");
+        jlContrasenya.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        jlContrasenya.setBounds(10, 63, 127, 17);
+        panel.add(jlContrasenya);
 
-        jlContrasenya = new JLabel("Contrasenya");
         jtfContrasenya = new JTextField();
-        jtfContrasenya.setPreferredSize(new Dimension(280, 25));
-        jpContrasenya.add(jlContrasenya);
-        jpContrasenya.add(jtfContrasenya);
+        jtfContrasenya.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        jtfContrasenya.setBounds(134, 61, 270, 28);
+        panel.add(jtfContrasenya);
+        jtfContrasenya.setColumns(21);
 
-        jbEnvia = new JButton("Envia");
-        jbEnvia.setPreferredSize(new Dimension(60, 40));
-
-        JPanel jpAux = new JPanel();
-
-        ((FlowLayout) jpAux.getLayout()).setAlignment(FlowLayout.LEFT);
-
-        jpAux.add(jpUsuari);
-        jpAux.add(jpContrasenya);
-
-        this.add(jpAux, BorderLayout.CENTER);
-        this.add(jbEnvia, BorderLayout.PAGE_END);
+        jbEnvia = new JButton("Entrar");
+        jbEnvia.setFont(new Font("Tahoma", Font.BOLD, 20));
+        jbEnvia.setBounds(155, 113, 116, 40);
+        panel.add(jbEnvia);
 
     }
 

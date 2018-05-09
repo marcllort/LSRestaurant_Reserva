@@ -92,9 +92,10 @@ public class ControllerMainWindow implements ActionListener {
             String userConfirmation = serverConnect.repUserConfirmation();
             if (userConfirmation.equals("true")) {
                 JOptionPane.showMessageDialog(view, "Benvingut!");
-                view.changePanel("BUIT");
+                view.changePanel("CARTA");
+                view.setSize(800, 500);
+                view.setResizable(true);
                 serverConnect.startServerConnection(this);
-
 
             } else {
                 JOptionPane.showMessageDialog(view, "Credencials incorrectes!");
@@ -111,7 +112,6 @@ public class ControllerMainWindow implements ActionListener {
         view.cleanFields();
         this.view = new Vista();
         view.setVisible(true);
-        //view.registerController(this);
     }
 
     /**
@@ -134,17 +134,6 @@ public class ControllerMainWindow implements ActionListener {
             controllerViewComanda = new ControllerViewComanda(serverConnect, comandaActual, viewComanda, this);
             viewComanda.registerController(controllerViewComanda);
 
-               /* if( controllerViewComanda.getIfComandaEnviada()){
-                    System.out.println(controllerViewComanda.getIfComandaEnviada() + "esta enviada o no");
-                    viewComanda.setVisible(false);
-                    comandaActual = new Comanda();
-                    view.creaMenu(this);
-                    view.actualitzaPanelEstatComanda(comanda);
-                    view.activaPanellsCarta(carta, this);
-                    view.activaPanellsComanda(comanda, this, carta);
-
-
-                }*/
 
             view.creaMenu(this);
             view.actualitzaPanelEstatComanda(comanda);
@@ -216,7 +205,6 @@ public class ControllerMainWindow implements ActionListener {
 
         if (event.getActionCommand().equals("ACCES CARTA")) {
             view.changePanel("CARTA");
-            //comandaActual = new ArrayList<Plat>();
         } else if (event.getActionCommand().equals("ACCES ESTAT COMANDA")) {
             view.changePanel("ESTAT COMANDA");
         } else if (event.getActionCommand().equals("ACCES SORTIDA")) {
@@ -268,7 +256,6 @@ public class ControllerMainWindow implements ActionListener {
 
                 //sobre la carta
             }else {
-                System.out.println("porfin");
                 handleAfegeixPlat(event);
             }
         }
