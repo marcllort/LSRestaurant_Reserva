@@ -155,13 +155,15 @@ public class ControllerMainWindow implements ActionListener {
 
     private void handleAfegeixPlat(ActionEvent event) {
 
-        int i = view.getCartaPanel().getPaginaActual();
-        for(int j = 0; j < view.getCartaPanel().getPagina(i-1).getPlats().size(); j++){
+        /*int i = view.getCartaPanel().getPaginaCarta();
+        for(int j = 0; j < view.getCartaPanel().getPaginaCarta(i-1).getPlats().size(); j++){
             if(event.getActionCommand().equals((j+1) + "-" + i)){
                 handleDialogPlat(view.getCartaPanel().getPagina(i-1).getPlats().get(j), event);
                 break;
             }
-        }
+        }*/
+
+        handleDialogPlat(carta.getPlat(event.getActionCommand()), event);
 
         for (int x = 0; x < comandaActual.getPlats().size(); x++){
             System.out.println(comandaActual.getPlat(x).getNomPlat());
@@ -241,18 +243,31 @@ public class ControllerMainWindow implements ActionListener {
         } else  {
 
             //pagina anterior
-            if (event.getActionCommand().equals("ANTERIOR")) {
-                view.getCartaPanel().cambiaPagina("anterior");
-                view.creaMenu(this);
+            if (event.getActionCommand().equals("SEGUENT")) {
+                System.out.println();
+                int p = view.getCartaPanel().getPaginaCarta();
+                System.out.println("pppppp"+view.getCartaPanel().getPag().getPlats());
+
+                if (p * 6 < view.getCartaPanel().getPag().getPlats().size()) {
+                    view.getCartaPanel().paginaCarta(carta.getPlats(), p + 1);
+                }
+                view.getCartaPanel().getPag().repaint();
+                view.getCartaPanel().getPag().revalidate();
+
+                /*view.creaMenu(this);
                 view.getCartaPanel().registerController(this);
-                view.getPanelSortida().registerController(this);
+                view.getPanelSortida().registerController(this);*/
 
                 //Pagina seguent
-            } else if (event.getActionCommand().equals("SEGUENT")) {
-                view.getCartaPanel().cambiaPagina("seguent");
-                view.creaMenu(this);
+            } else if (event.getActionCommand().equals("ANTERIOR")) {
+                //System.out.println("seguen"+view.getCartaPanel().get);
+                int p = view.getCartaPanel().getPaginaCarta();
+                if (p > 1) {
+                    view.getCartaPanel().paginaCarta(carta.getPlats(), p - 1);
+                }
+                /*view.creaMenu(this);
                 view.getCartaPanel().registerController(this);
-                view.getPanelSortida().registerController(this);
+                view.getPanelSortida().registerController(this);*/
 
                 //sobre la carta
             }else {

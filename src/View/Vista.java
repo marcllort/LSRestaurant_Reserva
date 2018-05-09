@@ -63,7 +63,8 @@ public class Vista extends JFrame {
     public void activaPanellsCarta(Carta carta, ControllerMainWindow c) {
 
         
-        cartaPanel = new CartaPanel(carta);
+        cartaPanel = new CartaPanel();
+        cartaPanel.getPag().setPlats(carta.getPlats());
         cartaPanel.registerController(c);
         this.jp1 = new JPanel();
         jp1.setBackground(Color.LIGHT_GRAY);
@@ -82,7 +83,8 @@ public class Vista extends JFrame {
         this.getContentPane().add("SORTIR", panelSortida);
 
         panelSortida.registerController(controller);
-        cartaPanel = new CartaPanel(carta);
+        cartaPanel = new CartaPanel();
+        cartaPanel.getPag().setPlats(carta.getPlats());
         cartaPanel.registerController(controller);
         
     }
