@@ -120,6 +120,7 @@ public class ServerConnect extends Thread {
             if (objeto instanceof String){
                 resposta = (String) objeto;
                 if (resposta.equals("true")){
+                    System.out.println("he rebut la comanda");
                     controller.missatgeExitComanda();
                 }else {
                     controller.missatgeErrorComanda(resposta);
@@ -152,5 +153,7 @@ public class ServerConnect extends Thread {
             //controlador.updateVista(messages);          //Quan llegim el que ens envia el server, acutlaitzem a la vista
         }
     }
+
+    public String getResposta(){ return resposta;}
 
 }

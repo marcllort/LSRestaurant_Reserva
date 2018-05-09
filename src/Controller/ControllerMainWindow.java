@@ -131,20 +131,28 @@ public class ControllerMainWindow implements ActionListener {
             viewComanda = new VistaEditorComanda(comandaActual);
             viewComanda.setVisible(true);
             preparaComanda();
-            controllerViewComanda = new ControllerViewComanda(serverConnect, comandaActual, viewComanda);
+            controllerViewComanda = new ControllerViewComanda(serverConnect, comandaActual, viewComanda, this);
             viewComanda.registerController(controllerViewComanda);
 
-                if( controllerViewComanda.getIfComandaEnviada()){
+               /* if( controllerViewComanda.getIfComandaEnviada()){
+                    System.out.println(controllerViewComanda.getIfComandaEnviada() + "esta enviada o no");
                     viewComanda.setVisible(false);
                     comandaActual = new Comanda();
-                    preparaComanda();
                     view.creaMenu(this);
                     view.actualitzaPanelEstatComanda(comanda);
                     view.activaPanellsCarta(carta, this);
                     view.activaPanellsComanda(comanda, this, carta);
 
 
-                }
+                }*/
+
+            view.creaMenu(this);
+            view.actualitzaPanelEstatComanda(comanda);
+
+            view.activaPanellsCarta(carta, this);
+
+            view.activaPanellsComanda(comanda, this, carta);
+
         }
 
     }
@@ -304,6 +312,12 @@ public class ControllerMainWindow implements ActionListener {
 
     public void missatgeErrorComanda(String error){
         JOptionPane.showMessageDialog(viewComanda, "Error a la comanda! " + error);
+    }
+
+    public void setComandaActual(Comanda comandaActual){
+        this.comandaActual = new Comanda();
+        System.out.println("comanda actualitzada");
+
     }
 
 }

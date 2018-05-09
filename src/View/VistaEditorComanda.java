@@ -32,7 +32,6 @@ public class VistaEditorComanda extends JFrame {
         PanelEditorComanda panelEditorComanda;
 
 
-
         for (int i = 0; i < comandaActual.getPlats().size(); i++) {
             panelEditorComanda = new PanelEditorComanda(comandaActual.getPlat(i), i);
             panels.add(panelEditorComanda);

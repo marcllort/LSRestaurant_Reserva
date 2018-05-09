@@ -12,6 +12,7 @@ public class PanelEditorComanda extends JPanel {
     private Plat plat;
     private JLabel jlNomPlat;
     private JLabel jlPreuPlat;
+    private JTextField unitats;
     private JButton jbElimina;
 
     public PanelEditorComanda(Plat plat, int numPlat) {

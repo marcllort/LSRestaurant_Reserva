@@ -18,14 +18,16 @@ public class ControllerViewComanda implements ActionListener {
     private Comanda comandaActual;
     //variables aux
     private boolean comandaEnviada = false;
-    private boolean finestraActiva;
+    //controller
+    private ControllerMainWindow controllerMainWindow;
 
-    public ControllerViewComanda(ServerConnect serverConnect, Comanda comandaActual, VistaEditorComanda viewComanda){
+
+    public ControllerViewComanda(ServerConnect serverConnect, Comanda comandaActual, VistaEditorComanda viewComanda, ControllerMainWindow controllerMainWindow){
 
         this.serverConnect = serverConnect;
         this.comandaActual = comandaActual;
         this.viewComanda = viewComanda;
-        finestraActiva = true;
+        this.controllerMainWindow = controllerMainWindow;
 
     }
 
@@ -36,8 +38,10 @@ public class ControllerViewComanda implements ActionListener {
             //serverConnect.enviaComanda(comandaActual);
             //comandaActual.setUsuari("Alex");
             serverConnect.enviaComanda(comandaActual);
+            comandaActual = new Comanda();
+            controllerMainWindow.setComandaActual(comandaActual);
 
-            comandaEnviada = true;
+
 
 
         }else {
@@ -75,7 +79,6 @@ public class ControllerViewComanda implements ActionListener {
 
     public boolean getIfComandaEnviada(){return comandaEnviada;}
 
-    public boolean getIfFinestraActiva(){return finestraActiva;}
 
 
 
