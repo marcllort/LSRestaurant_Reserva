@@ -153,6 +153,8 @@ public class ControllerMainWindow implements ActionListener {
 
             view.activaPanellsComanda(comanda, this, carta);
 
+
+
         }
 
     }

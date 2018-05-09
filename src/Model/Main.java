@@ -21,16 +21,6 @@ public class Main {
         view.registerController(controller, controllerWindow);
         //serverConnect.startServerConnection(controller);
 
-       /* if(controller.getIfObrirFinestra()){
-            System.out.println("obri");
-            Comanda comandaActual = controller.getComandaActual();
-
-            VistaEditorComanda viewEditorComanda = new VistaEditorComanda(comandaActual);
-            viewEditorComanda.setVisible(true);
-            ControllerViewComanda controllerComanda = new ControllerViewComanda(serverConnect, comandaActual, viewEditorComanda);
-            viewEditorComanda.registerController(controllerComanda);
-        }
-*/
     }
 
 }

@@ -40,6 +40,7 @@ public class ControllerViewComanda implements ActionListener {
             serverConnect.enviaComanda(comandaActual);
             comandaActual = new Comanda();
             controllerMainWindow.setComandaActual(comandaActual);
+            viewComanda.setVisible(false);
 
 
 
