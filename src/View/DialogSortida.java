@@ -1,5 +1,6 @@
 package View;
 
+import Controller.ControllerMainWindow;
 import Model.Comanda;
 import Model.Plat;
 
@@ -12,7 +13,7 @@ public class DialogSortida {
 
 
 
-    public DialogSortida(Comanda comanda) {
+    public DialogSortida(Comanda comanda, ControllerMainWindow controller) {
         //Per saber si encara queden plats per pagar
         boolean faltan = false;
 
@@ -25,16 +26,16 @@ public class DialogSortida {
 
         if (faltan) {
 
-            dialogSortir("Al tancar pagaràs automàticament totes les comandes, incloses les que encara no s'han servit.\nEstas segur que vols sortir? ");
+            dialogSortir("Al tancar pagaràs automàticament totes les comandes, incloses les que encara no s'han servit.\nEstas segur que vols sortir? ", controller);
 
         } else {
-            dialogSortir("Al tancar pagaràs automàticament totes les comandes.\nEstas segur que vols sortir? ");        }
+            dialogSortir("Al tancar pagaràs automàticament totes les comandes.\nEstas segur que vols sortir? ", controller);        }
 
 
     }
 
 
-    public void dialogSortir(String missatge){
+    public void dialogSortir(String missatge, ControllerMainWindow controller){
         String ObjButtons[] = {"Si","No"};
         int PromptResult = JOptionPane.showOptionDialog(null,
                 missatge, "Sortir",
@@ -43,6 +44,7 @@ public class DialogSortida {
 
         if(PromptResult==0)
         {
+            controller.enviaPagat();
             System.exit(0);
         }
     }

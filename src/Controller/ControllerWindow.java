@@ -1,6 +1,7 @@
 package Controller;
 
 
+import Model.Comanda;
 import NetworkManager.ServerConnect;
 import View.Vista;
 
@@ -9,13 +10,13 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 public class ControllerWindow implements WindowListener {
-    private ServerConnect networkconnect;
+    private ServerConnect serverConnect;
     private ControllerMainWindow controller;
     private Vista view;
 
 
     public ControllerWindow(ServerConnect networkconnect, ControllerMainWindow controller, Vista view) {
-        this.networkconnect = networkconnect;
+        this.serverConnect = networkconnect;
         this.controller = controller;
         this.view = view;
     }
@@ -35,6 +36,7 @@ public class ControllerWindow implements WindowListener {
                 ObjButtons,ObjButtons[1]);
         if(PromptResult==0)
         {
+            serverConnect.enviaComanda(new Comanda());
             System.exit(0);
         }
 

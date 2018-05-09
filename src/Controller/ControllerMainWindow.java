@@ -322,4 +322,8 @@ public class ControllerMainWindow implements ActionListener {
 
     }
 
+    public void enviaPagat(){
+        serverConnect.enviaComanda(new Comanda());
+    }
+
 }

@@ -132,6 +132,7 @@ public class ServerConnect extends Thread {
                 controller.setComanda(comanda);
                 controller.setPanellsComanda(comanda, controller, carta);
                 vista.actualitzaPanelEstatComanda(comanda);
+                vista.revalidate();
             }
 
             if (objeto instanceof Carta) {
