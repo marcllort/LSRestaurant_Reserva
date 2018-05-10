@@ -2,6 +2,7 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -47,6 +48,8 @@ public class Vista extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         this.setLocationRelativeTo(null);
+        cartaPanel = new CartaPanel();
+
     }
 
     /**
@@ -60,15 +63,30 @@ public class Vista extends JFrame {
         this.registraControladors(window);
     }
 
+    public void prova() {
+        //this.remove(((BorderLayout) this.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+        this.remove(cartaPanel);
+        this.getContentPane().add("CARTA", cartaPanel);
+        changePanel("CARTA");
+
+    }
+    public void prova2(Carta carta, ActionListener controlador) {
+        //this.remove(((BorderLayout) this.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+        this.remove(cartaPanel);
+        cartaPanel.getPag().setPlats(carta.getPlats());
+        cartaPanel.getPag().registraControler(controlador);
+        this.getContentPane().add("CARTA", cartaPanel);
+        changePanel("CARTA");
+
+    }
+
     public void activaPanellsCarta(Carta carta, ControllerMainWindow c) {
 
         
-        cartaPanel = new CartaPanel();
+
         cartaPanel.getPag().setPlats(carta.getPlats());
         cartaPanel.registerController(c);
-        this.jp1 = new JPanel();
-        jp1.setBackground(Color.LIGHT_GRAY);
-        this.getContentPane().add("BUIT", jp1);
+
         this.getContentPane().add("CARTA", cartaPanel);
 
 

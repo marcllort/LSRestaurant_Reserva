@@ -27,6 +27,7 @@ public class PaginaCarta extends JPanel {
         this.numPagina = numPagina;
         this.removeAll();
 
+
         int i = 6 * (numPagina - 1);
 
         while (i < (6 * numPagina) && i < jbArrray.size()) {

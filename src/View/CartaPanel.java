@@ -41,6 +41,7 @@ public class CartaPanel extends JPanel {
 
         this.add(pag, BorderLayout.CENTER);
 
+       // this.remove(pag);
         JPanel panel_4 = new JPanel();
         panel_4.setBounds(10, 206, 559, 46);
 
@@ -179,10 +180,12 @@ public class CartaPanel extends JPanel {
 
     public void paginaCarta(ArrayList<Plat> plats, int pagina) {
         numPagina = pagina;
+        System.out.println("PAGINA"+pagina);
 
         pag.canviaPagina(pagina);
-
+        System.out.println("BORRAAA");
         this.remove(((BorderLayout) this.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+        System.out.println();
         this.add(pag, BorderLayout.CENTER);
         jlPgina.setText("P\u00E0gina " + numPagina);
 

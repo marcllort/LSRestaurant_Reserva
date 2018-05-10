@@ -42,6 +42,7 @@ public class ControllerMainWindow implements ActionListener {
         this.view = view;
         this.serverConnect = serverConnect;
         carta = new Carta();
+        view.creaMenu(this);
 
         comandaActual = new Comanda();
 
@@ -57,7 +58,7 @@ public class ControllerMainWindow implements ActionListener {
 
     public void actionPerformed(ActionEvent event) {
         //Si es tracta d'una accio sobre el menu
-        view.creaMenu(this);
+
         if (event.getSource() instanceof JMenuItem) {
             handleMenu(event);
         } else {
@@ -72,7 +73,7 @@ public class ControllerMainWindow implements ActionListener {
 
         } else if (event.getActionCommand().equals("QUEDAR-SE")) {
             view.changePanel("BUIT");
-            view.creaMenu(this);
+
             //view.getPanelSortida().desactivaDialogSortida();
         }
     }
@@ -92,7 +93,8 @@ public class ControllerMainWindow implements ActionListener {
             String userConfirmation = serverConnect.repUserConfirmation();
             if (userConfirmation.equals("true")) {
                 JOptionPane.showMessageDialog(view, "Benvingut!");
-                view.changePanel("CARTA");
+                view.activaPanellsCarta(carta,this);
+                view.prova();
                 view.setSize(800, 500);
                 view.setResizable(true);
                 serverConnect.startServerConnection(this);
@@ -123,9 +125,9 @@ public class ControllerMainWindow implements ActionListener {
         if(comandaActual.getPlats().size() == 0){
             viewComanda.setVisible(false);
             JOptionPane.showMessageDialog(view, "Afageix plats per tal d'editar la teva comanda");
-            view.creaMenu(this);
-            view.activaPanellsCarta(carta, this);
-            view.activaPanellsComanda(comanda, this, carta);
+
+           // view.activaPanellsCarta(carta, this);
+           // view.activaPanellsComanda(comanda, this, carta);
         }else{
 
             viewComanda = new VistaEditorComanda(comandaActual);
@@ -135,12 +137,13 @@ public class ControllerMainWindow implements ActionListener {
             viewComanda.registerController(controllerViewComanda);
 
 
-            view.creaMenu(this);
+
+
             view.actualitzaPanelEstatComanda(comanda);
 
-            view.activaPanellsCarta(carta, this);
+           // view.activaPanellsCarta(carta, this);
 
-            view.activaPanellsComanda(comanda, this, carta);
+          //  view.activaPanellsComanda(comanda, this, carta);
 
 
 
@@ -190,11 +193,12 @@ public class ControllerMainWindow implements ActionListener {
 
     public void setPanellsComanda(Comanda comanda, ControllerMainWindow controller, Carta carta) {
         view.activaPanellsComanda(comanda, controller, carta);
-        view.changePanel("BUIT");
+
     }
 
     public void setPanellsCarta(Carta carta, ControllerMainWindow controller) {
-        view.activaPanellsCarta(carta, controller);
+        view.prova2(carta,this);
+        view.getCartaPanel().paginaCarta(carta.getPlats(), view.getCartaPanel().getPaginaCarta());
 
     }
 
@@ -246,13 +250,14 @@ public class ControllerMainWindow implements ActionListener {
             if (event.getActionCommand().equals("SEGUENT")) {
                 System.out.println();
                 int p = view.getCartaPanel().getPaginaCarta();
-                System.out.println("pppppp"+view.getCartaPanel().getPag().getPlats());
+                System.out.println("pppppp"+view.getCartaPanel().getPag());
 
                 if (p * 6 < view.getCartaPanel().getPag().getPlats().size()) {
                     view.getCartaPanel().paginaCarta(carta.getPlats(), p + 1);
                 }
                 view.getCartaPanel().getPag().repaint();
                 view.getCartaPanel().getPag().revalidate();
+                view.prova();
 
                 /*view.creaMenu(this);
                 view.getCartaPanel().registerController(this);
@@ -265,6 +270,7 @@ public class ControllerMainWindow implements ActionListener {
                 if (p > 1) {
                     view.getCartaPanel().paginaCarta(carta.getPlats(), p - 1);
                 }
+                view.prova();
                 /*view.creaMenu(this);
                 view.getCartaPanel().registerController(this);
                 view.getPanelSortida().registerController(this);*/
@@ -294,12 +300,13 @@ public class ControllerMainWindow implements ActionListener {
 
                 fet = true;
             }else{
+                fet = true;
                 JOptionPane.showMessageDialog(view, "Nomes pots escriure numeros mes grans que 0");
             }
         }
-        view.creaMenu(this);
-        view.activaPanellsCarta(carta, this);
-        view.activaPanellsComanda(comanda, this, carta);
+
+       // view.activaPanellsCarta(carta, this);
+        //view.activaPanellsComanda(comanda, this, carta);
 
     }
 

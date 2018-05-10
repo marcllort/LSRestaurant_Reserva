@@ -24,7 +24,7 @@ public class DialogPlat  {
     public boolean comprova(){
         try{
             int i = Integer.parseInt(info);
-            if (i <= 0){
+            if (i < 0){
                 return  false;
             }
         }catch (NumberFormatException nfe){
