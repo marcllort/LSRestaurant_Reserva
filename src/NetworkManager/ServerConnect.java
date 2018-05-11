@@ -118,6 +118,7 @@ public class ServerConnect extends Thread {
 
 
             if (objeto instanceof String){
+                System.out.println("Resposta: "+objeto);
                 resposta = (String) objeto;
                 if (resposta.equals("true")){
                     System.out.println("he rebut la comanda");
