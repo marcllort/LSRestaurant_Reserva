@@ -84,4 +84,6 @@ public class VistaEditorComanda extends JFrame {
         this.comandaActual = comandaActual;
     }
 
+
+
 }

@@ -16,8 +16,7 @@ public class ControllerViewComanda implements ActionListener {
     //model
     private ServerConnect serverConnect;
     private Comanda comandaActual;
-    //variables aux
-    private boolean comandaEnviada = false;
+
     //controller
     private ControllerMainWindow controllerMainWindow;
 
@@ -53,6 +52,7 @@ public class ControllerViewComanda implements ActionListener {
                     eliminaPlatComanda(viewComanda.getPanels().get(i).getPlat());
                     viewComanda.registerController(this);
                     //viewComanda.setVisible(true);
+                    viewComanda.registerController(this);
                     break;
                 }
             }
@@ -64,13 +64,11 @@ public class ControllerViewComanda implements ActionListener {
         System.out.println(comandaActual.getPlats().size() + "mida comanda");
         comandaActual.getPlats().remove(plat);
         System.out.println(comandaActual.getPlats().size() + "mida comanda nueva");
-        viewComanda.actualitzaComanda(comandaActual);
 
-        //viewComanda.setVisible(false);
         JOptionPane.showMessageDialog(viewComanda, "Plat esborrat");
         viewComanda.actualitzaComanda(comandaActual);
         viewComanda.actualitzaVista(plat);
-        viewComanda.registerController(this);
+
         viewComanda.setVisible(true);
 
 
@@ -78,7 +76,7 @@ public class ControllerViewComanda implements ActionListener {
 
     }
 
-    public boolean getIfComandaEnviada(){return comandaEnviada;}
+
 
 
 

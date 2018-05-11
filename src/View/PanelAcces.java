@@ -9,7 +9,7 @@ public class PanelAcces extends JPanel {
     private JLabel jlUsuari;
     private JLabel jlContrasenya;
     private JTextField jtfUsuari;
-    private JTextField jtfContrasenya;
+    private JPasswordField jtfContrasenya;
     private JButton jbEnvia;
 
     /**
@@ -46,7 +46,7 @@ public class PanelAcces extends JPanel {
         jlContrasenya.setBounds(10, 63, 127, 17);
         panel.add(jlContrasenya);
 
-        jtfContrasenya = new JTextField();
+        jtfContrasenya = new JPasswordField();
         jtfContrasenya.setFont(new Font("Tahoma", Font.PLAIN, 20));
         jtfContrasenya.setBounds(134, 61, 270, 28);
         panel.add(jtfContrasenya);
@@ -69,7 +69,8 @@ public class PanelAcces extends JPanel {
     }
 
     public String getTypedContrasenya() {
-        return jtfContrasenya.getText();
+        System.out.println(String.valueOf(jtfContrasenya.getPassword()));
+        return String.valueOf(jtfContrasenya.getPassword());
     }
 
     public void cleanFields() {
