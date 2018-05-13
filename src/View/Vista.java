@@ -52,8 +52,9 @@ public class Vista extends JFrame {
     }
 
     /**
-     * Registra el controlador al panell d'acces
-     * @param c controller
+     * Registra els controlador
+     * @param c Controlador Vista principal
+     * @param window controlador de la finestra
      */
     public void registerController(ControllerMainWindow c, ControllerWindow window) {
         //Pasem el controlado a la resta de panells
@@ -187,10 +188,6 @@ public class Vista extends JFrame {
         return panelSortida;
     }
 
-    public void modificaPanelEstatComanda(Comanda comanda) {
-        this.panelEstatComanda = new PanelEstatComanda(comanda);
-    }
-
     public void newDialog(String missatge){
         JOptionPane.showMessageDialog(this, missatge);
     }
@@ -205,11 +202,17 @@ public class Vista extends JFrame {
     }
 
     /**
-     *
-     * @param comanda
+     * Encarregar de modificar el panell de l'estat de la comanda,
+     * ja sigui per si s'han servit plats o s'ha afegit una comanda nova
+     * @param comanda la comanda actualitzada
      */
     public void actualitzaPanelEstatComanda(Comanda comanda){panelEstatComanda.actualitzaComanda(comanda);}
 
+
+    /**
+     * Getter que retorna el panell de la carta
+     * @return el panell de la carta
+     */
     public CartaPanel getCartaPanel() { return cartaPanel; }
 }
 
