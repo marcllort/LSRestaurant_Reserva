@@ -41,34 +41,55 @@ public class ControllerViewComanda implements ActionListener {
             controllerMainWindow.setComandaActual(comandaActual);
             viewComanda.setVisible(false);
 
-
-
-
         }else {
             for (int i = 0; i < viewComanda.getPanels().size(); i++){
                 if (event.getActionCommand().equals("ELIMINA-" + viewComanda.getPanels().get(i).getNumPlat())){
-                    //.getPlats().remove(i);
-                    //viewComanda.setVisible(false);
                     eliminaPlatComanda(viewComanda.getPanels().get(i).getPlat());
-                    viewComanda.registerController(this);
-                    //viewComanda.setVisible(true);
-                    viewComanda.registerController(this);
                     break;
                 }
+                if(event.getActionCommand().equals("ACTUALITZA-" + viewComanda.getPanels().get(i).getNumPlat())){
+                    int num = viewComanda.getActualitzacio(i);
+                    if(num > viewComanda.getPanels().get(i).getUnitats()){
+                        for(int j = 0; j < num - viewComanda.getPanels().get(i).getUnitats(); j++){
+                            comandaActual.addPlat(viewComanda.getPanels().get(i).getPlat());
+                        }
+                        viewComanda.actualitzaComanda(comandaActual);
+                        viewComanda.actualitzaPanells();
+                        viewComanda.getPanels().get(i).setNumUnitats(num);
+                        break;
+                    }else{
+                        for(int j = 0; j < viewComanda.getPanels().get(i).getUnitats() - num; j++){
+                            comandaActual.getPlats().remove(viewComanda.getPanels().get(i).getPlat());
+                        }
+                        viewComanda.actualitzaComanda(comandaActual);
+                        viewComanda.actualitzaPanells();
+                        viewComanda.getPanels().get(i).setNumUnitats(num);
+                        break;
+                    }
+
+
+                }
+            }
+            System.out.println("COMANDA MODIFICADA");
+            for(int x = 0; x<comandaActual.getPlats().size(); x++){
+                System.out.println(comandaActual.getPlat(x).getNomPlat());
             }
         }
+        viewComanda.registerController(this);
     }
 
     private void eliminaPlatComanda(Plat plat){
 
         System.out.println(comandaActual.getPlats().size() + "mida comanda");
-        comandaActual.getPlats().remove(plat);
+        for(Plat p: comandaActual.getPlats()){
+            if(p.getNomPlat().equals(plat.getNomPlat())){
+                comandaActual.getPlats().remove(p);
+            }
+        }
         System.out.println(comandaActual.getPlats().size() + "mida comanda nueva");
-
         JOptionPane.showMessageDialog(viewComanda, "Plat esborrat");
         viewComanda.actualitzaComanda(comandaActual);
         viewComanda.actualitzaVista(plat);
-
         viewComanda.setVisible(true);
 
 
