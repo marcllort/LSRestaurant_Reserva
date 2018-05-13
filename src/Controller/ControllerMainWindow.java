@@ -29,7 +29,6 @@ public class ControllerMainWindow implements ActionListener {
     private ServerConnect serverConnect;
     //CONTROLADOR EDITOR COMANDA
     private ControllerViewComanda controllerViewComanda;
-    private boolean obrirEditorComanda;
 
     /**
      * Constructor amb parametres
@@ -45,8 +44,9 @@ public class ControllerMainWindow implements ActionListener {
         view.creaMenu(this);
 
         comandaActual = new Comanda();
+        viewComanda = new VistaEditorComanda(comandaActual);
+        viewComanda.setVisible(false);
 
-        obrirEditorComanda = false;
     }
 
 
@@ -85,15 +85,15 @@ public class ControllerMainWindow implements ActionListener {
 
         String usuari = view.getTypedUsuari();
         String contrasenya = view.getTypedContrasenya();
-        if (usuari.equals("") || contrasenya.equals("")){
+        if (usuari.equals("") || contrasenya.equals("")) {
             JOptionPane.showMessageDialog(view, "Has d'omplir els espais d'usuari i contrasenya");
             view.cleanFields();
-        }else{
+        } else {
             serverConnect.enviaUser(new Usuari(usuari, contrasenya));
             String userConfirmation = serverConnect.repUserConfirmation();
             if (userConfirmation.equals("true")) {
                 JOptionPane.showMessageDialog(view, "Benvingut!");
-                view.activaPanellsCarta(carta,this);
+                view.activaPanellsCarta(carta, this);
                 view.prova();
                 view.setSize(800, 500);
                 view.setResizable(true);
@@ -118,61 +118,42 @@ public class ControllerMainWindow implements ActionListener {
 
     /**
      * S'encarrega d'obrir la nova ventana per poder editar la comanda
+     *
      * @param viewComanda la vista de la comanda
      */
-    private void handleVistaComanda( VistaEditorComanda viewComanda) {
+    public void handleVistaComanda(VistaEditorComanda viewComanda) {
 
-        if(comandaActual.getPlats().size() == 0){
+        if (comandaActual.getPlats().size() == 0) {
             viewComanda.setVisible(false);
             JOptionPane.showMessageDialog(view, "Afageix plats per tal d'editar la teva comanda");
 
-           // view.activaPanellsCarta(carta, this);
-           // view.activaPanellsComanda(comanda, this, carta);
-        }else{
+        } else {
 
             viewComanda = new VistaEditorComanda(comandaActual);
+            viewComanda.actualitzaComanda(comandaActual);
             viewComanda.setVisible(true);
             preparaComanda();
             controllerViewComanda = new ControllerViewComanda(serverConnect, comandaActual, viewComanda, this);
             viewComanda.registerController(controllerViewComanda);
 
-
-
-
             view.actualitzaPanelEstatComanda(comanda);
-
-           // view.activaPanellsCarta(carta, this);
-
-          //  view.activaPanellsComanda(comanda, this, carta);
-
-
-
-
         }
 
     }
 
     /**
      * S'encarrega de controlar quan s'afegeix un plat
+     *
      * @param event font de l'esdeveniment
      */
 
     private void handleAfegeixPlat(ActionEvent event) {
 
-        /*int i = view.getCartaPanel().getPaginaCarta();
-        for(int j = 0; j < view.getCartaPanel().getPaginaCarta(i-1).getPlats().size(); j++){
-            if(event.getActionCommand().equals((j+1) + "-" + i)){
-                handleDialogPlat(view.getCartaPanel().getPagina(i-1).getPlats().get(j), event);
-                break;
-            }
-        }*/
-
         handleDialogPlat(carta.getPlat(event.getActionCommand()), event);
 
-        for (int x = 0; x < comandaActual.getPlats().size(); x++){
+        for (int x = 0; x < comandaActual.getPlats().size(); x++) {
             System.out.println(comandaActual.getPlat(x).getNomPlat());
         }
-
 
     }
 
@@ -198,17 +179,17 @@ public class ControllerMainWindow implements ActionListener {
     }
 
     public void setPanellsCarta(Carta carta, ControllerMainWindow controller) {
-        view.prova2(carta,this);
+        view.prova2(carta, this);
         view.getCartaPanel().paginaCarta(carta.getPlats(), view.getCartaPanel().getPaginaCarta());
-
     }
 
     /**
      * Gestiona els esdeveniments sobre el menu
+     *
      * @param event Font de l'esdeveniment
      */
 
-    private void handleMenu(ActionEvent event){
+    private void handleMenu(ActionEvent event) {
 
         if (event.getActionCommand().equals("ACCES CARTA")) {
             view.changePanel("CARTA");
@@ -217,7 +198,6 @@ public class ControllerMainWindow implements ActionListener {
         } else if (event.getActionCommand().equals("ACCES SORTIDA")) {
             view.changePanel("SORTIR");
         } else if (event.getActionCommand().equals("ACCES EDITOR COMANDA")) {
-            viewComanda = new VistaEditorComanda(comandaActual);
             handleVistaComanda(viewComanda);
         }
 
@@ -230,12 +210,13 @@ public class ControllerMainWindow implements ActionListener {
 
     /**
      * Esdeveniments sobre els panells
+     *
      * @param event font de l'esdeveniment
      */
 
-    private void handlePanels(ActionEvent event){
+    private void handlePanels(ActionEvent event) {
 
-            //accio sobre el panell d'acces
+        //accio sobre el panell d'acces
         if (event.getActionCommand().equals("ENVIA CREDENCIALS")) {
             handleAcces();
 
@@ -244,13 +225,13 @@ public class ControllerMainWindow implements ActionListener {
             view.getPanelSortida().dialogSortida(this);
 
             //accio sobre el panell carta
-        } else  {
+        } else {
 
             //pagina anterior
             if (event.getActionCommand().equals("SEGUENT")) {
                 System.out.println();
                 int p = view.getCartaPanel().getPaginaCarta();
-                System.out.println("pppppp"+view.getCartaPanel().getPag());
+                System.out.println("pppppp" + view.getCartaPanel().getPag());
 
                 if (p * 6 < view.getCartaPanel().getPag().getPlats().size()) {
                     view.getCartaPanel().paginaCarta(carta.getPlats(), p + 1);
@@ -276,7 +257,7 @@ public class ControllerMainWindow implements ActionListener {
                 view.getPanelSortida().registerController(this);*/
 
                 //sobre la carta
-            }else {
+            } else {
                 handleAfegeixPlat(event);
             }
         }
@@ -284,54 +265,55 @@ public class ControllerMainWindow implements ActionListener {
 
     /**
      * Controla el JDialog. Aquest ens diu la quantitat de plats a afegir a la comanda Actua
-     * @param plat el plat que volem afegir
+     *
+     * @param plat  el plat que volem afegir
      * @param event l'esdeveniment
      */
 
-    private void handleDialogPlat(Plat plat, ActionEvent event){
+    private void handleDialogPlat(Plat plat, ActionEvent event) {
         boolean fet = false;
-        while (!fet){
+        while (!fet) {
             DialogPlat dp = new DialogPlat(plat);
-            if(dp.comprova()){
+            if (dp.comprova()) {
                 int unitats = dp.returninfo();
-                for (int i = 0; i < unitats; i++){
+                for (int i = 0; i < unitats; i++) {
                     comandaActual.addPlat(plat);
                 }
 
                 fet = true;
-            }else{
+            } else {
                 fet = true;
                 JOptionPane.showMessageDialog(view, "Nomes pots escriure numeros mes grans que 0");
             }
         }
 
-       // view.activaPanellsCarta(carta, this);
+        // view.activaPanellsCarta(carta, this);
         //view.activaPanellsComanda(comanda, this, carta);
 
     }
 
 
-    private void preparaComanda(){
+    private void preparaComanda() {
         comandaActual.setUsuari(comanda.getUsuari());
         comandaActual.setHora(comanda.getHora());
         comandaActual.setData(comanda.getData());
     }
 
-    public void missatgeExitComanda(){
+    public void missatgeExitComanda() {
         JOptionPane.showMessageDialog(viewComanda, "Comanda realitzada amb exit!");
     }
 
-    public void missatgeErrorComanda(String error){
+    public void missatgeErrorComanda(String error) {
         JOptionPane.showMessageDialog(viewComanda, "Error a la comanda! " + error);
     }
 
-    public void setComandaActual(Comanda comandaActual){
+    public void setComandaActual(Comanda comandaActual) {
         this.comandaActual = new Comanda();
         System.out.println("comanda actualitzada");
 
     }
 
-    public void enviaPagat(){
+    public void enviaPagat() {
         serverConnect.enviaComanda(new Comanda());
     }
 

@@ -23,26 +23,32 @@ public class PanelEditorComanda extends JPanel {
         this.unitats = this.plat.getUnitats();
         TitledBorder title = BorderFactory.createTitledBorder(plat.getNomPlat() + " " + plat.getPlat().getPreu() * unitats + "€");
         this.setBorder(title);
-        jtfUnitats = new JTextField(String.valueOf(plat.getUnitats()));
+
+
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        JPanel panel = new JPanel();
+        add(panel);
+        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         JLabel jlUnitats = new JLabel("Unitats: ");
+
+        JPanel jp2 = new JPanel();
+        panel.add(jp2);
+        jp2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        jp2.add(jlUnitats);
+
+        jtfUnitats = new JTextField(String.valueOf(plat.getUnitats()));
+        jp2.add(jtfUnitats);
+        jtfUnitats.setColumns(10);
         jbActualitza = new JButton("Actualitza");
         jbElimina = new JButton("X");
         jbElimina.setBorderPainted(true);
 
         JPanel jp1 = new JPanel();
-        jp1.setLayout(new BoxLayout(jp1, BoxLayout.PAGE_AXIS));
+        panel.add(jp1);
+        jp1.setLayout(new BoxLayout(jp1, BoxLayout.X_AXIS));
         jp1.add(jbActualitza);
         jp1.add(jbElimina);
-
-        JPanel jp2 = new JPanel();
-        jp2.setLayout(new BoxLayout(jp2, BoxLayout.LINE_AXIS));
-        jp2.add(jlUnitats);
-        jp2.add(jtfUnitats).setSize(new Dimension(4, 4));
-
-        this.setLayout(new GridLayout(1,2));
-        this.add(jp2);
-        this.add(jp1);
-
 
     }
 

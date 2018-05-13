@@ -22,6 +22,7 @@ public class VistaEditorComanda extends JFrame {
     /**
      * Constructor de la finestra que permet editar la comanda
      * Formada per un JScrollPane
+     *
      * @param comandaActual per tal de poder modificar o enviar la comanda
      */
     public VistaEditorComanda(Comanda comandaActual) {
@@ -33,12 +34,12 @@ public class VistaEditorComanda extends JFrame {
 
         platsComanda = new ArrayList<PlatComanda>();
 
-        for(Plat p : comandaActual.getPlats()){
-            if(platsComanda.size() == 0){
+        for (Plat p : comandaActual.getPlats()) {
+            if (platsComanda.size() == 0) {
                 PlatComanda pc = new PlatComanda(p);
                 pc.augmentaUnitats();
                 platsComanda.add(pc);
-            }else {
+            } else {
                 for (int i = 0; i < platsComanda.size(); i++) {
 
                     if (p.getNomPlat().equals(platsComanda.get(i).getNomPlat())) {
@@ -77,7 +78,8 @@ public class VistaEditorComanda extends JFrame {
     }
 
     /**
-     *Registra el panell a la finestra, i l'envia a els diferents panells que formen la finestra
+     * Registra el panell a la finestra, i l'envia a els diferents panells que formen la finestra
+     *
      * @param c controlador
      */
 
@@ -94,6 +96,7 @@ public class VistaEditorComanda extends JFrame {
 
     /**
      * Funcio per obtenir els panells que formen la finestra
+     *
      * @return ArrayList dels panells
      */
     public ArrayList<PanelEditorComanda> getPanels() {
@@ -103,12 +106,13 @@ public class VistaEditorComanda extends JFrame {
     /**
      * Funcio que actualitza la vista a l'hora d'eliminar un plat.
      * Eliminem el panell que pertany al plat
+     *
      * @param platsEsborrar El plat que volem eliminar
      */
 
-    public void actualitzaVista(Plat platsEsborrar){
-        for(PanelEditorComanda p : panels){
-            if(p.getPlat().getNomPlat().equals(platsEsborrar.getNomPlat())){
+    public void actualitzaVista(Plat platsEsborrar) {
+        for (PanelEditorComanda p : panels) {
+            if (p.getPlat().getNomPlat().equals(platsEsborrar.getNomPlat())) {
                 panels.remove(p);
                 jpComanda.remove(p);
                 break;
@@ -121,32 +125,36 @@ public class VistaEditorComanda extends JFrame {
 
     /**
      * Acyualitza la comanda, ja per si s'ha eliminat alguns plats o s'ha actualitzat el nombre d'unitats
+     *
      * @param comandaActual Comanda actualitzada
      */
-    public void actualitzaComanda(Comanda comandaActual){
+    public void actualitzaComanda(Comanda comandaActual) {
         this.comandaActual = comandaActual;
     }
 
     /**
      * Rep el nou numero d'unitats que vol l'usuari
+     *
      * @param i index per saber de quin panell(plat) es tracta
      * @return el nou nombre d'unitats
      */
 
-    public int getActualitzacio(int i){return panels.get(i).getNovesUnitats(); }
+    public int getActualitzacio(int i) {
+        return panels.get(i).getNovesUnitats();
+    }
 
     /**
      * Actualitza els panells quan s'ha esborrat un plat de la comanda
      */
 
-    public void actualitzaPanells(){
+    public void actualitzaPanells() {
 
         PanelEditorComanda panelEditorComanda;
 
         for (int i = 0; i < platsComanda.size(); i++) {
-            if(platsComanda.get(i).getUnitats() == 0){
+            if (platsComanda.get(i).getUnitats() == 0) {
                 platsComanda.remove(i);
-            }else {
+            } else {
                 panelEditorComanda = new PanelEditorComanda(platsComanda.get(i), i);
                 panels.add(panelEditorComanda);
                 jpComanda.add(panelEditorComanda);
@@ -156,7 +164,42 @@ public class VistaEditorComanda extends JFrame {
         this.add(jspComanda, BorderLayout.CENTER);
     }
 
-    public JButton getJbElimina(int i){return panels.get(i).getJbElimina();}
 
-    public JButton getJbActualitza(int i) { return panels.get(i).getJbActualitza(); }
+    public void actualitzaPanells2() {
+
+        platsComanda = new ArrayList<PlatComanda>();
+
+        for (Plat p : comandaActual.getPlats()) {
+            if (platsComanda.size() == 0) {
+                PlatComanda pc = new PlatComanda(p);
+                pc.augmentaUnitats();
+                platsComanda.add(pc);
+            } else {
+                for (int i = 0; i < platsComanda.size(); i++) {
+
+                    if (p.getNomPlat().equals(platsComanda.get(i).getNomPlat())) {
+                        platsComanda.get(i).augmentaUnitats();
+                        break;
+                    }
+                    if (!p.getNomPlat().equals(platsComanda.get(i).getNomPlat()) && i == platsComanda.size() - 1) {
+                        PlatComanda pc = new PlatComanda(p);
+                        //pc.augmentaUnitats();
+                        platsComanda.add(pc);
+
+                    }
+                }
+            }
+        }
+        jspComanda = new JScrollPane(jpComanda);
+        this.add(jspComanda, BorderLayout.CENTER);
+    }
+
+
+    public JButton getJbElimina(int i) {
+        return panels.get(i).getJbElimina();
+    }
+
+    public JButton getJbActualitza(int i) {
+        return panels.get(i).getJbActualitza();
+    }
 }
