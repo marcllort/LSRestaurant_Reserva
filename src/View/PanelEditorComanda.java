@@ -72,5 +72,7 @@ public class PanelEditorComanda extends JPanel {
 
     public int getUnitats(){return unitats;}
 
+    public JButton getJbElimina() { return jbElimina; }
 
+    public JButton getJbActualitza(){return jbActualitza;}
 }

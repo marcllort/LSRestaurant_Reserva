@@ -33,9 +33,8 @@ public class Vista extends JFrame {
 
     /**
      * Constructor sense parametres.
-     * Crea la finestra que permetra visualitzar els diferents panells
+     * Crea la finestra amb un GardLayout que permetra visualitzar els diferents panells
      */
-
     public Vista() {
 
         layout = new CardLayout();
@@ -56,7 +55,6 @@ public class Vista extends JFrame {
      * Registra el controlador al panell d'acces
      * @param c controller
      */
-
     public void registerController(ControllerMainWindow c, ControllerWindow window) {
         //Pasem el controlado a la resta de panells
         panelAcces.registerController(c);
@@ -80,18 +78,26 @@ public class Vista extends JFrame {
 
     }
 
+    /**
+     * Activa aquells panels de la vista principal que depenen de la carta i registra el controlador
+     * @param carta La carta del restaurant
+     * @param c Controlador per tal de registrar-lo en els panells
+     */
     public void activaPanellsCarta(Carta carta, ControllerMainWindow c) {
-
-        
 
         cartaPanel.getPag().setPlats(carta.getPlats());
         cartaPanel.registerController(c);
-
         this.getContentPane().add("CARTA", cartaPanel);
 
 
     }
 
+    /**
+     * Activa aquells panells de la vista principal que depenen de la comanda i registra el controlador en ells
+     * @param comanda La comanda del usuari
+     * @param controller Controlador per tal de registrar-lo en els panells
+     * @param carta La carta del restaurant
+     */
     public void activaPanellsComanda(Comanda comanda, ControllerMainWindow controller, Carta carta) {
 
         this.panelEstatComanda = new PanelEstatComanda(comanda);
@@ -107,6 +113,11 @@ public class Vista extends JFrame {
         
     }
 
+    /**
+     * Funcio que crea el menu de la vista principal.
+     * També registra el controlador als ítems del menú.
+     * @param c Controlador
+     */
     public void creaMenu(ControllerMainWindow c) {
 
         jmiCarta = new JMenuItem("Carta");
@@ -136,23 +147,42 @@ public class Vista extends JFrame {
 
     }
 
+    /**
+     * Funcio que retorna l'usuari escrit del panell d'acces
+     * @return l'usuari escrit
+     */
     public String getTypedUsuari() {
         return panelAcces.getTypedUsuari();
     }
 
+    /**
+     * Funcio que retorna la contrasenya de l'usuari escrita en el panell d'acces
+     * @return la contrasenya de l'usuari
+     */
     public String getTypedContrasenya() {
         return panelAcces.getTypedContrasenya();
     }
 
+    /**
+     * Funcio que nateja els camps d'acces.
+     */
     public void cleanFields() {
         panelAcces.cleanFields();
     }
 
+    /**
+     * L'encarregat de canviar el panell que es mostra.
+     * Es canvia en funcio de l'opcio del menu escollida
+     * @param quin A quin panell es vol canviar
+     */
     public void changePanel(String quin) {
         layout.show(this.getContentPane(), quin);
     }
-    
 
+    /**
+     * Getter del Panell de Sortida
+     * @return el panell de sortida
+     */
     public PanelSortida getPanelSortida() {
         return panelSortida;
     }
@@ -165,10 +195,19 @@ public class Vista extends JFrame {
         JOptionPane.showMessageDialog(this, missatge);
     }
 
+    /**
+     * Funcio que registra a la finestra principal un Window Listener
+     * @param windowListener el controlador
+     */
+
     public void registraControladors (WindowListener windowListener){
         addWindowListener(windowListener);
     }
-    
+
+    /**
+     *
+     * @param comanda
+     */
     public void actualitzaPanelEstatComanda(Comanda comanda){panelEstatComanda.actualitzaComanda(comanda);}
 
     public CartaPanel getCartaPanel() { return cartaPanel; }

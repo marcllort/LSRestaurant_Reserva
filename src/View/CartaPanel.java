@@ -11,14 +11,6 @@ import java.util.ArrayList;
 
 public class CartaPanel extends JPanel {
 
-    /*private Carta carta;
-    private JButton jbTornar;
-    private JButton jbSeguent;
-    private int paginaActual;
-    private int numPagines = 0;
-    private JLabel jlPagina;
-    private ArrayList<PlatsPanel> arrayPanels;*/
-
 
     private JButton jbAnterior;
     private JButton jbSeguent;
@@ -68,27 +60,6 @@ public class CartaPanel extends JPanel {
 
 
         this.add(panel_4, BorderLayout.SOUTH);
-
-
-        /*this.carta = carta;
-        arrayPanels = new ArrayList<PlatsPanel>();
-        this.setLayout(new BorderLayout());
-        jbTornar = new JButton("Tornar");
-        jbSeguent = new JButton("Seguent");
-        JPanel jpAux = new JPanel();
-        jpAux.setLayout(new BoxLayout(jpAux, BoxLayout.X_AXIS));
-        paginaActual = 1;
-        arrayPanels = creaPanells();
-        this.add(arrayPanels.get(paginaActual - 1), BorderLayout.CENTER);
-        jlPagina = new JLabel("PAGINA  " + paginaActual);
-        jpAux.add(jbTornar);
-        jpAux.add(jlPagina);
-        jpAux.add(jbSeguent);
-        jbSeguent.setEnabled(false);
-        jbTornar.setEnabled(false);
-        activaBotons();
-        this.add(jpAux, BorderLayout.PAGE_END);*/
-
 
     }
 

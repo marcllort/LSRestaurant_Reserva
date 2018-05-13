@@ -31,11 +31,7 @@ public class ControllerViewComanda implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent event){
-
-
         if (event.getActionCommand().equals("ENVIA COMANDA")){
-            //serverConnect.enviaComanda(comandaActual);
-            //comandaActual.setUsuari("Alex");
             serverConnect.enviaComanda(comandaActual);
             comandaActual = new Comanda();
             controllerMainWindow.setComandaActual(comandaActual);
@@ -49,33 +45,18 @@ public class ControllerViewComanda implements ActionListener {
                 }
                 if(event.getActionCommand().equals("ACTUALITZA-" + viewComanda.getPanels().get(i).getNumPlat())){
                     int num = viewComanda.getActualitzacio(i);
-                    if(num > viewComanda.getPanels().get(i).getUnitats()){
-                        for(int j = 0; j < num - viewComanda.getPanels().get(i).getUnitats(); j++){
-                            comandaActual.addPlat(viewComanda.getPanels().get(i).getPlat());
-                        }
-                        viewComanda.actualitzaComanda(comandaActual);
-                        viewComanda.actualitzaPanells();
-                        viewComanda.getPanels().get(i).setNumUnitats(num);
-                        break;
-                    }else{
-                        for(int j = 0; j < viewComanda.getPanels().get(i).getUnitats() - num; j++){
-                            comandaActual.getPlats().remove(viewComanda.getPanels().get(i).getPlat());
-                        }
-                        viewComanda.actualitzaComanda(comandaActual);
-                        viewComanda.actualitzaPanells();
-                        viewComanda.getPanels().get(i).setNumUnitats(num);
-                        break;
-                    }
-
-
+                    handleActualitzaComanda(i, num);
+                    break;
                 }
+
             }
+
             System.out.println("COMANDA MODIFICADA");
             for(int x = 0; x<comandaActual.getPlats().size(); x++){
                 System.out.println(comandaActual.getPlat(x).getNomPlat());
             }
         }
-        viewComanda.registerController(this);
+
     }
 
     private void eliminaPlatComanda(Plat plat){
@@ -93,17 +74,33 @@ public class ControllerViewComanda implements ActionListener {
         viewComanda.setVisible(true);
 
 
-        //viewComanda.actualitzaVista(comandaActual);
 
     }
 
+    private void handleActualitzaComanda(int i, int num){
 
+        if(num > viewComanda.getPanels().get(i).getUnitats()){
+            for(int j = 0; j < num - viewComanda.getPanels().get(i).getUnitats(); j++){
+                comandaActual.addPlat(viewComanda.getPanels().get(i).getPlat());
+            }
+            viewComanda.actualitzaComanda(comandaActual);
+            viewComanda.actualitzaPanells();
+            viewComanda.getPanels().get(i).setNumUnitats(num);
 
+        }else{
+            for(int j = 0; j < viewComanda.getPanels().get(i).getUnitats() - num; j++){
+                comandaActual.getPlats().remove(viewComanda.getPanels().get(i).getPlat());
+            }
+            viewComanda.actualitzaComanda(comandaActual);
+            viewComanda.actualitzaPanells();
+            viewComanda.getPanels().get(i).setNumUnitats(num);
 
-
-
-
-
-
+        }
+        JOptionPane.showMessageDialog(viewComanda, "Plat actualitzat!");
+        for(PanelEditorComanda p : viewComanda.getPanels()){
+            p.getJbActualitza().setEnabled(true);
+            p.registerController(this);
+        }
+    }
 
 }

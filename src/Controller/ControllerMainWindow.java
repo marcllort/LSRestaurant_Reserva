@@ -223,7 +223,6 @@ public class ControllerMainWindow implements ActionListener {
 
     }
 
-    public boolean getIfObrirFinestra(){return  obrirEditorComanda;}
 
     public Comanda getComandaActual() {
         return comandaActual;
