@@ -125,7 +125,7 @@ public class ControllerMainWindow implements ActionListener {
 
         if (comandaActual.getPlats().size() == 0) {
             viewComanda.setVisible(false);
-            JOptionPane.showMessageDialog(view, "Afageix plats per tal d'editar la teva comanda");
+            JOptionPane.showMessageDialog(view, "Afegeix plats per tal d'editar la teva comanda");
 
         } else {
 
