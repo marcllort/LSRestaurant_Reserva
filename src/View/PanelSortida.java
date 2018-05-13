@@ -44,7 +44,10 @@ public class PanelSortida extends JPanel {
         this.add(jpAux, BorderLayout.CENTER);
     }
 
-
+    /**
+     * Registra el controlador
+     * @param controlador
+     */
     public void registerController(ActionListener controlador) {
         jbMartxar.addActionListener(controlador);
         jbMartxar.setActionCommand("SORTIR");

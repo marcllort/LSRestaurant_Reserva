@@ -19,10 +19,8 @@ public class CartaPanel extends JPanel {
     private JLabel jlPgina;
     private PaginaCarta pag;
 
-
     /**
-     * Constructor amb parametres del panell on es mostra la carta
-     *
+     * Constructor sense parapetres que crea el panell de la carta
      */
     public CartaPanel(){
 
@@ -63,10 +61,6 @@ public class CartaPanel extends JPanel {
 
     }
 
-    /**
-     * Funcio que crea els diferents panells on es troba la carta
-     * @return retorna un array amb els diferents panells
-     */
 
     /*private ArrayList<PlatsPanel> creaPanells(){
 
@@ -96,6 +90,10 @@ public class CartaPanel extends JPanel {
      * @param c
      */
 
+    /**
+     * S'encarrega de registrar el controlador als botons i als panells
+     * @param c Controlador
+     */
     public void registerController(ActionListener c){
         jbAnterior.addActionListener(c);
         jbAnterior.setActionCommand("ANTERIOR");
@@ -149,6 +147,11 @@ public class CartaPanel extends JPanel {
      * @return el panell
      */
 
+    /**
+     * Crea les pagines de la carta
+     * @param plats Un array que conte els diferents plats de cada pagina
+     * @param pagina el numero de la pagina
+     */
     public void paginaCarta(ArrayList<Plat> plats, int pagina) {
         numPagina = pagina;
         System.out.println("PAGINA"+pagina);
@@ -165,10 +168,19 @@ public class CartaPanel extends JPanel {
         this.revalidate();
     }
 
+    /**
+     * Getter del numero de pagina
+     * @return numero de pagina
+     */
+
     public int getPaginaCarta() {
         return numPagina;
     }
 
+    /**
+     * Getter del panell de la pagina
+     * @return el panell corresponent
+     */
     public PaginaCarta getPag() {
         return pag;
     }

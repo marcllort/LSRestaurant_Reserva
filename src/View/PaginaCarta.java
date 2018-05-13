@@ -14,6 +14,10 @@ public class PaginaCarta extends JPanel {
     private ArrayList<Plat> plats;
     private ArrayList<BotoPlat> jbArrray;
 
+    /**
+     * Constructor
+     * @param numPagina
+     */
     public PaginaCarta(int numPagina) {
 
         this.numPagina = numPagina;
