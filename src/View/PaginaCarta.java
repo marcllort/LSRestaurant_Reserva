@@ -15,8 +15,8 @@ public class PaginaCarta extends JPanel {
     private ArrayList<BotoPlat> jbArrray;
 
     /**
-     * Constructor
-     * @param numPagina
+     * Constructor dels panells que formen la carta. Estan constituits de botons.
+     * @param numPagina el numero de pagina corresponent al panell
      */
     public PaginaCarta(int numPagina) {
 
@@ -27,6 +27,11 @@ public class PaginaCarta extends JPanel {
 
     }
 
+
+    /**
+     * L'encarregat de cambiar el panell (pagina)
+     * @param numPagina a quina pagina es vol canviar
+     */
     public void canviaPagina(int numPagina) {
         this.numPagina = numPagina;
         this.removeAll();
@@ -43,6 +48,10 @@ public class PaginaCarta extends JPanel {
         this.revalidate();
     }
 
+    /**
+     * L'encarregat de crear els diversos botons que formen el panell
+     * @return Un ArrayList amb els botons corresponents a cada panell
+     */
     private ArrayList<BotoPlat> creaButtons() {
         ArrayList<BotoPlat> array = new ArrayList<BotoPlat>();
 
@@ -55,14 +64,26 @@ public class PaginaCarta extends JPanel {
         return array;
     }
 
+    /**
+     * Getter del panell.
+     * @return Retorna el panell en el que ens trobem
+     */
     public JPanel getpaginaCarta() {
         return this;
     }
 
+    /**
+     * Getter dels botons
+     * @return ArrayList de botons que formen el panell
+     */
     public ArrayList<BotoPlat> getJbArrray() {
         return jbArrray;
     }
 
+    /**
+     *
+     * @param plats
+     */
     public void setPlats(ArrayList<Plat> plats) {
         this.plats = plats;
         jbArrray = creaButtons();
