@@ -3,10 +3,14 @@ package View;
 import Model.Plat;
 import Model.PlatComanda;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class PanelEditorComanda extends JPanel {
 
@@ -41,7 +45,20 @@ public class PanelEditorComanda extends JPanel {
         jp2.add(jtfUnitats);
         jtfUnitats.setColumns(10);
         jbActualitza = new JButton("Actualitza");
-        jbElimina = new JButton("X");
+        BufferedImage buttonIcon = null;
+        try {
+            buttonIcon = ImageIO.read(new File(System.getProperty("user.dir")+"/Data/cross.png"));
+            jbElimina  = new JButton(new ImageIcon(buttonIcon));
+            jbElimina.setBorder(BorderFactory.createEmptyBorder());
+            jbElimina.setContentAreaFilled(false);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //jbElimina.setMaximumSize(new Dimension(50,50));
+
+
+        //jbElimina = new JButton("X");
         jbElimina.setBorderPainted(true);
 
         JPanel jp1 = new JPanel();

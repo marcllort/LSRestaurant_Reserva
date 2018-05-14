@@ -229,7 +229,6 @@ public class ControllerMainWindow implements ActionListener {
 
             //pagina anterior
             if (event.getActionCommand().equals("SEGUENT")) {
-                System.out.println();
                 int p = view.getCartaPanel().getPaginaCarta();
                 System.out.println("pppppp" + view.getCartaPanel().getPag());
 

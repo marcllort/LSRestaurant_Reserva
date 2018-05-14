@@ -66,7 +66,7 @@ public class CartaPanel extends JPanel {
 
         ArrayList<PlatsPanel> array = new ArrayList<PlatsPanel>();
         ArrayList<Plat> plats = new ArrayList<Plat>();
-        int i = 0;//quantitat plats
+        int i = 0;  //quantitat plats
 
         for (Plat p: carta.getPlats()){
             i++;

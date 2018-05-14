@@ -36,6 +36,8 @@ public class Vista extends JFrame {
     public Vista() {
 
         layout = new CardLayout();
+        setTitle("LSRestaurant-Client");
+
         this.panelAcces = new PanelAcces();
         this.getContentPane().setLayout(layout);
         this.getContentPane().add("ACCES", panelAcces);
