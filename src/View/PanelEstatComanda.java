@@ -16,7 +16,8 @@ public class PanelEstatComanda extends JPanel {
     private JPanel jpComanda;
 
     /**
-     * Constructor amb parametres. crea el panell que mostra l'estat de la comanda
+     * Constructor amb parametres.
+     * Crea el panell que mostra l'estat de la comanda
      *
      * @param comanda la comanda de la reserva
      */
@@ -56,6 +57,10 @@ public class PanelEstatComanda extends JPanel {
         this.add(jspComanda, BorderLayout.CENTER);
     }
 
+    /**
+     * S'encarrega d'actualitzar el panell quan s'ha modificat la comanda
+     * @param comanda
+     */
     public void actualitzaComanda(Comanda comanda) {
         this.comanda = comanda;
         jpComanda = new JPanel();

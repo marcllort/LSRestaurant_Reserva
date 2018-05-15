@@ -31,9 +31,9 @@ public class ControllerMainWindow implements ActionListener {
     private String card;
 
     /**
-     * Constructor amb parametres
-     *
-     * @param view relacio vista amb controlador
+     * Constructor amb parametres del controlador de la finestra principal
+     * @param view
+     * @param serverConnect
      */
     public ControllerMainWindow(Vista view, ServerConnect serverConnect) {
         this.view = view;
@@ -175,7 +175,7 @@ public class ControllerMainWindow implements ActionListener {
 
     /**
      * Setter de la comanda
-     * @param comanda la comanda modificada, la nova
+     * @param comanda
      */
     public void setComanda(Comanda comanda) {
         this.comanda = comanda;

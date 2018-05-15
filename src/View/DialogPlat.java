@@ -7,10 +7,18 @@ import javax.swing.*;
 public class DialogPlat {
     private String info;
 
+    /**
+     * Constructor amb parametres
+     * @param plat per saber de quin plat es tracta
+     */
     public DialogPlat(Plat plat) {
         info = JOptionPane.showInputDialog(null, "Quants plats de " + plat.getNomPlat() + " voldras?", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * Comprova que les dades introduides siguin correctes
+     * @return true/false
+     */
     public boolean comprova() {
         try {
             int i = Integer.parseInt(info);
@@ -23,6 +31,10 @@ public class DialogPlat {
         return true;
     }
 
+    /**
+     * Retorna la quantitat de plats que es vol
+     * @return numero de plats
+     */
     public int returninfo() {
         return Integer.parseInt(info);
     }

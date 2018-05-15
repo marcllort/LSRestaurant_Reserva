@@ -21,6 +21,11 @@ public class PanelEditorComanda extends JPanel {
     private JButton jbElimina;
     private JButton jbActualitza;
 
+    /**
+     * Constructor amb parámetres
+     * @param plat Plat amb les unitats desitjades
+     * @param numPlat de quin plat es tracta
+     */
     public PanelEditorComanda(PlatComanda plat, int numPlat) {
         this.plat = plat;
         this.numPlat = numPlat;
@@ -66,6 +71,10 @@ public class PanelEditorComanda extends JPanel {
 
     }
 
+    /**
+     * Registra el controlador als botons del panell
+     * @param c controlador de la finestra que edita la comanda
+     */
     public void registerController(ActionListener c) {
         jbElimina.addActionListener(c);
         jbElimina.setActionCommand("ELIMINA-" + numPlat);
@@ -73,34 +82,66 @@ public class PanelEditorComanda extends JPanel {
         jbActualitza.setActionCommand("ACTUALITZA-" + numPlat);
     }
 
+    /**
+     * Getter del numero de plat en qüestio
+     * @return numero de plat
+     */
     public int getNumPlat() {
         return numPlat;
     }
 
+    /**
+     * Getter del plat que es troba al panell
+     * @return el plat
+     */
     public Plat getPlat() {
         return plat.getPlat();
     }
 
+    /**
+     * Setter del numero del plat
+     * @param numPlat
+     */
     public void setNumPlat(int numPlat) {
         this.numPlat = numPlat;
     }
 
+    /**
+     * Setter de les unitats que es volen d'aquest plat
+     * @param unitats unitats del plat
+     */
     public void setNumUnitats(int unitats) {
         this.unitats = unitats;
     }
 
+    /**
+     * Getter de les unitats que ha introduït l'usuari a l'hora de actualitzar
+     * @return el valor del JTextField on es troben les unitats
+     */
     public int getNovesUnitats() {
         return Integer.parseInt(jtfUnitats.getText());
     }
 
+    /**
+     * Getter de les unitats actuals d'aquell plat
+     * @return numero d'unitats
+     */
     public int getUnitats() {
         return unitats;
     }
 
+    /**
+     * Getter del JButton d'eliminar el plat
+     * @return JButton
+     */
     public JButton getJbElimina() {
         return jbElimina;
     }
 
+    /**
+     * Getter del boto d'actualitzacio d'unitats
+     * @return JButton
+     */
     public JButton getJbActualitza() {
         return jbActualitza;
     }

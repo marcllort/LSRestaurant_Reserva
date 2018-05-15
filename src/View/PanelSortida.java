@@ -53,10 +53,10 @@ public class PanelSortida extends JPanel {
         jbMartxar.setActionCommand("SORTIR");
     }
 
-    public float getPreuAPagar() {
-        return preu;
-    }
-
+    /**
+     * Crea el Dialog que es mostra per pantalla a l'hora de sortir
+     * @param controlador per tar de registrar-lo
+     */
     public void dialogSortida(ControllerMainWindow controlador) {
         dialogSortida = new DialogSortida(comanda, controlador);
 

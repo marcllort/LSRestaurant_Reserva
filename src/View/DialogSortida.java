@@ -10,7 +10,11 @@ import java.awt.event.ActionListener;
 
 public class DialogSortida {
 
-
+    /**
+     * Consrtuctor amb parametres
+     * @param comanda
+     * @param controller
+     */
     public DialogSortida(Comanda comanda, ControllerMainWindow controller) {
         //Per saber si encara queden plats per pagar
         boolean faltan = false;
@@ -33,7 +37,11 @@ public class DialogSortida {
 
     }
 
-
+    /**
+     * Mostra el missatge abans de la sortida
+     * @param missatge
+     * @param controller
+     */
     public void dialogSortir(String missatge, ControllerMainWindow controller) {
         String ObjButtons[] = {"Si", "No"};
         int PromptResult = JOptionPane.showOptionDialog(null,

@@ -59,19 +59,34 @@ public class PanelAcces extends JPanel {
 
     }
 
+    /**
+     * Registra el controlador
+     * @param controlador
+     */
     public void registerController(ActionListener controlador) {
         jbEnvia.addActionListener(controlador);
         jbEnvia.setActionCommand("ENVIA CREDENCIALS");
     }
 
+    /**
+     * Getter del usuari introduït al JTextField del usuari
+     * @return usuari escrit
+     */
     public String getTypedUsuari() {
         return jtfUsuari.getText();
     }
 
+    /**
+     * Getter de la contrasenya introduïda al JTextField de la contrasenya
+     * @return contrasenya introduïda
+     */
     public String getTypedContrasenya() {
         return String.valueOf(jtfContrasenya.getPassword());
     }
 
+    /**
+     * Nateja els JTextFields del panell d'acces
+     */
     public void cleanFields() {
         jtfUsuari.setText("");
         jtfContrasenya.setText("");

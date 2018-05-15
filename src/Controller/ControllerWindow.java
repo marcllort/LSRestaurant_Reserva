@@ -14,7 +14,12 @@ public class ControllerWindow implements WindowListener {
     private ControllerMainWindow controller;
     private Vista view;
 
-
+    /**
+     * Constructor amb parametres
+     * @param networkconnect connexio amb el server
+     * @param controller controller de la finestra principal
+     * @param view la vista principal
+     */
     public ControllerWindow(ServerConnect networkconnect, ControllerMainWindow controller, Vista view) {
         this.serverConnect = networkconnect;
         this.controller = controller;

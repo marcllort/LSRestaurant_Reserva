@@ -22,7 +22,13 @@ public class ControllerViewComanda implements ActionListener {
     //controller
     private ControllerMainWindow controllerMainWindow;
 
-
+    /**
+     * Constructor amb parametres del Controlador la finestra que permet editar la comanda abans de ser enviada
+     * @param serverConnect connexio amb servidor
+     * @param comandaActual la comanda actual del client
+     * @param viewComanda La finestra grafica del editor de la comanda
+     * @param controllerMainWindow controlador de la finestra principal
+     */
     public ControllerViewComanda(ServerConnect serverConnect, Comanda comandaActual, VistaEditorComanda viewComanda, ControllerMainWindow controllerMainWindow) {
 
         this.serverConnect = serverConnect;
@@ -32,6 +38,11 @@ public class ControllerViewComanda implements ActionListener {
 
     }
 
+    /**
+     * Gestiona els esdeveniments
+     *
+     * @param event font del esdeveniment
+     */
     public void actionPerformed(ActionEvent event) {
 
         if (event.getActionCommand().equals("ENVIA COMANDA")) {
@@ -61,7 +72,10 @@ public class ControllerViewComanda implements ActionListener {
 
     }
 
-
+    /**
+     * Elimina els plats desitjats de la comanda actual
+     * @param plat els plats a esborrar
+     */
     private void eliminaPlatComanda(Plat plat) {
 
         ArrayList<Plat> aBorrar = new ArrayList<>();
@@ -80,7 +94,11 @@ public class ControllerViewComanda implements ActionListener {
 
     }
 
-
+    /**
+     * S'encarrega de actualitzar el numero de plats que es volen d'un plat
+     * @param i ens diu quin plat es vol modificar
+     * @param num nova quantitat de plats que es vol
+     */
     private void handleActualitzaComanda(int i, int num) {
 
         if (num > viewComanda.getPanels().get(i).getUnitats()) {
