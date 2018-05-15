@@ -30,7 +30,10 @@ public class ServerConnect extends Thread {
     private ControllerMainWindow controller;
     private Vista vista;
 
-
+    /**
+     * Contructor amb parametres
+     * @param vista finestra principal
+     */
     public ServerConnect(Vista vista) {
 
         try {
@@ -48,12 +51,19 @@ public class ServerConnect extends Thread {
         }
     }
 
-
+    /**
+     * Relacio entre el controller i el server
+     * @param controller
+     */
     public void startServerConnection(ControllerMainWindow controller) {
         this.controller = controller;
         start();                                        //Connectem al servidor
     }
 
+    /**
+     * Envia l'usuari al servidor
+     * @param user
+     */
     public void enviaUser(Usuari user) {
         try {
             oos.writeObject(user);
@@ -62,6 +72,10 @@ public class ServerConnect extends Thread {
         }
     }
 
+    /**
+     * Ens diu si l'usuari existeix, credencials correctes
+     * @return true si existeix, false si no
+     */
     public String repUserConfirmation() {            //Si user correcte, retorna true, si incorrecte retorna missatge error i desconnecta
         try {
             return dis.readUTF();
@@ -71,6 +85,10 @@ public class ServerConnect extends Thread {
         }
     }
 
+    /**
+     * Envia la carta
+     * @return
+     */
     public Object repCartaComanda() {                             //Si user correcte envia la carta despres de enviar el true
 
         try {
@@ -82,6 +100,10 @@ public class ServerConnect extends Thread {
 
     }
 
+    /**
+     * Envia la comanda al server
+     * @param comanda
+     */
     public void enviaComanda(Comanda comanda) {
         try {
             Time hora = new Time(System.currentTimeMillis());
@@ -92,6 +114,10 @@ public class ServerConnect extends Thread {
         }
     }
 
+    /**
+     * Ens confirma si s'ha pogut demanar tots els plats
+     * @return
+     */
     public String repComandaConfirmation() {             //tornen true si ha anat i sino string amb  plats que falten
         try {
             return dis.readUTF();
@@ -101,6 +127,9 @@ public class ServerConnect extends Thread {
         }
     }
 
+    /**
+     * Desconnecta el server
+     */
     public void serverDisconnect() {
         try {
             socket.close();
@@ -152,6 +181,10 @@ public class ServerConnect extends Thread {
         }
     }
 
+    /**
+     * Getter de la resposta
+     * @return
+     */
     public String getResposta() {
         return resposta;
     }
