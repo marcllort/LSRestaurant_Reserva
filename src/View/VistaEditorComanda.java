@@ -1,6 +1,5 @@
 package View;
 
-import Controller.ControllerMainWindow;
 import Controller.ControllerViewComanda;
 import Model.Comanda;
 import Model.Plat;
@@ -48,7 +47,6 @@ public class VistaEditorComanda extends JFrame {
                     }
                     if (!p.getNomPlat().equals(platsComanda.get(i).getNomPlat()) && i == platsComanda.size() - 1) {
                         PlatComanda pc = new PlatComanda(p);
-                        //pc.augmentaUnitats();
                         platsComanda.add(pc);
 
                     }
@@ -183,7 +181,6 @@ public class VistaEditorComanda extends JFrame {
                     }
                     if (!p.getNomPlat().equals(platsComanda.get(i).getNomPlat()) && i == platsComanda.size() - 1) {
                         PlatComanda pc = new PlatComanda(p);
-                        //pc.augmentaUnitats();
                         platsComanda.add(pc);
 
                     }

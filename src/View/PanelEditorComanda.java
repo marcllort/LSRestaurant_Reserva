@@ -47,18 +47,15 @@ public class PanelEditorComanda extends JPanel {
         jbActualitza = new JButton("Actualitza");
         BufferedImage buttonIcon = null;
         try {
-            buttonIcon = ImageIO.read(new File(System.getProperty("user.dir")+"/Data/cross.png"));
-            jbElimina  = new JButton(new ImageIcon(buttonIcon));
+            buttonIcon = ImageIO.read(new File(System.getProperty("user.dir") + "/Data/cross.png"));
+            jbElimina = new JButton(new ImageIcon(buttonIcon));
             jbElimina.setBorder(BorderFactory.createEmptyBorder());
             jbElimina.setContentAreaFilled(false);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //jbElimina.setMaximumSize(new Dimension(50,50));
 
-
-        //jbElimina = new JButton("X");
         jbElimina.setBorderPainted(true);
 
         JPanel jp1 = new JPanel();
@@ -74,7 +71,6 @@ public class PanelEditorComanda extends JPanel {
         jbElimina.setActionCommand("ELIMINA-" + numPlat);
         jbActualitza.addActionListener(c);
         jbActualitza.setActionCommand("ACTUALITZA-" + numPlat);
-        System.out.println(numPlat);
     }
 
     public int getNumPlat() {
@@ -85,17 +81,27 @@ public class PanelEditorComanda extends JPanel {
         return plat.getPlat();
     }
 
-    public void setNumPlat(int numPlat){
+    public void setNumPlat(int numPlat) {
         this.numPlat = numPlat;
     }
 
-    public void setNumUnitats(int unitats){ this.unitats = unitats;}
+    public void setNumUnitats(int unitats) {
+        this.unitats = unitats;
+    }
 
-    public int getNovesUnitats(){return Integer.parseInt(jtfUnitats.getText());}
+    public int getNovesUnitats() {
+        return Integer.parseInt(jtfUnitats.getText());
+    }
 
-    public int getUnitats(){return unitats;}
+    public int getUnitats() {
+        return unitats;
+    }
 
-    public JButton getJbElimina() { return jbElimina; }
+    public JButton getJbElimina() {
+        return jbElimina;
+    }
 
-    public JButton getJbActualitza(){return jbActualitza;}
+    public JButton getJbActualitza() {
+        return jbActualitza;
+    }
 }

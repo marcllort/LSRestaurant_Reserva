@@ -1,6 +1,5 @@
 package View;
 
-import Controller.ControllerMainWindow;
 import Model.Plat;
 
 import javax.swing.*;
@@ -16,16 +15,17 @@ public class PlatsPanel extends JPanel {
 
     /**
      * Constructor del panell amb parametres
-     * @param plats els plats a afegir al panell
+     *
+     * @param plats     els plats a afegir al panell
      * @param numPagina de quina pagina es tracta
      */
 
-    public PlatsPanel(ArrayList<Plat> plats, int numPagina){
+    public PlatsPanel(ArrayList<Plat> plats, int numPagina) {
         this.plats = plats;
         this.numPagina = numPagina;
         jrButtons = creaButtons();
         this.setLayout(new GridLayout(2, 3));
-        for (JRadioButton jb: jrButtons){
+        for (JRadioButton jb : jrButtons) {
             this.add(jb);
         }
 
@@ -33,13 +33,14 @@ public class PlatsPanel extends JPanel {
 
     /**
      * funcio que crea els botons de la carta
+     *
      * @return arrayList de botons
      */
 
-    private ArrayList<JRadioButton> creaButtons(){
+    private ArrayList<JRadioButton> creaButtons() {
         ArrayList<JRadioButton> array = new ArrayList<JRadioButton>();
         JRadioButton boton;
-        for(Plat p: plats){
+        for (Plat p : plats) {
             boton = new JRadioButton(p.getNomPlat() + "\n" + p.getPreu());
             array.add(boton);
         }
@@ -48,21 +49,23 @@ public class PlatsPanel extends JPanel {
 
     /**
      * Registrem el controlador als diferents botons
+     *
      * @param c controller
      */
 
-    public void registerController(ActionListener c){
+    public void registerController(ActionListener c) {
         int i = 0;
-        for (JRadioButton jb: jrButtons){
+        for (JRadioButton jb : jrButtons) {
             i++;
             jb.addActionListener(c);
-            jb.setActionCommand( i + "-" + numPagina);
+            jb.setActionCommand(i + "-" + numPagina);
 
         }
     }
 
     /**
      * Getter que retorna els plats de la pagina
+     *
      * @return plats
      */
 

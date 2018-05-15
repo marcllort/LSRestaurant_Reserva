@@ -69,7 +69,6 @@ public class PanelAcces extends JPanel {
     }
 
     public String getTypedContrasenya() {
-        System.out.println(String.valueOf(jtfContrasenya.getPassword()));
         return String.valueOf(jtfContrasenya.getPassword());
     }
 

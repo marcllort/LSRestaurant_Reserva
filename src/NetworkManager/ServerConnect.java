@@ -8,6 +8,7 @@ import Model.Json.LectorJson;
 import Model.Plat;
 import Model.Usuari;
 import View.Vista;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -116,46 +117,43 @@ public class ServerConnect extends Thread {
             Object objeto = repCartaComanda();
 
 
-
-            if (objeto instanceof String){
-                System.out.println("Resposta: "+objeto);
+            if (objeto instanceof String) {
                 resposta = (String) objeto;
-                if (resposta.equals("true")){
-                    System.out.println("he rebut la comanda");
+                if (resposta.equals("true")) {
                     controller.missatgeExitComanda();
-                }else {
+                } else {
                     controller.missatgeErrorComanda(resposta);
                 }
             }
             if (objeto instanceof Comanda) {
                 Comanda comanda = (Comanda) objeto;
-                System.out.println("data: "+comanda.getData());
                 controller.setComanda(comanda);
                 controller.setPanellsComanda(comanda, controller, carta);
                 vista.actualitzaPanelEstatComanda(comanda);
                 vista.revalidate();
+
+                try {
+                    if (controller.getCard().equals("ESTAT COMANDA")) {
+                        vista.changePanel("ESTAT COMANDA");
+                    }
+                } catch (NullPointerException ne) {
+
+                }
             }
 
             if (objeto instanceof Carta) {
-                System.out.println("recibido carta" + ((Carta) objeto).getPlat(1));
                 carta = (Carta) objeto;
-               /* ArrayList<Plat> plats = new ArrayList<Plat>();
-                Plat p = new Plat("Pasta", 10);
-                plats.add(p);
-                Date d = new Date(12, 12, 12);
-                Time t =  new Time(12, 12, 12);
-                Comanda comanda = new Comanda(plats, d, t, "Paula");
-                */
-               controller.setCarta(carta);
-               controller.setPanellsCarta(carta, controller);
+
+                controller.setCarta(carta);
+                controller.setPanellsCarta(carta, controller);
 
             }
 
-
-            //controlador.updateVista(messages);          //Quan llegim el que ens envia el server, acutlaitzem a la vista
         }
     }
 
-    public String getResposta(){ return resposta;}
+    public String getResposta() {
+        return resposta;
+    }
 
 }

@@ -1,6 +1,5 @@
 package View;
 
-import Model.Carta;
 import Model.Plat;
 
 import javax.swing.*;
@@ -22,7 +21,7 @@ public class CartaPanel extends JPanel {
     /**
      * Constructor sense parapetres que crea el panell de la carta
      */
-    public CartaPanel(){
+    public CartaPanel() {
 
         pag = new PaginaCarta(1);
 
@@ -31,11 +30,8 @@ public class CartaPanel extends JPanel {
 
         this.add(pag, BorderLayout.CENTER);
 
-       // this.remove(pag);
         JPanel panel_4 = new JPanel();
         panel_4.setBounds(10, 206, 559, 46);
-
-
 
 
         jbAnterior = new JButton("Anterior");
@@ -62,39 +58,12 @@ public class CartaPanel extends JPanel {
     }
 
 
-    /*private ArrayList<PlatsPanel> creaPanells(){
-
-        ArrayList<PlatsPanel> array = new ArrayList<PlatsPanel>();
-        ArrayList<Plat> plats = new ArrayList<Plat>();
-        int i = 0;  //quantitat plats
-
-        for (Plat p: carta.getPlats()){
-            i++;
-            plats.add(p);
-            if(i == carta.getPlats().size()){
-                numPagines++;
-                PlatsPanel pp = new PlatsPanel(plats, numPagines);
-                array.add(pp);
-            }else if(plats.size() == 6){
-                numPagines++;
-                PlatsPanel pp = new PlatsPanel(plats, numPagines);
-                array.add(pp);
-            }
-        }
-
-        return array;
-    }
-
-    /**
-     *Registra el controlador als botons i als panells de la carta
-     * @param c
-     */
-
     /**
      * S'encarrega de registrar el controlador als botons i als panells
+     *
      * @param c Controlador
      */
-    public void registerController(ActionListener c){
+    public void registerController(ActionListener c) {
         jbAnterior.addActionListener(c);
         jbAnterior.setActionCommand("ANTERIOR");
         jbSeguent.addActionListener(c);
@@ -103,63 +72,17 @@ public class CartaPanel extends JPanel {
 
     }
 
-    /**
-     * S'encarrega d'activar i desactivar els botons
-     */
-    /*public void activaBotons(){
-        if (paginaActual == numPagines){
-            jbSeguent.setEnabled(false);
-        }
-        if(paginaActual == 1){
-            jbTornar.setEnabled(false);
-        }
-        if(paginaActual != numPagines){
-            jbSeguent.setEnabled(true);
-        }
-        if(paginaActual != 1){
-            jbTornar.setEnabled(true);
-        }
-    }
-
-    /**
-     * S'encarrega de cambiar la pagina de la carta
-     * @param on String que ens diu cap a on ens hem de moure
-     */
-    /*public void cambiaPagina(String on){
-
-        if (on.equals("anterior")){
-            paginaActual--;
-            this.add(arrayPanels.get(paginaActual - 1), BorderLayout.CENTER);
-            jlPagina.setText("PAGINA  " + paginaActual);
-            activaBotons();
-        }
-        if(on.equals("seguent")){
-            this.add(arrayPanels.get(paginaActual), BorderLayout.CENTER);
-            paginaActual++;
-            jlPagina.setText("PAGINA  " + paginaActual);
-            activaBotons();
-        }
-    }
-
-    /**
-     * retorna un panell del arrayList de panells
-     * @param i quin volem
-     * @return el panell
-     */
 
     /**
      * Crea les pagines de la carta
-     * @param plats Un array que conte els diferents plats de cada pagina
+     *
+     * @param plats  Un array que conte els diferents plats de cada pagina
      * @param pagina el numero de la pagina
      */
     public void paginaCarta(ArrayList<Plat> plats, int pagina) {
         numPagina = pagina;
-        System.out.println("PAGINA"+pagina);
-
         pag.canviaPagina(pagina);
-        System.out.println("BORRAAA");
         this.remove(((BorderLayout) this.getLayout()).getLayoutComponent(BorderLayout.CENTER));
-        System.out.println();
         this.add(pag, BorderLayout.CENTER);
         jlPgina.setText("P\u00E0gina " + numPagina);
 
@@ -170,6 +93,7 @@ public class CartaPanel extends JPanel {
 
     /**
      * Getter del numero de pagina
+     *
      * @return numero de pagina
      */
 
@@ -179,25 +103,12 @@ public class CartaPanel extends JPanel {
 
     /**
      * Getter del panell de la pagina
+     *
      * @return el panell corresponent
      */
     public PaginaCarta getPag() {
         return pag;
     }
 
-    /*public PlatsPanel getPagina(int i){return arrayPanels.get(i);}
 
-    /**
-     * Getter per saber la pagina en la que ens trobem
-     * @return numero pagina actual
-     */
-
-    /*public int getPaginaActual(){return paginaActual;}
-
-    /**
-     * Getter que retorna l'array de panels de la carta
-     * @return
-     */
-
-    /*public ArrayList<PlatsPanel> getArrayPanels() { return arrayPanels; }*/
 }

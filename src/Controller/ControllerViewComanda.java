@@ -54,8 +54,6 @@ public class ControllerViewComanda implements ActionListener {
 
             }
 
-            System.out.println("COMANDA MODIFICADA");
-
             viewComanda.dispatchEvent(new WindowEvent(viewComanda, WindowEvent.WINDOW_CLOSING));
             controllerMainWindow.handleVistaComanda(viewComanda);
 
@@ -66,7 +64,6 @@ public class ControllerViewComanda implements ActionListener {
 
     private void eliminaPlatComanda(Plat plat) {
 
-        System.out.println(comandaActual.getPlats().size() + "mida comanda");
         ArrayList<Plat> aBorrar = new ArrayList<>();
         for (Plat p : comandaActual.getPlats()) {
             if (p.getNomPlat().equals(plat.getNomPlat())) {
@@ -76,7 +73,6 @@ public class ControllerViewComanda implements ActionListener {
 
         comandaActual.getPlats().removeAll(aBorrar);
 
-        System.out.println(comandaActual.getPlats().size() + "mida comanda nueva");
         JOptionPane.showMessageDialog(viewComanda, "Plat esborrat");
         viewComanda.actualitzaComanda(comandaActual);
         viewComanda.actualitzaVista(plat);

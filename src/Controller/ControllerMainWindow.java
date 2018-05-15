@@ -7,14 +7,13 @@ import Model.Plat;
 import Model.Usuari;
 import NetworkManager.ServerConnect;
 import View.DialogPlat;
-import View.PlatsPanel;
 import View.Vista;
 import View.VistaEditorComanda;
-import View.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 
 public class ControllerMainWindow implements ActionListener {
@@ -29,6 +28,8 @@ public class ControllerMainWindow implements ActionListener {
     private ServerConnect serverConnect;
     //CONTROLADOR EDITOR COMANDA
     private ControllerViewComanda controllerViewComanda;
+
+    private String card;
 
     /**
      * Constructor amb parametres
@@ -68,13 +69,10 @@ public class ControllerMainWindow implements ActionListener {
         //Si es tracta d'una accio sobre el JDialog de sortida
         if (event.getActionCommand().equals("SORTIR PROGRAMA")) {
             //Vista torna a ser la del principi
-            //view.getPanelSortida().desactivaDialogSortida();
             handleSortida();
 
         } else if (event.getActionCommand().equals("QUEDAR-SE")) {
             view.changePanel("BUIT");
-
-            //view.getPanelSortida().desactivaDialogSortida();
         }
     }
 
@@ -119,9 +117,9 @@ public class ControllerMainWindow implements ActionListener {
     /**
      * S'encarrega d'obrir la nova ventana per poder editar la comanda
      *
-     * @param viewComanda la vista de la comanda
+     * @param viewComanda2 la vista de la comanda
      */
-    public void handleVistaComanda(VistaEditorComanda viewComanda) {
+    public void handleVistaComanda(VistaEditorComanda viewComanda2) {
 
         if (comandaActual.getPlats().size() == 0) {
             viewComanda.setVisible(false);
@@ -130,7 +128,7 @@ public class ControllerMainWindow implements ActionListener {
         } else {
 
             viewComanda = new VistaEditorComanda(comandaActual);
-            viewComanda.actualitzaComanda(comandaActual);
+            //viewComanda.actualitzaComanda(comandaActual);
             viewComanda.setVisible(true);
             preparaComanda();
             controllerViewComanda = new ControllerViewComanda(serverConnect, comandaActual, viewComanda, this);
@@ -151,8 +149,12 @@ public class ControllerMainWindow implements ActionListener {
 
         handleDialogPlat(carta.getPlat(event.getActionCommand()), event);
 
-        for (int x = 0; x < comandaActual.getPlats().size(); x++) {
-            System.out.println(comandaActual.getPlat(x).getNomPlat());
+
+        if (viewComanda.isVisible()) {
+            viewComanda.dispatchEvent(new WindowEvent(viewComanda, WindowEvent.WINDOW_CLOSING));
+
+            this.handleVistaComanda(viewComanda);
+
         }
 
     }
@@ -192,12 +194,18 @@ public class ControllerMainWindow implements ActionListener {
     private void handleMenu(ActionEvent event) {
 
         if (event.getActionCommand().equals("ACCES CARTA")) {
+            card = "CARTA";
             view.changePanel("CARTA");
         } else if (event.getActionCommand().equals("ACCES ESTAT COMANDA")) {
+            card = "ESTAT COMANDA";
             view.changePanel("ESTAT COMANDA");
         } else if (event.getActionCommand().equals("ACCES SORTIDA")) {
+            card = "SORTIR";
             view.changePanel("SORTIR");
         } else if (event.getActionCommand().equals("ACCES EDITOR COMANDA")) {
+            card = "EDITOR";
+            viewComanda.setVisible(false);
+            viewComanda.dispose();
             handleVistaComanda(viewComanda);
         }
 
@@ -230,7 +238,6 @@ public class ControllerMainWindow implements ActionListener {
             //pagina anterior
             if (event.getActionCommand().equals("SEGUENT")) {
                 int p = view.getCartaPanel().getPaginaCarta();
-                System.out.println("pppppp" + view.getCartaPanel().getPag());
 
                 if (p * 6 < view.getCartaPanel().getPag().getPlats().size()) {
                     view.getCartaPanel().paginaCarta(carta.getPlats(), p + 1);
@@ -239,21 +246,13 @@ public class ControllerMainWindow implements ActionListener {
                 view.getCartaPanel().getPag().revalidate();
                 view.prova();
 
-                /*view.creaMenu(this);
-                view.getCartaPanel().registerController(this);
-                view.getPanelSortida().registerController(this);*/
-
                 //Pagina seguent
             } else if (event.getActionCommand().equals("ANTERIOR")) {
-                //System.out.println("seguen"+view.getCartaPanel().get);
                 int p = view.getCartaPanel().getPaginaCarta();
                 if (p > 1) {
                     view.getCartaPanel().paginaCarta(carta.getPlats(), p - 1);
                 }
                 view.prova();
-                /*view.creaMenu(this);
-                view.getCartaPanel().registerController(this);
-                view.getPanelSortida().registerController(this);*/
 
                 //sobre la carta
             } else {
@@ -282,12 +281,9 @@ public class ControllerMainWindow implements ActionListener {
                 fet = true;
             } else {
                 fet = true;
-                JOptionPane.showMessageDialog(view, "Nomes pots escriure numeros mes grans que 0");
+                JOptionPane.showMessageDialog(view, "Només pots escriure nombres més grans que 0");
             }
         }
-
-        // view.activaPanellsCarta(carta, this);
-        //view.activaPanellsComanda(comanda, this, carta);
 
     }
 
@@ -308,12 +304,13 @@ public class ControllerMainWindow implements ActionListener {
 
     public void setComandaActual(Comanda comandaActual) {
         this.comandaActual = new Comanda();
-        System.out.println("comanda actualitzada");
-
     }
 
     public void enviaPagat() {
         serverConnect.enviaComanda(new Comanda());
     }
 
+    public String getCard() {
+        return card;
+    }
 }

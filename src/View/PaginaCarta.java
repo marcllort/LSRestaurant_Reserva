@@ -16,6 +16,7 @@ public class PaginaCarta extends JPanel {
 
     /**
      * Constructor dels panells que formen la carta. Estan constituits de botons.
+     *
      * @param numPagina el numero de pagina corresponent al panell
      */
     public PaginaCarta(int numPagina) {
@@ -30,19 +31,18 @@ public class PaginaCarta extends JPanel {
 
     /**
      * L'encarregat de cambiar el panell (pagina)
+     *
      * @param numPagina a quina pagina es vol canviar
      */
     public void canviaPagina(int numPagina) {
         this.numPagina = numPagina;
         this.removeAll();
 
-
         int i = 6 * (numPagina - 1);
 
         while (i < (6 * numPagina) && i < jbArrray.size()) {
             this.add(jbArrray.get(i).getBoto());
             i++;
-
         }
         this.repaint();
         this.revalidate();
@@ -50,13 +50,13 @@ public class PaginaCarta extends JPanel {
 
     /**
      * L'encarregat de crear els diversos botons que formen el panell
+     *
      * @return Un ArrayList amb els botons corresponents a cada panell
      */
     private ArrayList<BotoPlat> creaButtons() {
         ArrayList<BotoPlat> array = new ArrayList<BotoPlat>();
 
         for (Plat p : plats) {
-            System.out.println(p.getNomPlat());
             BotoPlat buton = new BotoPlat(p.getNomPlat());
             array.add(buton);
 
@@ -66,6 +66,7 @@ public class PaginaCarta extends JPanel {
 
     /**
      * Getter del panell.
+     *
      * @return Retorna el panell en el que ens trobem
      */
     public JPanel getpaginaCarta() {
@@ -74,6 +75,7 @@ public class PaginaCarta extends JPanel {
 
     /**
      * Getter dels botons
+     *
      * @return ArrayList de botons que formen el panell
      */
     public ArrayList<BotoPlat> getJbArrray() {
@@ -81,7 +83,6 @@ public class PaginaCarta extends JPanel {
     }
 
     /**
-     *
      * @param plats
      */
     public void setPlats(ArrayList<Plat> plats) {
@@ -95,7 +96,6 @@ public class PaginaCarta extends JPanel {
             i++;
 
         }
-        System.out.println(plats);
     }
 
     public ArrayList<Plat> getPlats() {
@@ -104,16 +104,10 @@ public class PaginaCarta extends JPanel {
 
 
     public void registraControler(ActionListener controler) {
-
-
         for (BotoPlat p : jbArrray) {
-
             p.getBoto().addActionListener(controler);
-
             p.getBoto().setActionCommand(p.getNomPlat());
-
         }
-
     }
 
     public void afegeixBoto(ActionListener controller, String nom) {

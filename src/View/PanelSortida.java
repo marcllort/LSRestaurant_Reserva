@@ -1,5 +1,4 @@
 package View;
-//import ControllerMainWindow.ControllerMainWindow;
 
 import Controller.ControllerMainWindow;
 import Model.Comanda;
@@ -46,6 +45,7 @@ public class PanelSortida extends JPanel {
 
     /**
      * Registra el controlador
+     *
      * @param controlador
      */
     public void registerController(ActionListener controlador) {
@@ -59,12 +59,7 @@ public class PanelSortida extends JPanel {
 
     public void dialogSortida(ControllerMainWindow controlador) {
         dialogSortida = new DialogSortida(comanda, controlador);
-        //dialogSortida.registerController(controlador);
-        //dialogSortida.setVisible(true);
-    }
 
-    /*public void desactivaDialogSortida() {
-        dialogSortida.setVisible(false);
-    }*/
+    }
 
 }

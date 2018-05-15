@@ -55,8 +55,8 @@ public class PanelEstatComanda extends JPanel {
         jspComanda = new JScrollPane(jpComanda);
         this.add(jspComanda, BorderLayout.CENTER);
     }
-    
-    public void actualitzaComanda(Comanda comanda){
+
+    public void actualitzaComanda(Comanda comanda) {
         this.comanda = comanda;
         jpComanda = new JPanel();
         jpComanda.setLayout(new GridLayout(comanda.getPlats().size(), 1));
@@ -85,7 +85,7 @@ public class PanelEstatComanda extends JPanel {
         }
         jspComanda = new JScrollPane(jpComanda);
         this.add(jspComanda, BorderLayout.CENTER);
-        
+
     }
 
 

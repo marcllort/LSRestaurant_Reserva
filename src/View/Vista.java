@@ -53,7 +53,8 @@ public class Vista extends JFrame {
 
     /**
      * Registra els controlador
-     * @param c Controlador Vista principal
+     *
+     * @param c      Controlador Vista principal
      * @param window controlador de la finestra
      */
     public void registerController(ControllerMainWindow c, ControllerWindow window) {
@@ -69,6 +70,7 @@ public class Vista extends JFrame {
         changePanel("CARTA");
 
     }
+
     public void prova2(Carta carta, ActionListener controlador) {
         //this.remove(((BorderLayout) this.getLayout()).getLayoutComponent(BorderLayout.CENTER));
         this.remove(cartaPanel);
@@ -81,8 +83,9 @@ public class Vista extends JFrame {
 
     /**
      * Activa aquells panels de la vista principal que depenen de la carta i registra el controlador
+     *
      * @param carta La carta del restaurant
-     * @param c Controlador per tal de registrar-lo en els panells
+     * @param c     Controlador per tal de registrar-lo en els panells
      */
     public void activaPanellsCarta(Carta carta, ControllerMainWindow c) {
 
@@ -95,9 +98,10 @@ public class Vista extends JFrame {
 
     /**
      * Activa aquells panells de la vista principal que depenen de la comanda i registra el controlador en ells
-     * @param comanda La comanda del usuari
+     *
+     * @param comanda    La comanda del usuari
      * @param controller Controlador per tal de registrar-lo en els panells
-     * @param carta La carta del restaurant
+     * @param carta      La carta del restaurant
      */
     public void activaPanellsComanda(Comanda comanda, ControllerMainWindow controller, Carta carta) {
 
@@ -111,12 +115,13 @@ public class Vista extends JFrame {
         cartaPanel = new CartaPanel();
         cartaPanel.getPag().setPlats(carta.getPlats());
         cartaPanel.registerController(controller);
-        
+
     }
 
     /**
      * Funcio que crea el menu de la vista principal.
      * També registra el controlador als ítems del menú.
+     *
      * @param c Controlador
      */
     public void creaMenu(ControllerMainWindow c) {
@@ -150,6 +155,7 @@ public class Vista extends JFrame {
 
     /**
      * Funcio que retorna l'usuari escrit del panell d'acces
+     *
      * @return l'usuari escrit
      */
     public String getTypedUsuari() {
@@ -158,6 +164,7 @@ public class Vista extends JFrame {
 
     /**
      * Funcio que retorna la contrasenya de l'usuari escrita en el panell d'acces
+     *
      * @return la contrasenya de l'usuari
      */
     public String getTypedContrasenya() {
@@ -174,6 +181,7 @@ public class Vista extends JFrame {
     /**
      * L'encarregat de canviar el panell que es mostra.
      * Es canvia en funcio de l'opcio del menu escollida
+     *
      * @param quin A quin panell es vol canviar
      */
     public void changePanel(String quin) {
@@ -182,37 +190,45 @@ public class Vista extends JFrame {
 
     /**
      * Getter del Panell de Sortida
+     *
      * @return el panell de sortida
      */
     public PanelSortida getPanelSortida() {
         return panelSortida;
     }
 
-    public void newDialog(String missatge){
+    public void newDialog(String missatge) {
         JOptionPane.showMessageDialog(this, missatge);
     }
 
     /**
      * Funcio que registra a la finestra principal un Window Listener
+     *
      * @param windowListener el controlador
      */
 
-    public void registraControladors (WindowListener windowListener){
+    public void registraControladors(WindowListener windowListener) {
         addWindowListener(windowListener);
     }
 
     /**
      * Encarregar de modificar el panell de l'estat de la comanda,
      * ja sigui per si s'han servit plats o s'ha afegit una comanda nova
+     *
      * @param comanda la comanda actualitzada
      */
-    public void actualitzaPanelEstatComanda(Comanda comanda){panelEstatComanda.actualitzaComanda(comanda);}
+    public void actualitzaPanelEstatComanda(Comanda comanda) {
+        panelEstatComanda.actualitzaComanda(comanda);
+    }
 
 
     /**
      * Getter que retorna el panell de la carta
+     *
      * @return el panell de la carta
      */
-    public CartaPanel getCartaPanel() { return cartaPanel; }
+    public CartaPanel getCartaPanel() {
+        return cartaPanel;
+    }
 }
 
