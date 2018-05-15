@@ -13,12 +13,11 @@ public class LectorJson {
 
 
     public ConfiguracioClient llegeixConfiguracioClient() {             //Els args son useless
-        ConfiguracioClient data;          // Dades a carregar
-        Gson gson = new Gson();                   // Entitat Gson
-        JsonReader reader;                              // Reader de JSON
+        ConfiguracioClient data;                    // Dades a carregar
+        Gson gson = new Gson();                     // Entitat Gson
+        JsonReader reader;                          // Reader de JSON
 
         try {               //Intentem carregar el fitxer json
-
             reader = new JsonReader(new FileReader(FILE_NAME));
             data = gson.fromJson(reader, ConfiguracioClient.class);
 

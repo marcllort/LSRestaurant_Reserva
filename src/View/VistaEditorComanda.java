@@ -18,6 +18,7 @@ public class VistaEditorComanda extends JFrame {
     private JButton jbEnvia;
     private ArrayList<PlatComanda> platsComanda;
 
+
     /**
      * Constructor de la finestra que permet editar la comanda
      * Formada per un JScrollPane
@@ -75,12 +76,12 @@ public class VistaEditorComanda extends JFrame {
 
     }
 
+
     /**
      * Registra el panell a la finestra, i l'envia a els diferents panells que formen la finestra
      *
      * @param c controlador
      */
-
     public void registerController(ControllerViewComanda c) {
 
         for (PanelEditorComanda panelEditorComanda : panels) {
@@ -92,14 +93,6 @@ public class VistaEditorComanda extends JFrame {
 
     }
 
-    /**
-     * Funcio per obtenir els panells que formen la finestra
-     *
-     * @return ArrayList dels panells
-     */
-    public ArrayList<PanelEditorComanda> getPanels() {
-        return panels;
-    }
 
     /**
      * Funcio que actualitza la vista a l'hora d'eliminar un plat.
@@ -107,7 +100,6 @@ public class VistaEditorComanda extends JFrame {
      *
      * @param platsEsborrar El plat que volem eliminar
      */
-
     public void actualitzaVista(Plat platsEsborrar) {
         for (PanelEditorComanda p : panels) {
             if (p.getPlat().getNomPlat().equals(platsEsborrar.getNomPlat())) {
@@ -131,20 +123,8 @@ public class VistaEditorComanda extends JFrame {
     }
 
     /**
-     * Rep el nou numero d'unitats que vol l'usuari
-     *
-     * @param i index per saber de quin panell(plat) es tracta
-     * @return el nou nombre d'unitats
-     */
-
-    public int getActualitzacio(int i) {
-        return panels.get(i).getNovesUnitats();
-    }
-
-    /**
      * Actualitza els panells quan s'ha esborrat un plat de la comanda
      */
-
     public void actualitzaPanells() {
 
         PanelEditorComanda panelEditorComanda;
@@ -160,6 +140,25 @@ public class VistaEditorComanda extends JFrame {
         }
         jspComanda = new JScrollPane(jpComanda);
         this.add(jspComanda, BorderLayout.CENTER);
+    }
+
+    /**
+     * Rep el nou numero d'unitats que vol l'usuari
+     *
+     * @param i index per saber de quin panell(plat) es tracta
+     * @return el nou nombre d'unitats
+     */
+    public int getActualitzacio(int i) {
+        return panels.get(i).getNovesUnitats();
+    }
+
+    /**
+     * Funcio per obtenir els panells que formen la finestra
+     *
+     * @return ArrayList dels panells
+     */
+    public ArrayList<PanelEditorComanda> getPanels() {
+        return panels;
     }
 
 
@@ -191,7 +190,6 @@ public class VistaEditorComanda extends JFrame {
         this.add(jspComanda, BorderLayout.CENTER);
     }
 
-
     public JButton getJbElimina(int i) {
         return panels.get(i).getJbElimina();
     }
@@ -199,4 +197,5 @@ public class VistaEditorComanda extends JFrame {
     public JButton getJbActualitza(int i) {
         return panels.get(i).getJbActualitza();
     }
+
 }

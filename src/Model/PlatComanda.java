@@ -7,6 +7,7 @@ public class PlatComanda {
 
     /**
      * Contructor amb parametres
+     *
      * @param plat plat que es vol guardar
      */
     public PlatComanda(Plat plat) {
@@ -24,6 +25,7 @@ public class PlatComanda {
 
     /**
      * Getter del nom del plat
+     *
      * @return nom del plat
      */
     public String getNomPlat() {
@@ -32,6 +34,7 @@ public class PlatComanda {
 
     /**
      * Getter del numero d'unitats d'aquell plat
+     *
      * @return unitats
      */
     public int getUnitats() {
@@ -40,6 +43,7 @@ public class PlatComanda {
 
     /**
      * Getter del plat
+     *
      * @return plat
      */
     public Plat getPlat() {

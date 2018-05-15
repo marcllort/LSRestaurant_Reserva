@@ -13,20 +13,14 @@ import Model.Comanda;
 
 public class Vista extends JFrame {
 
-    //els diferents panells
+    //PANELS
     private PanelAcces panelAcces;
     private CartaPanel cartaPanel;
     private PanelEstatComanda panelEstatComanda;
     private PanelSortida panelSortida;
-    private JPanel jp1;
+
     //Layout per tal de mostrar un conjunt de panells
     private CardLayout layout;
-    //menu
-    private JMenuBar jmbMenu;
-    private JMenuItem jmiCarta;
-    private JMenuItem jmiComanda;
-    private JMenuItem jmiEstatComanda;
-    private JMenuItem jmiPagar;
 
 
     /**
@@ -51,6 +45,8 @@ public class Vista extends JFrame {
 
     }
 
+
+
     /**
      * Registra els controlador
      *
@@ -63,22 +59,19 @@ public class Vista extends JFrame {
         this.registraControladors(window);
     }
 
-    public void prova() {
-        //this.remove(((BorderLayout) this.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+    public void actualitzaVistaCarta() {
         this.remove(cartaPanel);
         this.getContentPane().add("CARTA", cartaPanel);
         changePanel("CARTA");
 
     }
 
-    public void prova2(Carta carta, ActionListener controlador) {
-        //this.remove(((BorderLayout) this.getLayout()).getLayoutComponent(BorderLayout.CENTER));
+    public void actualitzaPlatsVistaCarta(Carta carta, ActionListener controlador) {
         this.remove(cartaPanel);
         cartaPanel.getPag().setPlats(carta.getPlats());
         cartaPanel.getPag().registraControler(controlador);
         this.getContentPane().add("CARTA", cartaPanel);
         changePanel("CARTA");
-
     }
 
     /**
@@ -92,7 +85,6 @@ public class Vista extends JFrame {
         cartaPanel.getPag().setPlats(carta.getPlats());
         cartaPanel.registerController(c);
         this.getContentPane().add("CARTA", cartaPanel);
-
 
     }
 
@@ -126,12 +118,13 @@ public class Vista extends JFrame {
      */
     public void creaMenu(ControllerMainWindow c) {
 
-        jmiCarta = new JMenuItem("Carta");
-        jmiComanda = new JMenuItem("Editar Comanda");
-        jmiEstatComanda = new JMenuItem("Estat  Comanda");
-        jmiPagar = new JMenuItem("Pagar i  Sortir");
+        JMenuItem jmiCarta = new JMenuItem("Carta");
+        JMenuItem jmiComanda = new JMenuItem("Editar Comanda");
+        JMenuItem jmiEstatComanda = new JMenuItem("Estat  Comanda");
+        JMenuItem jmiPagar = new JMenuItem("Pagar i  Sortir");
 
-        jmbMenu = new JMenuBar();
+        //menu
+        JMenuBar jmbMenu = new JMenuBar();
         jmbMenu.setBackground(Color.LIGHT_GRAY);
         jmbMenu.setBorderPainted(true);
         jmbMenu.add(jmiCarta);

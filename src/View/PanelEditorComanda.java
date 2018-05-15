@@ -23,7 +23,8 @@ public class PanelEditorComanda extends JPanel {
 
     /**
      * Constructor amb parámetres
-     * @param plat Plat amb les unitats desitjades
+     *
+     * @param plat    Plat amb les unitats desitjades
      * @param numPlat de quin plat es tracta
      */
     public PanelEditorComanda(PlatComanda plat, int numPlat) {
@@ -71,8 +72,11 @@ public class PanelEditorComanda extends JPanel {
 
     }
 
+
+
     /**
      * Registra el controlador als botons del panell
+     *
      * @param c controlador de la finestra que edita la comanda
      */
     public void registerController(ActionListener c) {
@@ -84,6 +88,7 @@ public class PanelEditorComanda extends JPanel {
 
     /**
      * Getter del numero de plat en qüestio
+     *
      * @return numero de plat
      */
     public int getNumPlat() {
@@ -92,6 +97,7 @@ public class PanelEditorComanda extends JPanel {
 
     /**
      * Getter del plat que es troba al panell
+     *
      * @return el plat
      */
     public Plat getPlat() {
@@ -100,6 +106,7 @@ public class PanelEditorComanda extends JPanel {
 
     /**
      * Setter del numero del plat
+     *
      * @param numPlat
      */
     public void setNumPlat(int numPlat) {
@@ -108,6 +115,7 @@ public class PanelEditorComanda extends JPanel {
 
     /**
      * Setter de les unitats que es volen d'aquest plat
+     *
      * @param unitats unitats del plat
      */
     public void setNumUnitats(int unitats) {
@@ -116,6 +124,7 @@ public class PanelEditorComanda extends JPanel {
 
     /**
      * Getter de les unitats que ha introduït l'usuari a l'hora de actualitzar
+     *
      * @return el valor del JTextField on es troben les unitats
      */
     public int getNovesUnitats() {
@@ -124,6 +133,7 @@ public class PanelEditorComanda extends JPanel {
 
     /**
      * Getter de les unitats actuals d'aquell plat
+     *
      * @return numero d'unitats
      */
     public int getUnitats() {
@@ -132,6 +142,7 @@ public class PanelEditorComanda extends JPanel {
 
     /**
      * Getter del JButton d'eliminar el plat
+     *
      * @return JButton
      */
     public JButton getJbElimina() {
@@ -140,9 +151,11 @@ public class PanelEditorComanda extends JPanel {
 
     /**
      * Getter del boto d'actualitzacio d'unitats
+     *
      * @return JButton
      */
     public JButton getJbActualitza() {
         return jbActualitza;
     }
+
 }

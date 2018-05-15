@@ -13,13 +13,13 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class ControllerViewComanda implements ActionListener {
-    //vista
+
+    //VISTA
     private VistaEditorComanda viewComanda;
-    //model
+    //MODEL
     private ServerConnect serverConnect;
     private Comanda comandaActual;
-
-    //controller
+    //CONTROLLER
     private ControllerMainWindow controllerMainWindow;
 
     /**
@@ -37,6 +37,8 @@ public class ControllerViewComanda implements ActionListener {
         this.controllerMainWindow = controllerMainWindow;
 
     }
+
+
 
     /**
      * Gestiona els esdeveniments
@@ -71,6 +73,8 @@ public class ControllerViewComanda implements ActionListener {
         }
 
     }
+
+
 
     /**
      * Elimina els plats desitjats de la comanda actual

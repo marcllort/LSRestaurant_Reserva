@@ -21,6 +21,8 @@ public class Usuari implements Serializable {
         this.password = password;
     }
 
+
+
     /**
      * Getter de el nom d'usuari
      *

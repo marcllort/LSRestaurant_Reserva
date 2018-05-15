@@ -43,6 +43,7 @@ public class PanelSortida extends JPanel {
         this.add(jpAux, BorderLayout.CENTER);
     }
 
+
     /**
      * Registra el controlador
      *
@@ -55,6 +56,7 @@ public class PanelSortida extends JPanel {
 
     /**
      * Crea el Dialog que es mostra per pantalla a l'hora de sortir
+     *
      * @param controlador per tar de registrar-lo
      */
     public void dialogSortida(ControllerMainWindow controlador) {

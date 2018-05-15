@@ -11,7 +11,6 @@ public class ConfiguracioClient {
         return portServer;
     }
 
-
     public String lectorIpServer() {
         return ipServer;
     }

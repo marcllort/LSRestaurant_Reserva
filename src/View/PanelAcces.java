@@ -61,6 +61,7 @@ public class PanelAcces extends JPanel {
 
     /**
      * Registra el controlador
+     *
      * @param controlador
      */
     public void registerController(ActionListener controlador) {
@@ -70,6 +71,7 @@ public class PanelAcces extends JPanel {
 
     /**
      * Getter del usuari introduït al JTextField del usuari
+     *
      * @return usuari escrit
      */
     public String getTypedUsuari() {
@@ -78,6 +80,7 @@ public class PanelAcces extends JPanel {
 
     /**
      * Getter de la contrasenya introduïda al JTextField de la contrasenya
+     *
      * @return contrasenya introduïda
      */
     public String getTypedContrasenya() {

@@ -57,8 +57,10 @@ public class PanelEstatComanda extends JPanel {
         this.add(jspComanda, BorderLayout.CENTER);
     }
 
+
     /**
      * S'encarrega d'actualitzar el panell quan s'ha modificat la comanda
+     *
      * @param comanda
      */
     public void actualitzaComanda(Comanda comanda) {
@@ -92,6 +94,5 @@ public class PanelEstatComanda extends JPanel {
         this.add(jspComanda, BorderLayout.CENTER);
 
     }
-
 
 }

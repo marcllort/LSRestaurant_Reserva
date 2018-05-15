@@ -69,7 +69,6 @@ public class CartaPanel extends JPanel {
         jbSeguent.addActionListener(c);
         jbSeguent.setActionCommand("SEGUENT");
         pag.registraControler(c);
-
     }
 
 
@@ -96,7 +95,6 @@ public class CartaPanel extends JPanel {
      *
      * @return numero de pagina
      */
-
     public int getPaginaCarta() {
         return numPagina;
     }

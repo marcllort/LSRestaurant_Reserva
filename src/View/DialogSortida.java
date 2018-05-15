@@ -12,6 +12,7 @@ public class DialogSortida {
 
     /**
      * Consrtuctor amb parametres
+     *
      * @param comanda
      * @param controller
      */
@@ -25,20 +26,18 @@ public class DialogSortida {
                 break;
             }
         }
-
         if (faltan) {
-
             dialogSortir("Al tancar pagaràs automàticament totes les comandes, incloses les que encara no s'han servit.\nEstas segur que vols sortir? ", controller);
-
         } else {
             dialogSortir("Al tancar pagaràs automàticament totes les comandes.\nEstas segur que vols sortir? ", controller);
         }
 
-
     }
+
 
     /**
      * Mostra el missatge abans de la sortida
+     *
      * @param missatge
      * @param controller
      */
@@ -54,7 +53,6 @@ public class DialogSortida {
             System.exit(0);
         }
     }
-
 
 }
 
