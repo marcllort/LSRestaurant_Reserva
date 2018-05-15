@@ -37,7 +37,7 @@ public class ControllerViewComanda implements ActionListener {
         if (event.getActionCommand().equals("ENVIA COMANDA")) {
             serverConnect.enviaComanda(comandaActual);
             comandaActual = new Comanda();
-            controllerMainWindow.setComandaActual(comandaActual);
+            controllerMainWindow.setComandaActual();
             viewComanda.setVisible(false);
 
         } else {
