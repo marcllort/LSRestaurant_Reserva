@@ -6,7 +6,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 
 /**
- * Classe qur conte els plats de la comanda, el usuari, la data i hora
+ * Classe que conte els plats de la comanda, el usuari, la data i hora
  * Implementa Serializable per poder enviar-la per el servidor
  */
 public class Comanda implements Serializable {
@@ -25,7 +25,7 @@ public class Comanda implements Serializable {
     }
 
     /**
-     * Construcor amb tots els parametres per crear una comanda ja inicialitzada
+     * Constructor amb tots els parametres per crear una comanda ja inicialitzada
      *
      * @param plats
      * @param data

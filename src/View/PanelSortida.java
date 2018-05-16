@@ -11,8 +11,8 @@ import java.awt.event.ActionListener;
 
 public class PanelSortida extends JPanel {
 
-    private JLabel jlPreu;
-    private JButton jbMartxar;
+    private JLabel jlPreu = new JLabel();
+    private JButton jbMartxar = new JButton();
     private float preu;
     private Comanda comanda;
     private DialogSortida dialogSortida;
@@ -25,22 +25,21 @@ public class PanelSortida extends JPanel {
 
     public PanelSortida(Comanda comanda) {
 
-        this.setLayout(new BorderLayout());
-        preu = 0;
-        this.comanda = comanda;
+        this.setLayout(new BorderLayout(0, 0));
 
-        for (Plat p : comanda.getPlats()) {
-            preu += p.getPreu();
-        }
+        JPanel panel = new JPanel();
+        this.add(panel, BorderLayout.CENTER);
+        panel.setLayout(new GridLayout(2,1));
 
-        jlPreu = new JLabel("El preu a pagar és " + preu + "€");
-        jbMartxar = new JButton("Pagar");
+        jlPreu.setText("El preu a pagar es: " + preu);
+        jlPreu.setFont(new Font("Tahoma", Font.PLAIN, 38));
+        jlPreu.setBounds(30, 7, 400, 124);
+        panel.add(jlPreu);
 
-        JPanel jpAux = new JPanel();
-        jpAux.setLayout(new BoxLayout(jpAux, BoxLayout.Y_AXIS));
-        jpAux.add(jlPreu);
-        jpAux.add(jbMartxar);
-        this.add(jpAux, BorderLayout.CENTER);
+        jbMartxar.setText("Pagar");
+        jbMartxar.setFont(new Font("Tahoma", Font.BOLD, 30));
+        jbMartxar.setBounds(169, 128, 258, 82);
+        panel.add(jbMartxar);
     }
 
 
