@@ -23,15 +23,6 @@ public class BotoPlat extends JButton {
 
 
     /**
-     * Getter del boto
-     *
-     * @return retorna el boto
-     */
-    public JButton getBoto() {
-        return button;
-    }
-
-    /**
      * Registra el controlador al boto
      *
      * @param controller Action Listener
@@ -41,6 +32,17 @@ public class BotoPlat extends JButton {
         button.addActionListener(controller);
         button.setActionCommand(text);
     }
+
+    /**
+     * Getter del boto
+     *
+     * @return retorna el boto
+     */
+    public JButton getBoto() {
+        return button;
+    }
+
+
 
     /**
      * Getter del nom del plat en questio

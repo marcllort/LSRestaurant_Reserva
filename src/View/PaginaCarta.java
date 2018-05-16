@@ -84,7 +84,6 @@ public class PaginaCarta extends JPanel {
 
     /**
      * Setter dels plats de cada pagina de la carta
-     *
      * @param plats
      */
     public void setPlats(ArrayList<Plat> plats) {
@@ -102,7 +101,6 @@ public class PaginaCarta extends JPanel {
 
     /**
      * Getter dels plats de la pagina de la carta
-     *
      * @return ArrayList format per els plats
      */
     public ArrayList<Plat> getPlats() {
@@ -111,7 +109,6 @@ public class PaginaCarta extends JPanel {
 
     /**
      * Registra el controlador a tots els botons que formen la pagina
-     *
      * @param controler controlador de la finestra principal
      */
     public void registraControler(ActionListener controler) {
@@ -122,10 +119,9 @@ public class PaginaCarta extends JPanel {
     }
 
     /**
-     * Afegeix un plat a la pagina
-     *
+     * Afageix un plat a la pagina
      * @param controller per tal de registrar el boto
-     * @param nom        el nom del plat
+     * @param nom el nom del plat
      */
     public void afegeixBoto(ActionListener controller, String nom) {
         BotoPlat butt = new BotoPlat(nom);

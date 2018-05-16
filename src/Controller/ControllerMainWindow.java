@@ -17,7 +17,6 @@ import java.awt.event.WindowEvent;
 
 
 public class ControllerMainWindow implements ActionListener {
-
     //VISTA
     private Vista view;
     private VistaEditorComanda viewComanda;
@@ -33,7 +32,6 @@ public class ControllerMainWindow implements ActionListener {
 
     /**
      * Constructor amb parametres del controlador de la finestra principal
-     *
      * @param view
      * @param serverConnect
      */
@@ -72,7 +70,6 @@ public class ControllerMainWindow implements ActionListener {
         }
     }
 
-
     /**
      * Comprova que les credencials enviades per l'usuari siguin correctes
      */
@@ -109,6 +106,7 @@ public class ControllerMainWindow implements ActionListener {
         view.cleanFields();
         this.view = new Vista();
         view.setVisible(true);
+       // view.registerController(this);
     }
 
     /**
@@ -126,6 +124,7 @@ public class ControllerMainWindow implements ActionListener {
 
             viewComanda = new VistaEditorComanda(comandaActual);
             viewComanda.setVisible(true);
+            viewComanda.setLocationRelativeTo(view);
             preparaComanda();
             controllerViewComanda = new ControllerViewComanda(serverConnect, comandaActual, viewComanda, this);
             viewComanda.registerController(controllerViewComanda);
@@ -139,6 +138,7 @@ public class ControllerMainWindow implements ActionListener {
      *
      * @param event font de l'esdeveniment
      */
+
     private void handleAfegeixPlat(ActionEvent event) {
 
         handleDialogPlat(carta.getPlat(event.getActionCommand()), event);
@@ -148,6 +148,62 @@ public class ControllerMainWindow implements ActionListener {
             this.handleVistaComanda(viewComanda);
 
         }
+    }
+
+
+    /**
+     * Getter de la carta
+     * @return la carta del restaurant
+     */
+    public Carta getCarta() {
+        return carta;
+    }
+
+    /**
+     * Setter de la carta del restaurant
+     * @param carta la nova carta
+     */
+    public void setCarta(Carta carta) {
+        this.carta.setCarta(carta);
+    }
+
+    /**
+     * Getter de la comanda
+     * @return la comanda del usuari
+     */
+    public Comanda getComanda() {
+        return comanda;
+    }
+
+    /**
+     * Setter de la comanda
+     * @param comanda
+     */
+    public void setComanda(Comanda comanda) {
+        this.comanda = comanda;
+    }
+
+    /**
+     * Setter dels panells de la comanda
+     * S'encarrega d'activar els panells de la finestra principal que utilitzen la comanda
+     * @param comanda La comanda dels comensals
+     * @param controller Per tal de poder registrar el controller als diferents panells
+     * @param carta La carta del restaurant
+     */
+    public void setPanellsComanda(Comanda comanda, ControllerMainWindow controller, Carta carta) {
+        view.activaPanellsComanda(comanda, controller, carta);
+
+    }
+
+    /**
+     * Setter dels panells de la carta
+     * S'encarrega d'activar els panells de la finestra principal que fan servir la carta
+     * @param carta La carta del restaurant
+     * @param controller Controlador per tal de registrar-lo.
+     */
+    public void setPanellsCarta(Carta carta, ControllerMainWindow controller) {
+        view.actualitzaPlatsVistaCarta(carta, this);
+        view.getCartaPanel().paginaCarta(carta.getPlats(), view.getCartaPanel().getPaginaCarta());
     }
 
     /**
@@ -175,10 +231,16 @@ public class ControllerMainWindow implements ActionListener {
 
     }
 
+    /**
+     * Getter de la comanda actual, la que encara no s'ha enviat al server
+     * @return Comanda Actual
+     */
+    public Comanda getComandaActual() {
+        return comandaActual;
+    }
 
     /**
      * Controla els esdeveniments sobre els panells
-     *
      * @param event font de l'esdeveniment
      */
     private void handlePanels(ActionEvent event) {
@@ -188,7 +250,7 @@ public class ControllerMainWindow implements ActionListener {
             handleAcces();
             //accio sobre el panell sortida
         } else if (event.getActionCommand().equals("SORTIR")) {
-            view.getPanelSortida().dialogSortida(this);
+            view.getPanelSortida().dialogSortida(this, comanda);
             //accio sobre el panell carta
         } else {
             //pagina anterior
@@ -253,83 +315,6 @@ public class ControllerMainWindow implements ActionListener {
     }
 
     /**
-     * Getter de la comanda actual, la que encara no s'ha enviat al server
-     *
-     * @return Comanda Actual
-     */
-    public Comanda getComandaActual() {
-        return comandaActual;
-    }
-
-    /**
-     * Getter de la carta
-     *
-     * @return la carta del restaurant
-     */
-    public Carta getCarta() {
-        return carta;
-    }
-
-    /**
-     * Setter de la carta del restaurant
-     *
-     * @param carta la nova carta
-     */
-    public void setCarta(Carta carta) {
-        this.carta.setCarta(carta);
-    }
-
-    /**
-     * Getter de la comanda
-     *
-     * @return la comanda del usuari
-     */
-    public Comanda getComanda() {
-        return comanda;
-    }
-
-    /**
-     * Setter de la comanda
-     *
-     * @param comanda
-     */
-    public void setComanda(Comanda comanda) {
-        this.comanda = comanda;
-    }
-
-    /**
-     * Setter dels panells de la comanda
-     * S'encarrega d'activar els panells de la finestra principal que utilitzen la comanda
-     *
-     * @param comanda    La comanda dels comensals
-     * @param controller Per tal de poder registrar el controller als diferents panells
-     * @param carta      La carta del restaurant
-     */
-    public void setPanellsComanda(Comanda comanda, ControllerMainWindow controller, Carta carta) {
-        view.activaPanellsComanda(comanda, controller, carta);
-
-    }
-
-    /**
-     * Setter dels panells de la carta
-     * S'encarrega d'activar els panells de la finestra principal que fan servir la carta
-     *
-     * @param carta      La carta del restaurant
-     * @param controller Controlador per tal de registrar-lo.
-     */
-    public void setPanellsCarta(Carta carta, ControllerMainWindow controller) {
-        view.actualitzaPlatsVistaCarta(carta, this);
-        view.getCartaPanel().paginaCarta(carta.getPlats(), view.getCartaPanel().getPaginaCarta());
-    }
-
-    /**
-     * Comanda ja ha estat enviada. Crea una nova comanda buida
-     */
-    public void setComandaActual() {
-        this.comandaActual = new Comanda();
-    }
-
-    /**
      * Missatge que anuncia que la comanda s'ha pogut enviar amb exit
      */
     public void missatgeExitComanda() {
@@ -338,7 +323,6 @@ public class ControllerMainWindow implements ActionListener {
 
     /**
      * Missatge que auncia que la comanda no s'ha pogut realitzar amb exit
-     *
      * @param error String que indica el tipus d'error
      */
     public void missatgeErrorComanda(String error) {
@@ -346,16 +330,18 @@ public class ControllerMainWindow implements ActionListener {
     }
 
     /**
+     * Comanda ja ha estat enviada. Crea una nova comanda buida
+     */
+    public void setComandaActual() { this.comandaActual = new Comanda(); }
+
+    /**
      * Indica que el client vol sortir del programa.
      * Envia una comanda buida
      */
-    public void enviaPagat() {
-        serverConnect.enviaComanda(new Comanda());
-    }
+    public void enviaPagat() {serverConnect.enviaComanda(new Comanda()); }
 
     /**
      * Getter per saber en quin panell del CardLayout ens trobem
-     *
      * @return String indicant quin card
      */
     public String getCard() {

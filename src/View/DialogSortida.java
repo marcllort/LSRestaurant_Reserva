@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class DialogSortida {
-
+    private Comanda comanda;
     /**
      * Consrtuctor amb parametres
      *
@@ -18,10 +18,11 @@ public class DialogSortida {
      */
     public DialogSortida(Comanda comanda, ControllerMainWindow controller) {
         //Per saber si encara queden plats per pagar
+        this.comanda = comanda;
         boolean faltan = false;
 
-        for (Plat p : comanda.getPlats()) {
-            if (!p.isServit()) {
+        for(Plat p : this.comanda.getPlats()){
+            if(!p.isServit()){
                 faltan = true;
                 break;
             }

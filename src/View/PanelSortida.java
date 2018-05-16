@@ -27,6 +27,12 @@ public class PanelSortida extends JPanel {
 
         this.setLayout(new BorderLayout(0, 0));
 
+        this.comanda = comanda;
+
+        for (Plat p : this.comanda.getPlats()) {
+            preu += p.getPreu();
+        }
+
         JPanel panel = new JPanel();
         this.add(panel, BorderLayout.CENTER);
         panel.setLayout(new GridLayout(2,1));
@@ -58,9 +64,12 @@ public class PanelSortida extends JPanel {
      *
      * @param controlador per tar de registrar-lo
      */
-    public void dialogSortida(ControllerMainWindow controlador) {
+    public void dialogSortida(ControllerMainWindow controlador, Comanda comanda) {
+        this.comanda = comanda;
         dialogSortida = new DialogSortida(comanda, controlador);
 
     }
+
+
 
 }
