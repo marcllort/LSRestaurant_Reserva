@@ -70,6 +70,14 @@ public class PanelAcces extends JPanel {
     }
 
     /**
+     * Nateja els JTextFields del panell d'acces
+     */
+    public void cleanFields() {
+        jtfUsuari.setText("");
+        jtfContrasenya.setText("");
+    }
+
+    /**
      * Getter del usuari introduït al JTextField del usuari
      *
      * @return usuari escrit
@@ -87,12 +95,5 @@ public class PanelAcces extends JPanel {
         return String.valueOf(jtfContrasenya.getPassword());
     }
 
-    /**
-     * Nateja els JTextFields del panell d'acces
-     */
-    public void cleanFields() {
-        jtfUsuari.setText("");
-        jtfContrasenya.setText("");
-    }
 
 }

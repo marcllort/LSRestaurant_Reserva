@@ -7,10 +7,18 @@ public class ConfiguracioClient {
     private String ipServer;        // IP del servidor
 
 
+    /**
+     * Retorna el port de connexio amb el servidor
+     * @return port
+     */
     public int lectorPortServer() {
         return portServer;
     }
 
+    /**
+     * Retorna la IP del servidor
+     * @return ip
+     */
     public String lectorIpServer() {
         return ipServer;
     }

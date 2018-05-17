@@ -65,6 +65,29 @@ public class PaginaCarta extends JPanel {
     }
 
     /**
+     * Registra el controlador a tots els botons que formen la pagina
+     * @param controler controlador de la finestra principal
+     */
+    public void registraControler(ActionListener controler) {
+        for (BotoPlat p : jbArrray) {
+            p.getBoto().addActionListener(controler);
+            p.getBoto().setActionCommand(p.getNomPlat());
+        }
+    }
+
+    /**
+     * Afageix un plat a la pagina
+     * @param controller per tal de registrar el boto
+     * @param nom el nom del plat
+     */
+    public void afegeixBoto(ActionListener controller, String nom) {
+        BotoPlat butt = new BotoPlat(nom);
+        butt.registraController(controller, nom);
+        jbArrray.add(butt);
+
+    }
+
+    /**
      * Getter del panell.
      *
      * @return Retorna el panell en el que ens trobem
@@ -107,26 +130,5 @@ public class PaginaCarta extends JPanel {
         return plats;
     }
 
-    /**
-     * Registra el controlador a tots els botons que formen la pagina
-     * @param controler controlador de la finestra principal
-     */
-    public void registraControler(ActionListener controler) {
-        for (BotoPlat p : jbArrray) {
-            p.getBoto().addActionListener(controler);
-            p.getBoto().setActionCommand(p.getNomPlat());
-        }
-    }
 
-    /**
-     * Afageix un plat a la pagina
-     * @param controller per tal de registrar el boto
-     * @param nom el nom del plat
-     */
-    public void afegeixBoto(ActionListener controller, String nom) {
-        BotoPlat butt = new BotoPlat(nom);
-        butt.registraController(controller, nom);
-        jbArrray.add(butt);
-
-    }
 }

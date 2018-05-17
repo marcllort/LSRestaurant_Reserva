@@ -59,6 +59,42 @@ public class Vista extends JFrame {
         this.registraControladors(window);
     }
 
+    /**
+     * Funcio que crea el menu de la vista principal.
+     * També registra el controlador als ítems del menú.
+     *
+     * @param c Controlador
+     */
+    public void creaMenu(ControllerMainWindow c) {
+
+        JMenuItem jmiCarta = new JMenuItem("Carta");
+        JMenuItem jmiComanda = new JMenuItem("Editar Comanda");
+        JMenuItem jmiEstatComanda = new JMenuItem("Estat  Comanda");
+        JMenuItem jmiPagar = new JMenuItem("Pagar i  Sortir");
+
+        //menu
+        JMenuBar jmbMenu = new JMenuBar();
+        jmbMenu.setBackground(Color.LIGHT_GRAY);
+        jmbMenu.setBorderPainted(true);
+        jmbMenu.add(jmiCarta);
+        jmbMenu.add(jmiComanda);
+        jmbMenu.add(jmiEstatComanda);
+        jmbMenu.add(jmiPagar);
+
+        this.setJMenuBar(jmbMenu);
+
+        // Registrem controlador a les diferents opcions del menu
+        jmiCarta.addActionListener(c);
+        jmiCarta.setActionCommand("ACCES CARTA");
+        jmiEstatComanda.addActionListener(c);
+        jmiEstatComanda.setActionCommand("ACCES ESTAT COMANDA");
+        jmiComanda.setActionCommand("ACCES EDITOR COMANDA");
+        jmiComanda.addActionListener(c);
+        jmiPagar.addActionListener(c);
+        jmiPagar.setActionCommand("ACCES SORTIDA");
+
+    }
+
     public void actualitzaVistaCarta() {
         this.remove(cartaPanel);
         this.getContentPane().add("CARTA", cartaPanel);
@@ -111,40 +147,24 @@ public class Vista extends JFrame {
     }
 
     /**
-     * Funcio que crea el menu de la vista principal.
-     * També registra el controlador als ítems del menú.
-     *
-     * @param c Controlador
+     * Funcio que nateja els camps d'acces.
      */
-    public void creaMenu(ControllerMainWindow c) {
-
-        JMenuItem jmiCarta = new JMenuItem("Carta");
-        JMenuItem jmiComanda = new JMenuItem("Editar Comanda");
-        JMenuItem jmiEstatComanda = new JMenuItem("Estat  Comanda");
-        JMenuItem jmiPagar = new JMenuItem("Pagar i  Sortir");
-
-        //menu
-        JMenuBar jmbMenu = new JMenuBar();
-        jmbMenu.setBackground(Color.LIGHT_GRAY);
-        jmbMenu.setBorderPainted(true);
-        jmbMenu.add(jmiCarta);
-        jmbMenu.add(jmiComanda);
-        jmbMenu.add(jmiEstatComanda);
-        jmbMenu.add(jmiPagar);
-
-        this.setJMenuBar(jmbMenu);
-
-        // Registrem controlador a les diferents opcions del menu
-        jmiCarta.addActionListener(c);
-        jmiCarta.setActionCommand("ACCES CARTA");
-        jmiEstatComanda.addActionListener(c);
-        jmiEstatComanda.setActionCommand("ACCES ESTAT COMANDA");
-        jmiComanda.setActionCommand("ACCES EDITOR COMANDA");
-        jmiComanda.addActionListener(c);
-        jmiPagar.addActionListener(c);
-        jmiPagar.setActionCommand("ACCES SORTIDA");
-
+    public void cleanFields() {
+        panelAcces.cleanFields();
     }
+
+    /**
+     * L'encarregat de canviar el panell que es mostra.
+     * Es canvia en funcio de l'opcio del menu escollida
+     *
+     * @param quin A quin panell es vol canviar
+     */
+    public void changePanel(String quin) {
+        layout.show(this.getContentPane(), quin);
+    }
+
+
+
 
     /**
      * Funcio que retorna l'usuari escrit del panell d'acces
@@ -164,22 +184,6 @@ public class Vista extends JFrame {
         return panelAcces.getTypedContrasenya();
     }
 
-    /**
-     * Funcio que nateja els camps d'acces.
-     */
-    public void cleanFields() {
-        panelAcces.cleanFields();
-    }
-
-    /**
-     * L'encarregat de canviar el panell que es mostra.
-     * Es canvia en funcio de l'opcio del menu escollida
-     *
-     * @param quin A quin panell es vol canviar
-     */
-    public void changePanel(String quin) {
-        layout.show(this.getContentPane(), quin);
-    }
 
     /**
      * Getter del Panell de Sortida
@@ -190,9 +194,6 @@ public class Vista extends JFrame {
         return panelSortida;
     }
 
-    public void newDialog(String missatge) {
-        JOptionPane.showMessageDialog(this, missatge);
-    }
 
     /**
      * Funcio que registra a la finestra principal un Window Listener

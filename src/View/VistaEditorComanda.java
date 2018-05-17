@@ -162,40 +162,4 @@ public class VistaEditorComanda extends JFrame {
     }
 
 
-    public void actualitzaPanells2() {
-
-        platsComanda = new ArrayList<PlatComanda>();
-
-        for (Plat p : comandaActual.getPlats()) {
-            if (platsComanda.size() == 0) {
-                PlatComanda pc = new PlatComanda(p);
-                pc.augmentaUnitats();
-                platsComanda.add(pc);
-            } else {
-                for (int i = 0; i < platsComanda.size(); i++) {
-
-                    if (p.getNomPlat().equals(platsComanda.get(i).getNomPlat())) {
-                        platsComanda.get(i).augmentaUnitats();
-                        break;
-                    }
-                    if (!p.getNomPlat().equals(platsComanda.get(i).getNomPlat()) && i == platsComanda.size() - 1) {
-                        PlatComanda pc = new PlatComanda(p);
-                        platsComanda.add(pc);
-
-                    }
-                }
-            }
-        }
-        jspComanda = new JScrollPane(jpComanda);
-        this.add(jspComanda, BorderLayout.CENTER);
-    }
-
-    public JButton getJbElimina(int i) {
-        return panels.get(i).getJbElimina();
-    }
-
-    public JButton getJbActualitza(int i) {
-        return panels.get(i).getJbActualitza();
-    }
-
 }
