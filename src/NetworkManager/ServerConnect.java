@@ -166,6 +166,10 @@ public class ServerConnect extends Thread {
                 resposta = (String) objeto;
                 if (resposta.equals("true")) {
                     controller.missatgeExitComanda();
+                    //NOMES HAURIA DE BORRAR COMANDA AIXO
+
+
+                    //controller.getControllerViewComanda().newComanda();
                 } else {
                     controller.missatgeErrorComanda(resposta);
                 }

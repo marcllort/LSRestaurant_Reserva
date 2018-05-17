@@ -174,6 +174,9 @@ public class ControllerMainWindow implements ActionListener {
     public Comanda getComanda() {
         return comanda;
     }
+    public ControllerViewComanda getControllerViewComanda() {
+        return controllerViewComanda;
+    }
 
     /**
      * Setter de la comanda

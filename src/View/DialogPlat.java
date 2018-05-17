@@ -24,12 +24,19 @@ public class DialogPlat {
      */
     public boolean comprova() {
         try {
-            int i = Integer.parseInt(info);
-            if (i < 0) {
-                return false;
+            if (info != null) {
+                int i = Integer.parseInt(info);
+                System.out.println(info);
+                if (i < 0) {
+                    return false;
+                }
+            }else{
+                info = "0";
             }
         } catch (NumberFormatException nfe) {
+            System.out.println("AAAA");
             return false;
+
         }
         return true;
     }
