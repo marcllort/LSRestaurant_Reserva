@@ -48,7 +48,8 @@ public class ServerConnect extends Thread {
             dis = new DataInputStream(socket.getInputStream());
             this.vista = vista;
         } catch (IOException e) {
-            e.printStackTrace();
+            vista.newDialog("No s'ha pogut connectar amb el servidor!");
+            System.exit(0);
         }
     }
 
@@ -165,6 +166,10 @@ public class ServerConnect extends Thread {
                 resposta = (String) objeto;
                 if (resposta.equals("true")) {
                     controller.missatgeExitComanda();
+                    //NOMES HAURIA DE BORRAR COMANDA AIXO
+
+
+                    //controller.getControllerViewComanda().newComanda();
                 } else {
                     controller.missatgeErrorComanda(resposta);
                 }

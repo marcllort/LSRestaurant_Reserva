@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LSRestaurant_Reserva:jar">
+    <output-path>$PROJECT_DIR$/out/sadsfd</output-path>
+    <root id="archive" name="LSRestaurant_Reserva.jar">
+      <element id="module-output" name="LSRestaurant_Reserva" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/gson-2.8.2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
