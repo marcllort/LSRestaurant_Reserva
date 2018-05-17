@@ -28,7 +28,6 @@ public class ControllerWindow implements WindowListener {
     }
 
 
-
     @Override
     public void windowOpened(WindowEvent e) {
 
@@ -36,15 +35,40 @@ public class ControllerWindow implements WindowListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        System.out.println("tancant");
         String ObjButtons[] = {"Si", "No"};
-        int PromptResult = JOptionPane.showOptionDialog(null,
-                "Al tancar pagaràs automàticament totes les comandes.\nEstas segur que vols sortir? ", "Sortir",
-                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
-                ObjButtons, ObjButtons[1]);
-        if (PromptResult == 0) {
-            serverConnect.enviaComanda(new Comanda());
-            System.exit(0);
+
+        try {
+            if (controller.getComanda().getPlats().size() != 0) {
+                int PromptResult = JOptionPane.showOptionDialog(null,
+                        "Al tancar pagaràs automàticament totes les comandes.\nEstas segur que vols sortir? ", "Sortir",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
+                        ObjButtons, ObjButtons[1]);
+                if (PromptResult == 0) {
+                    System.out.println("Tancant al sortir");
+                    serverConnect.enviaComanda(new Comanda());
+                    System.exit(0);
+                }
+            } else {
+                int PromptResult = JOptionPane.showOptionDialog(null,
+                        "Estas segur que vols sortir? ", "Sortir",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
+                        ObjButtons, ObjButtons[1]);
+                if (PromptResult == 0) {
+
+                    System.exit(0);
+
+                }
+            }
+        } catch (NullPointerException ne2) {
+            int PromptResult = JOptionPane.showOptionDialog(null,
+                    "Estas segur que vols sortir? ", "Sortir",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
+                    ObjButtons, ObjButtons[1]);
+            if (PromptResult == 0) {
+
+                System.exit(0);
+
+            }
         }
 
     }                           //Desconnectem del servidor quan tanquem la finestra del client
