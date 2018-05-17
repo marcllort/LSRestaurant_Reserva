@@ -16,7 +16,12 @@ public class BotoPlat extends JButton {
      */
     public BotoPlat(String text) {
         nomPlat = text;
-        button = new JButton(text);
+        if(text.length()< 20) {
+            button = new JButton(text);
+        }else{
+           // text = text.substring(0, 20) + '\n' + text.substring(4, text.length());
+            button = new JButton("<html>" + text.replaceAll("\\n", "<br>") + "</html>");
+        }
         button.setBounds(10, 11, 125, 75);
         button.setFont(new Font("Tahoma", Font.PLAIN, 20));
     }
