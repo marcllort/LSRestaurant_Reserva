@@ -28,26 +28,6 @@ public class PaginaCarta extends JPanel {
 
     }
 
-
-    /**
-     * L'encarregat de cambiar el panell (pagina)
-     *
-     * @param numPagina a quina pagina es vol canviar
-     */
-    public void canviaPagina(int numPagina) {
-        this.numPagina = numPagina;
-        this.removeAll();
-
-        int i = 6 * (numPagina - 1);
-
-        while (i < (6 * numPagina) && i < jbArrray.size()) {
-            this.add(jbArrray.get(i).getBoto());
-            i++;
-        }
-        this.repaint();
-        this.revalidate();
-    }
-
     /**
      * L'encarregat de crear els diversos botons que formen el panell
      *
@@ -73,6 +53,25 @@ public class PaginaCarta extends JPanel {
             p.getBoto().addActionListener(controler);
             p.getBoto().setActionCommand(p.getNomPlat());
         }
+    }
+
+    /**
+     * L'encarregat de cambiar el panell (pagina)
+     *
+     * @param numPagina a quina pagina es vol canviar
+     */
+    public void canviaPagina(int numPagina) {
+        this.numPagina = numPagina;
+        this.removeAll();
+
+        int i = 6 * (numPagina - 1);
+
+        while (i < (6 * numPagina) && i < jbArrray.size()) {
+            this.add(jbArrray.get(i).getBoto());
+            i++;
+        }
+        this.repaint();
+        this.revalidate();
     }
 
     /**

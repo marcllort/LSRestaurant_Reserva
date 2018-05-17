@@ -45,20 +45,6 @@ public class Vista extends JFrame {
 
     }
 
-
-
-    /**
-     * Registra els controlador
-     *
-     * @param c      Controlador Vista principal
-     * @param window controlador de la finestra
-     */
-    public void registerController(ControllerMainWindow c, ControllerWindow window) {
-        //Pasem el controlado a la resta de panells
-        panelAcces.registerController(c);
-        this.registraControladors(window);
-    }
-
     /**
      * Funcio que crea el menu de la vista principal.
      * També registra el controlador als ítems del menú.
@@ -95,19 +81,26 @@ public class Vista extends JFrame {
 
     }
 
-    public void actualitzaVistaCarta() {
-        this.remove(cartaPanel);
-        this.getContentPane().add("CARTA", cartaPanel);
-        changePanel("CARTA");
+    /**
+     * Funcio que registra a la finestra principal un Window Listener
+     *
+     * @param windowListener el controlador
+     */
 
+    public void registraControladors(WindowListener windowListener) {
+        addWindowListener(windowListener);
     }
 
-    public void actualitzaPlatsVistaCarta(Carta carta, ActionListener controlador) {
-        this.remove(cartaPanel);
-        cartaPanel.getPag().setPlats(carta.getPlats());
-        cartaPanel.getPag().registraControler(controlador);
-        this.getContentPane().add("CARTA", cartaPanel);
-        changePanel("CARTA");
+    /**
+     * Registra els controlador
+     *
+     * @param c      Controlador Vista principal
+     * @param window controlador de la finestra
+     */
+    public void registerController(ControllerMainWindow c, ControllerWindow window) {
+        //Pasem el controlado a la resta de panells
+        panelAcces.registerController(c);
+        this.registraControladors(window);
     }
 
     /**
@@ -163,7 +156,36 @@ public class Vista extends JFrame {
         layout.show(this.getContentPane(), quin);
     }
 
+    /**
+     * Crea un dialog per tal de mostrar un missatge per pantalla
+     * @param missatge quin missatge volem mostrar
+     */
+    public void newDialog(String missatge) {
+        JOptionPane.showMessageDialog(this, missatge);
+    }
 
+    /**
+     * S'encarrega de actualitzar la vista que conte la carta
+     */
+    public void actualitzaVistaCarta() {
+        this.remove(cartaPanel);
+        this.getContentPane().add("CARTA", cartaPanel);
+        changePanel("CARTA");
+
+    }
+
+    /**
+     * S'encarrega de actualitzar els plats que conte la carta
+     * @param carta Carta actualitzada
+     * @param controlador per registrar-lo a els botons
+     */
+    public void actualitzaPlatsVistaCarta(Carta carta, ActionListener controlador) {
+        this.remove(cartaPanel);
+        cartaPanel.getPag().setPlats(carta.getPlats());
+        cartaPanel.getPag().registraControler(controlador);
+        this.getContentPane().add("CARTA", cartaPanel);
+        changePanel("CARTA");
+    }
 
 
     /**
@@ -184,7 +206,6 @@ public class Vista extends JFrame {
         return panelAcces.getTypedContrasenya();
     }
 
-
     /**
      * Getter del Panell de Sortida
      *
@@ -195,15 +216,6 @@ public class Vista extends JFrame {
     }
 
 
-    /**
-     * Funcio que registra a la finestra principal un Window Listener
-     *
-     * @param windowListener el controlador
-     */
-
-    public void registraControladors(WindowListener windowListener) {
-        addWindowListener(windowListener);
-    }
 
     /**
      * Encarregar de modificar el panell de l'estat de la comanda,
