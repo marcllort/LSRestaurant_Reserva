@@ -71,8 +71,9 @@ public class ServerConnect extends Thread {
     public void enviaUser(Usuari user) {
         try {
             oos.writeObject(user);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            controller.missatgeError("El servidor s'ha desconectat!");
+            System.exit(0);
         }
     }
 
@@ -100,7 +101,8 @@ public class ServerConnect extends Thread {
         try {
             return ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            controller.missatgeError("El servidor s'ha desconectat!");
+            System.exit(0);
             return null;                                            //retona null en cas d'execepcio
         }
 
@@ -166,10 +168,6 @@ public class ServerConnect extends Thread {
                 resposta = (String) objeto;
                 if (resposta.equals("true")) {
                     controller.missatgeExitComanda();
-                    //NOMES HAURIA DE BORRAR COMANDA AIXO
-
-
-                    //controller.getControllerViewComanda().newComanda();
                 } else {
                     controller.missatgeErrorComanda(resposta);
                 }

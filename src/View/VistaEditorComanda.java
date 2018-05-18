@@ -19,6 +19,10 @@ public class VistaEditorComanda extends JFrame {
     private ArrayList<PlatComanda> platsComanda;
 
 
+    public ArrayList<PlatComanda> getPlatsComanda() {
+        return platsComanda;
+    }
+
     /**
      * Constructor de la finestra que permet editar la comanda
      * Formada per un JScrollPane

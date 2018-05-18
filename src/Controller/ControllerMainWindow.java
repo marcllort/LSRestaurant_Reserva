@@ -263,6 +263,9 @@ public class ControllerMainWindow implements ActionListener {
     public void missatgeErrorComanda(String error) {
         JOptionPane.showMessageDialog(viewComanda, "Error a la comanda! " + error);
     }
+    public void missatgeError(String error) {
+        JOptionPane.showMessageDialog(viewComanda,  error);
+    }
 
     /**
      * Indica que el client vol sortir del programa.
