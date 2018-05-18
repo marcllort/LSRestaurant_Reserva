@@ -27,9 +27,9 @@ public class Comanda implements Serializable {
     /**
      * Constructor amb tots els parametres per crear una comanda ja inicialitzada
      *
-     * @param plats llista de plats de la comanda
-     * @param data data de la comanda
-     * @param hora hora de la comanda
+     * @param plats  llista de plats de la comanda
+     * @param data   data de la comanda
+     * @param hora   hora de la comanda
      * @param usuari l'usuari de la comanda
      */
     public Comanda(ArrayList<Plat> plats, Date data, Time hora, String usuari) {

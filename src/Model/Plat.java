@@ -14,7 +14,7 @@ public class Plat implements Serializable {
     /**
      * Constructor de plat amb parametres sense el boolea servit
      *
-     * @param nom nom del plat
+     * @param nom  nom del plat
      * @param preu preu del plat
      */
     public Plat(String nom, float preu) {
@@ -25,8 +25,9 @@ public class Plat implements Serializable {
 
     /**
      * Constructor del plat amb parametres
-     * @param nom nom del plat
-     * @param preu preu del plat
+     *
+     * @param nom    nom del plat
+     * @param preu   preu del plat
      * @param servit si esta servit o no el plat
      */
     public Plat(String nom, float preu, boolean servit) {

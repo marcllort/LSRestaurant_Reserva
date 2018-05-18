@@ -35,7 +35,7 @@ public class PanelSortida extends JPanel {
 
         JPanel panel = new JPanel();
         this.add(panel, BorderLayout.CENTER);
-        panel.setLayout(new GridLayout(2,1));
+        panel.setLayout(new GridLayout(2, 1));
 
         jlPreu.setText("El preu a pagar es: " + preu);
         jlPreu.setFont(new Font("Tahoma", Font.PLAIN, 38));
@@ -61,15 +61,15 @@ public class PanelSortida extends JPanel {
 
     /**
      * Crea el dialog que es mostra a l'hora de sortir
+     *
      * @param controlador per tal de poder registrar-lo mes endavant
-     * @param comanda la comanda de l'usuari
+     * @param comanda     la comanda de l'usuari
      */
     public void dialogSortida(ControllerMainWindow controlador, Comanda comanda) {
         this.comanda = comanda;
         dialogSortida = new DialogSortida(comanda, controlador);
 
     }
-
 
 
 }

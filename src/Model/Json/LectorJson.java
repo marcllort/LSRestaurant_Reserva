@@ -13,6 +13,7 @@ public class LectorJson {
 
     /**
      * Omple les dades del client extretes del fitxer json
+     *
      * @return Les dades de configuracio del client
      */
     public ConfiguracioClient llegeixConfiguracioClient() {             //Els args son useless

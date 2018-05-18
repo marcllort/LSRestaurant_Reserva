@@ -10,10 +10,11 @@ import java.awt.event.ActionListener;
 
 public class DialogSortida {
     private Comanda comanda;
+
     /**
      * Consrtuctor amb parametres
      *
-     * @param comanda la comanda de l'usuari
+     * @param comanda    la comanda de l'usuari
      * @param controller controlador finestra principal
      */
     public DialogSortida(Comanda comanda, ControllerMainWindow controller) {
@@ -21,8 +22,8 @@ public class DialogSortida {
         this.comanda = comanda;
         boolean faltan = false;
 
-        for(Plat p : this.comanda.getPlats()){
-            if(!p.isServit()){
+        for (Plat p : this.comanda.getPlats()) {
+            if (!p.isServit()) {
                 faltan = true;
                 break;
             }
@@ -39,7 +40,7 @@ public class DialogSortida {
     /**
      * Mostra el missatge abans de la sortida
      *
-     * @param missatge quin missatge volem mostrar
+     * @param missatge   quin missatge volem mostrar
      * @param controller el controlador de la vista principal
      */
     public void dialogSortir(String missatge, ControllerMainWindow controller) {

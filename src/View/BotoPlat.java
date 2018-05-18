@@ -45,7 +45,6 @@ public class BotoPlat extends JButton {
     }
 
 
-
     /**
      * Getter del nom del plat en questio
      *

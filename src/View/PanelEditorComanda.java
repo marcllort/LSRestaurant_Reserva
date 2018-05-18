@@ -73,7 +73,6 @@ public class PanelEditorComanda extends JPanel {
     }
 
 
-
     /**
      * Registra el controlador als botons del panell
      *

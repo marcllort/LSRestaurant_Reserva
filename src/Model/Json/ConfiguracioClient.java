@@ -9,6 +9,7 @@ public class ConfiguracioClient {
 
     /**
      * Retorna el port de connexio amb el servidor
+     *
      * @return port
      */
     public int lectorPortServer() {
@@ -17,6 +18,7 @@ public class ConfiguracioClient {
 
     /**
      * Retorna la IP del servidor
+     *
      * @return ip
      */
     public String lectorIpServer() {

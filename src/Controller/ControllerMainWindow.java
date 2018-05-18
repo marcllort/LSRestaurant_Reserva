@@ -32,7 +32,8 @@ public class ControllerMainWindow implements ActionListener {
 
     /**
      * Constructor amb parametres del controlador de la finestra principal
-     * @param view vista principal
+     *
+     * @param view          vista principal
      * @param serverConnect connexio amb el servidor
      */
     public ControllerMainWindow(Vista view, ServerConnect serverConnect) {
@@ -48,6 +49,7 @@ public class ControllerMainWindow implements ActionListener {
 
     /**
      * Gestiona els esdeveniments
+     *
      * @param event Font de l'esdeveniment
      */
     public void actionPerformed(ActionEvent event) {
@@ -105,7 +107,7 @@ public class ControllerMainWindow implements ActionListener {
         view.cleanFields();
         this.view = new Vista();
         view.setVisible(true);
-       // view.registerController(this);
+        // view.registerController(this);
     }
 
     /**
@@ -176,6 +178,7 @@ public class ControllerMainWindow implements ActionListener {
 
     /**
      * Controla els esdeveniments sobre els panells
+     *
      * @param event font de l'esdeveniment
      */
     private void handlePanels(ActionEvent event) {
@@ -258,24 +261,29 @@ public class ControllerMainWindow implements ActionListener {
 
     /**
      * Missatge que auncia que la comanda no s'ha pogut realitzar amb exit
+     *
      * @param error String que indica el tipus d'error
      */
     public void missatgeErrorComanda(String error) {
         JOptionPane.showMessageDialog(viewComanda, "Error a la comanda! " + error);
     }
+
     public void missatgeError(String error) {
-        JOptionPane.showMessageDialog(viewComanda,  error);
+        JOptionPane.showMessageDialog(viewComanda, error);
     }
 
     /**
      * Indica que el client vol sortir del programa.
      * Envia una comanda buida
      */
-    public void enviaPagat() {serverConnect.enviaComanda(new Comanda()); }
+    public void enviaPagat() {
+        serverConnect.enviaComanda(new Comanda());
+    }
 
 
     /**
      * Getter de la carta
+     *
      * @return la carta del restaurant
      */
     public Carta getCarta() {
@@ -284,6 +292,7 @@ public class ControllerMainWindow implements ActionListener {
 
     /**
      * Setter de la carta del restaurant
+     *
      * @param carta la nova carta
      */
     public void setCarta(Carta carta) {
@@ -292,17 +301,20 @@ public class ControllerMainWindow implements ActionListener {
 
     /**
      * Getter de la comanda
+     *
      * @return la comanda del usuari
      */
     public Comanda getComanda() {
         return comanda;
     }
+
     public ControllerViewComanda getControllerViewComanda() {
         return controllerViewComanda;
     }
 
     /**
      * Setter de la comanda
+     *
      * @param comanda
      */
     public void setComanda(Comanda comanda) {
@@ -312,9 +324,10 @@ public class ControllerMainWindow implements ActionListener {
     /**
      * Setter dels panells de la comanda
      * S'encarrega d'activar els panells de la finestra principal que utilitzen la comanda
-     * @param comanda La comanda dels comensals
+     *
+     * @param comanda    La comanda dels comensals
      * @param controller Per tal de poder registrar el controller als diferents panells
-     * @param carta La carta del restaurant
+     * @param carta      La carta del restaurant
      */
     public void setPanellsComanda(Comanda comanda, ControllerMainWindow controller, Carta carta) {
         view.activaPanellsComanda(comanda, controller, carta);
@@ -324,7 +337,8 @@ public class ControllerMainWindow implements ActionListener {
     /**
      * Setter dels panells de la carta
      * S'encarrega d'activar els panells de la finestra principal que fan servir la carta
-     * @param carta La carta del restaurant
+     *
+     * @param carta      La carta del restaurant
      * @param controller Controlador per tal de registrar-lo.
      */
     public void setPanellsCarta(Carta carta, ControllerMainWindow controller) {
@@ -333,9 +347,9 @@ public class ControllerMainWindow implements ActionListener {
     }
 
 
-
     /**
      * Getter de la comanda actual, la que encara no s'ha enviat al server
+     *
      * @return Comanda Actual
      */
     public Comanda getComandaActual() {
@@ -343,15 +357,17 @@ public class ControllerMainWindow implements ActionListener {
     }
 
 
-
     /**
      * Comanda ja ha estat enviada. Crea una nova comanda buida
      */
-    public void setComandaActual() { this.comandaActual = new Comanda(); }
+    public void setComandaActual() {
+        this.comandaActual = new Comanda();
+    }
 
 
     /**
      * Getter per saber en quin panell del CardLayout ens trobem
+     *
      * @return String indicant quin card
      */
     public String getCard() {

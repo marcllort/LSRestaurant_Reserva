@@ -158,6 +158,7 @@ public class Vista extends JFrame {
 
     /**
      * Crea un dialog per tal de mostrar un missatge per pantalla
+     *
      * @param missatge quin missatge volem mostrar
      */
     public void newDialog(String missatge) {
@@ -176,7 +177,8 @@ public class Vista extends JFrame {
 
     /**
      * S'encarrega de actualitzar els plats que conte la carta
-     * @param carta Carta actualitzada
+     *
+     * @param carta       Carta actualitzada
      * @param controlador per registrar-lo a els botons
      */
     public void actualitzaPlatsVistaCarta(Carta carta, ActionListener controlador) {
@@ -214,7 +216,6 @@ public class Vista extends JFrame {
     public PanelSortida getPanelSortida() {
         return panelSortida;
     }
-
 
 
     /**

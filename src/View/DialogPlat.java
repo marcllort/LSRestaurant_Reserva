@@ -29,7 +29,7 @@ public class DialogPlat {
                 if (i < 0) {
                     return false;
                 }
-            }else{
+            } else {
                 info = "0";
             }
         } catch (NumberFormatException nfe) {

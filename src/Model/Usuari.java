@@ -13,14 +13,13 @@ public class Usuari implements Serializable {
     /**
      * Constructor amb parametres de usuari
      *
-     * @param user usuari
+     * @param user     usuari
      * @param password contrasenya
      */
     public Usuari(String user, String password) {
         this.user = user;
         this.password = password;
     }
-
 
 
     /**

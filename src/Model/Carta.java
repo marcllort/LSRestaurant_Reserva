@@ -50,6 +50,7 @@ public class Carta implements Serializable {
 
     /**
      * Getter del plat
+     *
      * @param nom Nom del plat per saber de quin es tracta
      * @return Plat
      */

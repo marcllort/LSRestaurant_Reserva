@@ -24,9 +24,10 @@ public class ControllerViewComanda implements ActionListener {
 
     /**
      * Constructor amb parametres del Controlador la finestra que permet editar la comanda abans de ser enviada
-     * @param serverConnect connexio amb servidor
-     * @param comandaActual la comanda actual del client
-     * @param viewComanda La finestra grafica del editor de la comanda
+     *
+     * @param serverConnect        connexio amb servidor
+     * @param comandaActual        la comanda actual del client
+     * @param viewComanda          La finestra grafica del editor de la comanda
      * @param controllerMainWindow controlador de la finestra principal
      */
     public ControllerViewComanda(ServerConnect serverConnect, Comanda comandaActual, VistaEditorComanda viewComanda, ControllerMainWindow controllerMainWindow) {
@@ -37,7 +38,6 @@ public class ControllerViewComanda implements ActionListener {
         this.controllerMainWindow = controllerMainWindow;
 
     }
-
 
 
     /**
@@ -75,9 +75,9 @@ public class ControllerViewComanda implements ActionListener {
     }
 
 
-
     /**
      * Elimina els plats desitjats de la comanda actual
+     *
      * @param plat els plats a esborrar
      */
     private void eliminaPlatComanda(Plat plat) {
@@ -100,7 +100,8 @@ public class ControllerViewComanda implements ActionListener {
 
     /**
      * S'encarrega de actualitzar el numero de plats que es volen d'un plat
-     * @param i ens diu quin plat es vol modificar
+     *
+     * @param i   ens diu quin plat es vol modificar
      * @param num nova quantitat de plats que es vol
      */
     private void handleActualitzaComanda(int i, int num) {
