@@ -26,7 +26,6 @@ public class DialogPlat {
         try {
             if (info != null) {
                 int i = Integer.parseInt(info);
-                System.out.println(info);
                 if (i < 0) {
                     return false;
                 }
