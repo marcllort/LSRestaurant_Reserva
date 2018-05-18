@@ -21,7 +21,7 @@ public class Carta implements Serializable {
     /**
      * Costructor amb parametre de arraylist per poder crear la carta ja inicialitzada
      *
-     * @param plats
+     * @param plats l'array de plats que pertanyen a la carta
      */
     public Carta(ArrayList<Plat> plats) {
         this.plats = new ArrayList<Plat>();
@@ -41,13 +41,18 @@ public class Carta implements Serializable {
     /**
      * Getter de un plat especific
      *
-     * @param i
+     * @param i index del plat
      * @return el plat
      */
     public Plat getPlat(int i) {
         return plats.get(i);
     }
 
+    /**
+     * Getter del plat
+     * @param nom Nom del plat per saber de quin es tracta
+     * @return Plat
+     */
     public Plat getPlat(String nom) {
         for (Plat p : plats) {
             if (p.getNomPlat().equals(nom)) {
@@ -69,7 +74,7 @@ public class Carta implements Serializable {
     /**
      * Funció per afegir plat al arraylist de la carta
      *
-     * @param plat
+     * @param plat el plat a afegir
      */
     public void afegeixPlat(Plat plat) {
         plats.add(plat);
@@ -78,7 +83,7 @@ public class Carta implements Serializable {
     /**
      * Setter de una carta
      *
-     * @param carta
+     * @param carta Carta
      */
     public void setCarta(Carta carta) {
         this.plats = carta.getPlats();

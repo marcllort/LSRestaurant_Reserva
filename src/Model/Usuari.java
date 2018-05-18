@@ -13,8 +13,8 @@ public class Usuari implements Serializable {
     /**
      * Constructor amb parametres de usuari
      *
-     * @param user
-     * @param password
+     * @param user usuari
+     * @param password contrasenya
      */
     public Usuari(String user, String password) {
         this.user = user;
@@ -35,7 +35,7 @@ public class Usuari implements Serializable {
     /**
      * Setter de nom d'usuari
      *
-     * @param user
+     * @param user usuari
      */
     public void setUser(String user) {
         this.user = user;
@@ -53,7 +53,7 @@ public class Usuari implements Serializable {
     /**
      * Setter de password
      *
-     * @param password
+     * @param password contrasenya
      */
     public void setPassword(String password) {
         this.password = password;

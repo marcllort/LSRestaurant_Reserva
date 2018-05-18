@@ -61,7 +61,7 @@ public class PanelEstatComanda extends JPanel {
     /**
      * S'encarrega d'actualitzar el panell quan s'ha modificat la comanda
      *
-     * @param comanda
+     * @param comanda la nova comanda
      */
     public void actualitzaComanda(Comanda comanda) {
         this.comanda = comanda;

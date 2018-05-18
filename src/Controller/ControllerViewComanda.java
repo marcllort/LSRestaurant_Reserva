@@ -124,8 +124,6 @@ public class ControllerViewComanda implements ActionListener {
         JOptionPane.showMessageDialog(viewComanda, "Plat actualitzat!");
 
     }
-    public void newComanda(){
-        comandaActual = new Comanda();
-    }
+
 
 }

@@ -52,7 +52,7 @@ public class PanelSortida extends JPanel {
     /**
      * Registra el controlador
      *
-     * @param controlador
+     * @param controlador el controlador
      */
     public void registerController(ActionListener controlador) {
         jbMartxar.addActionListener(controlador);
@@ -60,9 +60,9 @@ public class PanelSortida extends JPanel {
     }
 
     /**
-     * Crea el Dialog que es mostra per pantalla a l'hora de sortir
-     *
-     * @param controlador per tar de registrar-lo
+     * Crea el dialog que es mostra a l'hora de sortir
+     * @param controlador per tal de poder registrar-lo mes endavant
+     * @param comanda la comanda de l'usuari
      */
     public void dialogSortida(ControllerMainWindow controlador, Comanda comanda) {
         this.comanda = comanda;

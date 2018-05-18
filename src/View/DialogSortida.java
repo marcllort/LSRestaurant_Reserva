@@ -13,8 +13,8 @@ public class DialogSortida {
     /**
      * Consrtuctor amb parametres
      *
-     * @param comanda
-     * @param controller
+     * @param comanda la comanda de l'usuari
+     * @param controller controlador finestra principal
      */
     public DialogSortida(Comanda comanda, ControllerMainWindow controller) {
         //Per saber si encara queden plats per pagar
@@ -39,8 +39,8 @@ public class DialogSortida {
     /**
      * Mostra el missatge abans de la sortida
      *
-     * @param missatge
-     * @param controller
+     * @param missatge quin missatge volem mostrar
+     * @param controller el controlador de la vista principal
      */
     public void dialogSortir(String missatge, ControllerMainWindow controller) {
         String ObjButtons[] = {"Si", "No"};

@@ -62,7 +62,7 @@ public class PanelAcces extends JPanel {
     /**
      * Registra el controlador
      *
-     * @param controlador
+     * @param controlador l'Action Listener
      */
     public void registerController(ActionListener controlador) {
         jbEnvia.addActionListener(controlador);

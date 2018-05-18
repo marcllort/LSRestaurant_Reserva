@@ -107,7 +107,7 @@ public class PanelEditorComanda extends JPanel {
     /**
      * Setter del numero del plat
      *
-     * @param numPlat
+     * @param numPlat el numero del plat
      */
     public void setNumPlat(int numPlat) {
         this.numPlat = numPlat;

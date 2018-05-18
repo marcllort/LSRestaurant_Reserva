@@ -106,7 +106,7 @@ public class PaginaCarta extends JPanel {
 
     /**
      * Setter dels plats de cada pagina de la carta
-     * @param plats
+     * @param plats l'arrayList dels plats que formaran cada panell de plats
      */
     public void setPlats(ArrayList<Plat> plats) {
         this.plats = plats;
