@@ -107,7 +107,6 @@ public class ControllerMainWindow implements ActionListener {
         view.cleanFields();
         this.view = new Vista();
         view.setVisible(true);
-        // view.registerController(this);
     }
 
     /**
